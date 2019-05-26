@@ -58,9 +58,8 @@ angular.module('todoController', [])
 			
 			Todos.get()
 				.success(function(data) {
-					for(var key in data[0]){
-						alert(key + data[0][key]);
-					}
+					var msg = JSON.stringify(data);
+					console.log(msg);
 				});
 		}
 		

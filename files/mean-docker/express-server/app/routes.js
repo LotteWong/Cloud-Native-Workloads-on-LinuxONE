@@ -40,6 +40,10 @@ module.exports = function (app) {
     });
 
     app.put('/api/todos/:todo_id', function(req, res) {
+        console.log(req.params.todo_id);
+        console.log(req.body.balance);
+        console.log(req.params.amount);
+
         Todo.findByIdAndUpdate(req.params.todo_id, {
             balance: req.body.balance + parseFloat(req.params.amount)
         }, function (err, todo) {

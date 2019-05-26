@@ -71,6 +71,7 @@ angular.module('todoController', [])
 						console.log("selected id: " + $scope.selected);
 						if(data[idx]["_id"] == $scope.selected) {
 							console.log("Query " + data[idx]["balance"] + " yuan");
+							alert("Query " + data[idx]["balance"] + " yuan");
 						}
 					}
 					$scope.amount = '';
@@ -107,7 +108,29 @@ angular.module('todoController', [])
 		$scope.withdraw = function() {
 
 			alert("Withdraw " + $scope.amount + " yuan");
-			// TODO: balance += amount
+			
+			Todos.get()
+				.success(function(data) {
+					var msg = JSON.stringify(data);
+					console.log(msg);
+					
+					for(var idx in data) {
+						console.log("item id: " + data[idx]["_id"]);
+						console.log("selected id: " + $scope.selected);
+						if(data[idx]["_id"] == $scope.selected) {
+							$scope.loading = true;
+							console.log("origin balance: " + data[idx]["balance"]);
+							console.log("newly amount: " - parseFloat($scope.amount));
+							Todos.put($scope.selected, {amount: data[idx]["balance"] - parseFloat($scope.amount)})
+							// if successful creation, call our get function to get all the new todos
+								.success(function(data) {
+									$scope.loading = false;
+									$scope.todos = data; // assign our new list of todos
+							});
+						};
+					}
+					$scope.amount = '';
+				});
 
 		}
 	}]);

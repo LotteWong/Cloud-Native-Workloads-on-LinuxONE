@@ -3,6 +3,7 @@ angular.module('todoController', [])
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
+		$scope.amount = 0;
 		$scope.loading = true;
 
 		// GET =====================================================================
@@ -44,11 +45,31 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			Todos.delete(id)
-				// if successful creation, call our get function to get all the new todos
+			Todos.get()
 				.success(function(data) {
-					$scope.loading = false;
-					$scope.todos = data; // assign our new list of todos
+					alert(typeof(data));
+					alert(data);
 				});
 		};
+
+		$scope.query = function() {
+			alert("Query " + amount + "yuan.");
+			
+			alert(Todos.)
+			alert(Todos);
+		}
+		
+		$scope.deposit = function() {
+
+			alert("Deposit " + amount + "yuan.");
+			// TODO: balance -= amount
+
+		};
+
+		$scope.withdraw = function() {
+
+			alert("Withdraw " + amount + "yuan.");
+			// TODO: balance += amount
+
+		}
 	}]);

@@ -45,18 +45,22 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			Todos.get()
+			Todos.delete(id)
+				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
-					alert(typeof(data));
-					alert(data);
+					$scope.loading = false;
+					$scope.todos = data; // assign our new list of todos
 				});
 		};
 
 		$scope.query = function() {
 			alert("Query " + amount + "yuan.");
 			
-			alert(Todos.)
-			alert(Todos);
+			Todos.get()
+				.success(function(data) {
+					alert(typeof(data));
+					alert(data);
+				});
 		}
 		
 		$scope.deposit = function() {

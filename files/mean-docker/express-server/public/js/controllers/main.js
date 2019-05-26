@@ -44,11 +44,11 @@ angular.module('todoController', [])
 		// DELETE ==================================================================
 		// delete a todo after checking it
 		$scope.deleteTodo = function(id) {
-			console.log(id);
+			console.log("exisited id: " + id);
 			
-			$scope.loading = true;
+			/*$scope.loading = true;
 
-			/*Todos.delete(id)
+			Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
@@ -57,7 +57,7 @@ angular.module('todoController', [])
 
 			$scope.selected = id;
 
-			console.log($scope.selected);
+			console.log("selected id: " + $scope.selected);
 		};
 
 		$scope.query = function() {			
@@ -67,8 +67,8 @@ angular.module('todoController', [])
 					console.log(msg);
 					
 					for(var item in data) {
-						console.log(item["_id"]);
-						console.log($scope.selected);
+						console.log("item id: " + item);
+						console.log("selected id: " + $scope.selected);
 						if(item["_id"] == $scope.selected) {
 							console.log("Query " + item["balance"] + " yuan");
 						}

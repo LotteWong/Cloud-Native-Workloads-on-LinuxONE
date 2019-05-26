@@ -24,8 +24,8 @@ angular.module('todoController', [])
 			if ($scope.formData.id != undefined && $scope.formData.pwd != undefined) {
 				$scope.loading = true;
 
-				alert($scope.formData.id);
-				alert($scope.formData.pwd);
+				console.log($scope.formData.id);
+				console.log($scope.formData.pwd);
 
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.formData)
@@ -45,12 +45,12 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			Todos.delete(id)
+			/*Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
 					$scope.todos = data; // assign our new list of todos
-				});
+				});*/
 		};
 
 		$scope.query = function() {
@@ -67,6 +67,13 @@ angular.module('todoController', [])
 
 			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount
+
+			Todos.put(id, $scope.amount)
+				// if successful creation, call our get function to get all the new todos
+				.success(function(data) {
+					var msg = JSON.stringify(data);
+					console.log(msg);
+				});
 
 		};
 

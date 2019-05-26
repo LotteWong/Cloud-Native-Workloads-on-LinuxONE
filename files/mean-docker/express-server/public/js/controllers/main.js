@@ -88,12 +88,17 @@ angular.module('todoController', [])
 						console.log("selected id: " + $scope.selected);
 						if(data[idx]["_id"] == $scope.selected) {
 							alert("Deposit " + $scope.amount + " yuan");
-							// TODO: balance -= amount
+							$scope.loading = true;
+							Todos.put($scope.selected)
+							// if successful creation, call our get function to get all the new todos
+								.success(function(data) {
+									$scope.loading = false;
+									$scope.todos = data; // assign our new list of todos
+							});
 						}
 					}
 					$scope.amount = '';
 				});
-
 		};
 
 		$scope.withdraw = function() {

@@ -63,7 +63,7 @@ angular.module('todoController', [])
 				});
 		}
 		
-		$scope.deposit = function() {
+		$scope.deposit = function(id) {
 
 			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount

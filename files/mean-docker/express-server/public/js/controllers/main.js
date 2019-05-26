@@ -60,6 +60,7 @@ angular.module('todoController', [])
 				.success(function(data) {
 					var msg = JSON.stringify(data);
 					console.log(msg);
+					$scope.amount = '';
 				});
 		}
 		
@@ -68,12 +69,10 @@ angular.module('todoController', [])
 			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount
 
-			Todos.put(id, $scope.amount)
-				// if successful creation, call our get function to get all the new todos
+			$http.put('/api/todos/' + id, $scope.todos)
 				.success(function(data) {
-					var msg = JSON.stringify(data);
-					console.log(msg);
-				});
+					$scope.todos = data;
+				})
 
 		};
 

@@ -25,7 +25,6 @@ angular.module('todoController', [])
 
 				alert($scope.formData.id);
 				alert($scope.formData.pwd);
-				alert($scope.formData);
 
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.formData)

@@ -9,5 +9,9 @@ module.exports = mongoose.model('Todo', {
     pwd: {
         type: String,
         default: ''
+    },
+    balance: {
+        type: Number,
+        default: 0.0
     }
 });

@@ -54,7 +54,7 @@ angular.module('todoController', [])
 		};
 
 		$scope.query = function() {
-			alert("Query " + amount + "yuan.");
+			alert("Query " + $scope.amount + "yuan.");
 			
 			Todos.get()
 				.success(function(data) {

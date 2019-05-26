@@ -56,7 +56,7 @@ angular.module('todoController', [])
 		$scope.query = function() {			
 			Todos.get()
 				.success(function(data) {
-					alert("Query " + data['balance'] + " yuan");
+					alert("Query " + data[0]["balance"] + " yuan");
 					
 					var msg = JSON.stringify(data);
 					console.log(msg);

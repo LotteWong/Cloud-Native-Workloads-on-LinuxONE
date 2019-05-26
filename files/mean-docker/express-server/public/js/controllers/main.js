@@ -54,25 +54,26 @@ angular.module('todoController', [])
 		};
 
 		$scope.query = function() {
-			alert("Query " + $scope.amount + "yuan.");
+			alert("Query " + $scope.amount + " yuan");
 			
 			Todos.get()
 				.success(function(data) {
-					alert(typeof(data));
-					alert(data);
+					for(var key in data){
+						alert(key,data[key]);
+					}
 				});
 		}
 		
 		$scope.deposit = function() {
 
-			alert("Deposit " + amount + "yuan.");
+			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount
 
 		};
 
 		$scope.withdraw = function() {
 
-			alert("Withdraw " + amount + "yuan.");
+			alert("Withdraw " + $scope.amount + " yuan");
 			// TODO: balance += amount
 
 		}

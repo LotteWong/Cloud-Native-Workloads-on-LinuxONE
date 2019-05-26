@@ -40,13 +40,11 @@ module.exports = function (app) {
     });
 
     // update a todo
-    app.put('/api/todos/:todo_id/:todo_amount', function(req, res) {
-        
-        getTodos(res);
+    app.put('/api/todos/:todo_id', function(req, res) {
 
-        /*var wherestr = {'_id': req.params.todo_id};
+        var wherestr = {'_id': req.params.todo_id};
         console.log(wherestr);
-        var updatestr = {'balance' : req.body.balance + parseFloat(req.params.todo_amount)};
+        var updatestr = {'balance' : req.body.amount};
         console.log(updatestr);
         Todo.update(wherestr, updatestr, function (err, todo) {
             if (err)
@@ -54,7 +52,7 @@ module.exports = function (app) {
 
             // get and return all the todos after you create another
             getTodos(res);
-        });*/
+        });
 
     });
 

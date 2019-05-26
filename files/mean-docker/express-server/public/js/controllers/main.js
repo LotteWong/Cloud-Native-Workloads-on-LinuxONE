@@ -45,22 +45,23 @@ angular.module('todoController', [])
 		$scope.deleteTodo = function(id) {
 			$scope.loading = true;
 
-			/*Todos.delete(id)
+			Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
 					$scope.todos = data; // assign our new list of todos
-				});*/
+				});
 		};
 
-		$scope.query = function() {
-			alert("Query " + $scope.amount + " yuan");
-			
+		$scope.query = function() {			
 			Todos.get()
 				.success(function(data) {
+					alert("Query " + data['balance'] + " yuan");
+					
 					var msg = JSON.stringify(data);
 					console.log(msg);
-					$scope.amount = '';
+
+					// $scope.amount = '';
 				});
 		}
 		
@@ -68,11 +69,6 @@ angular.module('todoController', [])
 
 			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount
-
-			$http.put('/api/todos/' + id, $scope.todos)
-				.success(function(data) {
-					$scope.todos = data;
-				})
 
 		};
 

@@ -67,7 +67,7 @@ angular.module('todoController', [])
 					console.log(msg);
 					
 					for(var item in data) {
-						console.log("item id: " + item);
+						console.log("item id: " + item["id"]);
 						console.log("selected id: " + $scope.selected);
 						if(item["_id"] == $scope.selected) {
 							console.log("Query " + item["balance"] + " yuan");

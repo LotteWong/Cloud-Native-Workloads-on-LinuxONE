@@ -59,7 +59,7 @@ angular.module('todoController', [])
 			Todos.get()
 				.success(function(data) {
 					for(var key in data){
-						alert(key,data[key]);
+						alert(key + data[key]);
 					}
 				});
 		}

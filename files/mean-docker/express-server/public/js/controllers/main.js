@@ -70,7 +70,7 @@ angular.module('todoController', [])
 						console.log("item id: " + data[idx]["_id"]);
 						console.log("selected id: " + $scope.selected);
 						if(data[idx]["_id"] == $scope.selected) {
-							console.log("Query " + item["balance"] + " yuan");
+							console.log("Query " + data[idx]["balance"] + " yuan");
 						}
 					}
 					$scope.amount = '';
@@ -78,9 +78,21 @@ angular.module('todoController', [])
 		}
 		
 		$scope.deposit = function() {
-
-			alert("Deposit " + $scope.amount + " yuan");
-			// TODO: balance -= amount
+			Todos.get()
+				.success(function(data) {
+					var msg = JSON.stringify(data);
+					console.log(msg);
+					
+					for(var idx in data) {
+						console.log("item id: " + data[idx]["_id"]);
+						console.log("selected id: " + $scope.selected);
+						if(data[idx]["_id"] == $scope.selected) {
+							alert("Deposit " + $scope.amount + " yuan");
+							// TODO: balance -= amount
+						}
+					}
+					$scope.amount = '';
+				});
 
 		};
 

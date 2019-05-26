@@ -89,7 +89,7 @@ angular.module('todoController', [])
 						if(data[idx]["_id"] == $scope.selected) {
 							alert("Deposit " + $scope.amount + " yuan");
 							$scope.loading = true;
-							Todos.put($scope.selected, $scope.amount)
+							Todos.put($scope.selected, $scope.formData)
 							// if successful creation, call our get function to get all the new todos
 								.success(function(data) {
 									$scope.loading = false;

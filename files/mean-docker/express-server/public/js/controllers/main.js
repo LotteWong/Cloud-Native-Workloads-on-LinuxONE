@@ -5,6 +5,7 @@ angular.module('todoController', [])
 		$scope.formData = {};
 		$scope.amount;
 		$scope.loading = true;
+		$scope.selected;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -47,27 +48,36 @@ angular.module('todoController', [])
 			
 			$scope.loading = true;
 
-			Todos.delete(id)
+			/*Todos.delete(id)
 				// if successful creation, call our get function to get all the new todos
 				.success(function(data) {
 					$scope.loading = false;
 					$scope.todos = data; // assign our new list of todos
-				});
+				});*/
+
+			$scope.selected = id;
+
+			console.log($scope.selected);
 		};
 
 		$scope.query = function() {			
 			Todos.get()
 				.success(function(data) {
-					alert("Query " + data[0]["balance"] + " yuan");
-					
 					var msg = JSON.stringify(data);
 					console.log(msg);
-
-					// $scope.amount = '';
+					
+					for(var item in data) {
+						console.log(item["_id"]);
+						console.log($scope.selected);
+						if(item["_id"] == $scope.selected) {
+							console.log("Query " + item["balance"] + " yuan");
+						}
+					}
+					$scope.amount = '';
 				});
 		}
 		
-		$scope.deposit = function(id) {
+		$scope.deposit = function() {
 
 			alert("Deposit " + $scope.amount + " yuan");
 			// TODO: balance -= amount

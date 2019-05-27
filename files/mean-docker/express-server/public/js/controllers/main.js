@@ -66,6 +66,7 @@ angular.module('todoController', [])
 					var msg = JSON.stringify(data);
 					console.log(msg);
 					
+					$scope.loading = true;
 					for(var idx in data) {
 						console.log("item id: " + data[idx]["_id"]);
 						console.log("selected id: " + $scope.selected);
@@ -75,6 +76,8 @@ angular.module('todoController', [])
 						}
 					}
 					$scope.amount = '';
+					$scope.loading = false;
+					$scope.todos = data; // assign our new list of todos
 				});
 		}
 		
@@ -120,7 +123,7 @@ angular.module('todoController', [])
 						if(data[idx]["_id"] == $scope.selected) {
 							$scope.loading = true;
 							console.log("origin balance: " + data[idx]["balance"]);
-							console.log("newly amount: " - parseFloat($scope.amount));
+							console.log("newly amount: " + parseFloat($scope.amount));
 							Todos.put($scope.selected, {amount: data[idx]["balance"] - parseFloat($scope.amount)})
 							// if successful creation, call our get function to get all the new todos
 								.success(function(data) {

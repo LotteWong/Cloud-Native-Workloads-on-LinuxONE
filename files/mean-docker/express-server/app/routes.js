@@ -1,5 +1,6 @@
 var Todo = require('./models/todo');
 var Customer = require('./models/customer');
+var Customer = require('./models/account');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -25,6 +26,18 @@ function getCustomers(res) {
     });
 };
 
+function getAccounts(res) {
+    Customer.find(function (err, accounts) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(accounts); // return all todos in JSON format
+    });
+};
+
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
@@ -39,6 +52,13 @@ module.exports = function (app) {
     app.get('/api/customers', function (req, res) {
         // use mongoose to get all todos in the database
         getCustomers(res);
+    });
+
+    // api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/accounts', function (req, res) {
+        // use mongoose to get all todos in the database
+        getAccounts(res);
     });
 
     // create todo and send back all todos after creation
@@ -66,6 +86,7 @@ module.exports = function (app) {
         Customer.create({
             username: req.body.username,
             password: req.body.password,
+            accounts: req.body.accounts,
             done: false
         }, function (err, todo) {
             if (err)
@@ -73,6 +94,26 @@ module.exports = function (app) {
 
             // get and return all the todos after you create another
             getCustomers(res);
+        });
+
+    });
+
+    // create todo and send back all todos after creation
+    app.post('/api/accounts', function (req, res) {
+
+        // create a todo, information comes from AJAX request from Angular
+        Account.create({
+            account: req.body.account,
+            balance: req.body.balance,
+            income: req.body.income,
+            outcome: req.body.outcome,
+            done: false
+        }, function (err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            getAccounts(res);
         });
 
     });

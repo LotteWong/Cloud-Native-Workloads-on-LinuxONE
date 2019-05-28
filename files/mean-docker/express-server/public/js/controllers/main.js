@@ -1,7 +1,7 @@
 angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', 'Customers', function($scope, $http, Todos, Customers) {
+	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', function($scope, $http, Todos, Customers) {
 	// .controller('mainController', ['$scope','$http', 'Customers', function($scope, $http, Customers) {	
 	// .controller('mainController', ['$scope','$http', 'Todos', function($scope, $http, Todos) {	
 		$scope.customerData = {}; // 绑定前端的客户数据
@@ -34,7 +34,7 @@ angular.module('todoController', [])
 			outcome: 666,
 		};
 		/*$scope.account = {
-			
+
 		}
 
 		 */
@@ -62,6 +62,7 @@ angular.module('todoController', [])
 			// 情况二：已存在该客户则alert提醒并清空form
 			// ......
 
+			// 最简单什么都不考虑的情况：
 			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);

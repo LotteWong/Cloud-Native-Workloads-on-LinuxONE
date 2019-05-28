@@ -17,42 +17,6 @@ module.exports = mongoose.model('Todo', {
 });
 
 /*
-// Define the Customer schema
-module.exports = mongoose.model('Customer', {
-    username: {
-        type: String,
-        default: ''
-    },
-    password: {
-        type: String,
-        default: ''
-    },
-    account_id: [{
-        type: String,
-        default: ''
-    }]
-});
-
-// Define the Account schema
-module.exports = mongoose.model('Account', {
-    account_id: {
-        type: String,
-        default: ''
-    },
-    balance: {
-        type: Number,
-        default: 0.0
-    },
-    income: {
-        type: Number,
-        default: 0.0
-    },
-    outcome: {
-        type: Number,
-        default: 0.0
-    }
-});
-
 // Define the Transaction schema
 module.exports = mongoose.model('Transaction', {
     type: {

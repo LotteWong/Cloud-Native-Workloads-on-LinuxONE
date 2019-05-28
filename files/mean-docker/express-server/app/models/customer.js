@@ -10,7 +10,7 @@ module.exports = mongoose.model('Customer', {
       type: String,
       default: ''
   },
-  account_id: [{
+  accounts: [{
       type: String,
       default: ''
   }]

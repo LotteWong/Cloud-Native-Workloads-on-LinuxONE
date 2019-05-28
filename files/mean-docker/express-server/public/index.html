@@ -217,10 +217,9 @@
 								<div id="todo-list" class="row">
 									<div class="col-sm-4 col-sm-offset-4">
 
-										<!--<div class="checkbox" ng-repeat="account in accounts">-->
-										<div class="checkbox">
+										<div class="checkbox" ng-repeat="account in accounts">
 											<label>
-												<input type="checkbox" ng-click="selectAccount(accout._id)"> {{ todo.id }}
+												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.account }}: {{ account.balance }}
 											</label>
 										</div>
 
@@ -237,7 +236,7 @@
 											<div class="form-group">
 
 												<!-- 输入新账户名 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.account_id">
+												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.account">
 
 											</div>
 										</form>

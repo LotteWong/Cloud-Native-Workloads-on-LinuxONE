@@ -68,6 +68,7 @@ angular.module('todoController', [])
 				console.log($scope.customerData.password);
 
 				Customers.create($scope.customerData).success(function(data) {
+						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
 						$scope.customers = data;
 					});
@@ -124,8 +125,12 @@ angular.module('todoController', [])
 		// 交易记录显示还没有头绪，先码着
 		// ......
 
-		// 已有账户显示还没有头绪，先码着
-		// ......
+		// 已有账户显示
+		Accounts.get()
+			.success(function(data) {
+				$scope.accounts = data;
+				$scope.loading = false;
+			});
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {
@@ -146,6 +151,19 @@ angular.module('todoController', [])
 			
 			// 情况二：已存在该账户则alert提醒并清空form
 			// ......
+			if ($scope.accountData.account != undefined) {
+				console.log($scope.accountData.account);
+
+				$scope.loading = true;
+
+				$scope.accountData.username = $scope.customerData.username;
+
+				Accounts.create($scope.accountData).success(function(data) {
+						$scope.loading = false;
+						$scope.accountData = {};
+						$scope.accounts = data;
+					});
+			}
 		};
 
 		// 存款

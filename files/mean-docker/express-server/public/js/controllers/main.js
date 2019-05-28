@@ -33,6 +33,11 @@ angular.module('todoController', [])
 			income: 233,
 			outcome: 666,
 		};
+		/*$scope.account = {
+			
+		}
+
+		 */
 		/*$scope.transaction = {
 			type: "Transfer",
 			from: "Charlotte",

@@ -3,12 +3,13 @@ angular.module('todoController', [])
 	// inject the Todo service factory into our controller
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
-		$scope.amount;
 		$scope.loading = true;
+		$scope.amount;
 		$scope.selected;
-		$scope.username = "LotteWong";
-		$scope.password = "password";
-		$scope.lastTimeLoggedIn = "20190528";
+		$scope.customer = {
+			username: "LotteWong",
+			lastSuccessfulLogin: "20190528",
+		};
 		$scope.balance = 1024;
 		$scope.income = 233;
 		$scope.outcome = 666;

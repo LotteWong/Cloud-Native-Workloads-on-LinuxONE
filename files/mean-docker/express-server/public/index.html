@@ -4,17 +4,20 @@
 <html ng-app="meanTodo">
 <head>
 	<!-- META -->
-	<meta charset="utf-8">
+	<meta charset="utf-8"><!-- Set charset Unicode -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>Node/Angular Todo App</title>
+	<title>SCUT Online Bank</title>
 
 	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-  <link href="dashboard.css" rel="stylesheet">
-	<link href="theme.css" rel="stylesheet">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap widget -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"><!-- load bootstrap font -->
 	
+	<link href="./css/signin.css" rel="stylesheet"><!-- load bootstrap signin page css -->
+	<link href="./css/dashboard.css" rel="stylesheet"><!-- load bootstrap dashboard page css -->
+	<link href="./css/theme.css" rel="stylesheet"><!-- load bootstrap theme page css -->
+	
+	<!-- TODO: todo-list和todo-form需要修改或删除 -->
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
@@ -30,28 +33,34 @@
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
+
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
+	<!-- 顶部导航栏 -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!-- TODO: 还不知道这个button对应的地方 -->
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Project name</a>
+					<!-- 项目名称 -->
+          <a class="navbar-brand" href="#">SCUT Online Bank</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
+          <!-- 导航项 -->
+					<ul class="nav navbar-nav navbar-right">
             <li><a href="#">Dashboard</a></li>
             <li><a href="#">Settings</a></li>
             <li><a href="#">Profile</a></li>
             <li><a href="#">Help</a></li>
           </ul>
+					<!-- 搜索框 -->
           <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
+            <input type="text" class="form-control" placeholder="Search sepecific transaction...">
           </form>
         </div>
       </div>
@@ -128,7 +137,7 @@
 							<div class="panel-heading">
 									<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
-							<div class="panel-body" style="height: 300px; overflow:auto">
+							<div class="panel-body" style="height: 250px; overflow:auto">
 									<!-- FORM TO CREATE TODOS -->
 									<div id="todo-form" class="row">
 										<div class="col-sm-8 col-sm-offset-2 text-center">
@@ -158,7 +167,7 @@
 							<div class="panel-heading">
 								<h3 class="panel-title">Transaction</h3>
 							</div>
-							<div class="panel-body" style="height: 300px; overflow:auto">
+							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
 									<table class="table table-striped">
 										<thead>

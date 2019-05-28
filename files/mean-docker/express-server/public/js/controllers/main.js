@@ -4,15 +4,20 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.loading = true;
+		$scope.account;
 		$scope.amount;
-		$scope.selected;
-		$scope.customer = {
-			username: "LotteWong",
-			lastSuccessfulLogin: "20190528",
-		};
 		$scope.balance = 1024;
 		$scope.income = 233;
 		$scope.outcome = 666;
+		$scope.customer = {
+			username: "LotteWong",
+			password: "password",
+			lastSuccessfulLogin: "20190528",
+			account: "ICBCAccount",
+			balance: 1024,
+			income: 233,
+			outcome: 666,
+		};
 		$scope.transaction = {
 			type: "Transfer",
 			from: "Charlotte",
@@ -20,6 +25,13 @@ angular.module('todoController', [])
 			amount: "1024",
 			time: "20190528"
 		};
+		$scope.finance = {
+			type: "Yu'E Bao",
+			rate: "2.33%",
+			interest: "6.66",
+		};
+
+		$scope.selected;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them

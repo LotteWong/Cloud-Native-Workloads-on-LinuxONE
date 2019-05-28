@@ -152,9 +152,9 @@
 											<form>
 												<div class="form-group">
 													<!-- 输入转账账户 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transAccount">
+													<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="account">
 													<!-- 输入转账金额 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transAmount">
+													<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="amount">
 
 												</div>
 											</form>
@@ -171,7 +171,7 @@
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
-						<div class="panel panel-default">
+						<div class="panel panel-primary">
 							<div class="panel-heading">
 								<h3 class="panel-title">Transaction</h3>
 							</div>
@@ -206,27 +206,56 @@
 
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="panel panel-danger">
+						<div class="panel panel-primary">
+							<!-- 卡片账户面板 -->
 							<div class="panel-heading">
-								<h3 class="panel-title">Withdraw</h3>
+								<h3 class="panel-title">Cards</h3>
 							</div>
 							<div class="panel-body" style="height: 200px; overflow:auto">
-								<!-- FORM TO CREATE TODOS -->
 								<div id="todo-form" class="row">
 									<div class="col-sm-8 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
 
-												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
+												<!-- 输入新账户名 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="account">
 
 											</div>
 										</form>
 
-										<!-- createToDo() WILL CREATE NEW TODOS -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
+										<!-- 取消开户 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelNewAccount()">Cancel</button>
 
-										<!-- createToDo() WILL CREATE NEW TODOS -->
+										<!-- 确认开户 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="createNewAccount()">Create</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<!-- 存钱&取钱面板 -->
+						<div class="panel panel-info">
+							<div class="panel-heading">
+								<h3 class="panel-title">Deposit & Withdraw</h3>
+							</div>
+							<div class="panel-body" style="height: 200px; overflow:auto">
+								
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+
+												<!-- 输入操作金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Deposit or withdraw the money." ng-model="amount">
+
+											</div>
+										</form>
+
+										<!-- 存款 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+										
+										<!-- 取款 -->
 										<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
 									</div>
 								</div>
@@ -234,58 +263,28 @@
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-success">
-							<div class="panel-heading">
-								<h3 class="panel-title">Deposit</h3>
-							</div>
-							<div class="panel-body" style="height: 200px; overflow:auto">
-								<!-- FORM TO CREATE TODOS -->
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-
-												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
-
-											</div>
-										</form>
-
-										
-										<!-- createToDo() WILL CREATE NEW TODOS -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
-										
-										<!-- createToDo() WILL CREATE NEW TODOS -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
 						<div class="panel panel-warning">
+							<!-- 理财产品面板 -->
 							<div class="panel-heading">
 								<h3 class="panel-title">Finance</h3>
 							</div>
 							<div class="panel-body" style="height: 200px; overflow:auto">
+								<!-- 产品信息 -->
 								<h4>
-									<span class="label label-default">Default</span>
+									<span class="label label-default">Product Name: {{ finance.type }}</span>
+									<span class="label label-danger">Annual Rate: {{ finance.rate }}</span>
+									<span class="label label-success">Estimated Interest: {{ finance.interest }}</span>
 								</h4>
+								<!-- 持有金额 -->
 								<div class="progress">
         					<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>
       					</div>
-								<h4>
-									<span class="label label-default">Default</span>
-								</h4>
-								<div class="progress">
-        					<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>
-      					</div>
-								<h4>
-									<span class="label label-default">Default</span>
-								</h4>
-								<div class="progress">
-        					<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>
-      					</div>
+								<!-- 购买选项 -->
+								<p>
+									<button type="button" class="btn btn-xs btn-primary" ng-click="purchaseFinanceProduct(finance.type, 12)">Purchase One Year's</button>
+									<button type="button" class="btn btn-xs btn-primary" ng-click="purchaseFinanceProduct(finace.type, 6)">Purchase Six Months'</button>
+									<button type="button" class="btn btn-xs btn-primary" ng-click="purchaseFinanceProduct(finace.type, 3)">Purchase Three Months'</button>
+      					</p>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->

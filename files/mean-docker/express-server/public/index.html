@@ -64,9 +64,12 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
-          <!-- 导航项 -->
-					<ul class="nav nav-sidebar">
+					<!-- 导航项 -->
+          <ul class="nav nav-sidebar">
             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+          </ul>
+					<!-- 导航项 -->
+					<ul class="nav nav-sidebar">
             <li><a href="#">Cards</a></li>
             <li><a href="#">History</a></li>
             <li><a href="#">Analytics</a></li>
@@ -86,30 +89,38 @@
 
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-				<!-- HEADER AND TODO COUNT -->
+				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
-					<h1>Welcome Back, <span class="label label-primary">{{ username }}</span> !</h1>
-					<h2>Last time when you logged in was <span class="label label-success">{{ lastTimeLoggedIn }}</span> .</h2>
+					<!-- 显示客户昵称 -->
+					<h1>Welcome Back, <span class="label label-primary">{{ customer.username }}</span> !</h1>
+					<!-- 显示上次成功登陆时间 -->
+					<h2>Last successful login: <span class="label label-success">{{ customer.lastSuccessfulLogin }}</span> .</h2>
 				</div>
 
 				<div class="row">
 					<div class="col-sm-4">
+						<!-- 余额面板 -->
 						<div class="panel panel-info">
 							<div class="panel-heading">
 								<h3 class="panel-title">Balance</h3>
+								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								总额：{{ balance }}
+								总额：{{ customer.balance }}
+								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
+						<!-- 收入面板 -->
 						<div class="panel panel-success">
 							<div class="panel-heading">
 								<h3 class="panel-title">Income</h3>
+								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
 								收入： {{ income }}
+								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
@@ -117,9 +128,11 @@
 						<div class="panel panel-danger">
 							<div class="panel-heading">
 								<h3 class="panel-title">Outcome</h3>
+								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
 								支出： {{ outcome }}
+								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
@@ -127,80 +140,60 @@
 
 				<div class="row">
 					<div class="col-sm-8">
+						<!-- 支付&转账面板 -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 									<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
-									<!-- FORM TO CREATE TODOS -->
+									<!-- TODO: todo-list和todo-form需要修改或删除 -->
 									<div id="todo-form" class="row">
 										<div class="col-sm-8 col-sm-offset-2 text-center">
 											<form>
 												<div class="form-group">
-
-													<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-													<input type="text" class="form-control input-lg text-center" placeholder="account's go here" ng-model="account">
-																										<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-													<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
+													<!-- 输入转账账户 -->
+													<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transAccount">
+													<!-- 输入转账金额 -->
+													<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transAmount">
 
 												</div>
 											</form>
 
-											<!-- createToDo() WILL CREATE NEW TODOS -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
+											<!-- 取消转账 -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
 
-											<!-- createToDo() WILL CREATE NEW TODOS -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Confirm</button>
+											<!-- 确认转账 -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
 										</div>
 									</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
+						<!-- 交易记录面板 -->
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Transaction</h3>
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
-									<table class="table table-striped">
+									<table class="table table-striped" ng-repeat="transaction in transactions">
 										<thead>
 											<tr>
-												<th>#</th>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Username</th>
-												<th>Password</th>
+												<th>Type</th>
+												<th>From</th>
+												<th>To</th>
+												<th>Amount</th>
+												<th>Time</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<td>1</td>
-												<td>Mark</td>
-												<td>Otto</td>
-												<td>@mdo</td>
-												<td>@mdo</td>
-											</tr>
-											<tr>
-												<td>2</td>
-												<td>Jacob</td>
-												<td>Thornton</td>
-												<td>@fat</td>
-												<td>@fat</td>
-											</tr>
-											<tr>
-												<td>3</td>
-												<td>Larry</td>
-												<td>the Bird</td>
-												<td>@twitter</td>
-												<td>@twitter</td>
-											</tr>
-											<tr>
-												<td>4</td>
-												<td>Carol</td>
-												<td>Danvers</td>
-												<td>@flutter</td>
-												<td>@flutter</td>
+												<td>{{ transaction.type }}</td>
+												<td>{{ transaction.from }}</td>
+												<td>{{ transaction.to }}</td>
+												<td>{{ transaction.amount }}</td>
+												<td>{{ transaction.time }}</td>
 											</tr>
 										</tbody>
 									</table>

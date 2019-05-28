@@ -9,6 +9,7 @@ angular.module('todoController', [])
 		$scope.username = "LotteWong";
 		$scope.password = "password";
 		$scope.lastTimeLoggedIn = "20190528";
+		$scope.balance = 1024;
 		$scope.income = 233;
 		$scope.outcome = 666;
 

@@ -85,8 +85,8 @@
 
 				<!-- HEADER AND TODO COUNT -->
 				<div class="jumbotron text-center">
-					<h3>Welcome Back, <span class="label label-info">{{ username }}!</span></h3>
-					<h3>Last time when you logged in is <span class="label label-info">{{ lastTimeLoggedIn }}.</span></h3>
+					<h1>Welcome Back, <span class="label label-info">{{ username }}</span> !</h1>
+					<h1>Last time when you logged in is <span class="label label-info">{{ lastTimeLoggedIn }}</span> .</h1>
 				</div>
 
 				<div class="row">
@@ -131,7 +131,7 @@
 							<div class="panel-body">
 									<!-- FORM TO CREATE TODOS -->
 									<div id="todo-form" class="row">
-										<div class="col-sm-4 col-sm-offset-2 text-center">
+										<div class="col-sm-12 col-sm-offset-2 text-center">
 											<form>
 												<div class="form-group">
 
@@ -173,17 +173,17 @@
 							<div class="panel-body">
 								<!-- FORM TO CREATE TODOS -->
 								<div id="todo-form" class="row">
-									<div class="col-sm-4 col-sm-offset-2 text-center">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
 
 												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
 
-											</div>
+												<!-- createToDo() WILL CREATE NEW TODOS -->
+											  <button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
 
-											<!-- createToDo() WILL CREATE NEW TODOS -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+											</div>
 										</form>
 									</div>
 								</div>
@@ -205,10 +205,10 @@
 												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
 
+												<!-- createToDo() WILL CREATE NEW TODOS -->
+											  <button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+
 											</div>
-											
-											<!-- createToDo() WILL CREATE NEW TODOS -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
 										</form>
 									</div>
 								</div>

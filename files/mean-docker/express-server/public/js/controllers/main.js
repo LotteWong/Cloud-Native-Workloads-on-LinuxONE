@@ -151,12 +151,14 @@ angular.module('todoController', [])
 			
 			// 情况二：已存在该账户则alert提醒并清空form
 			// ......
-			if ($scope.accountData.account != undefined) {
-				console.log($scope.accountData.account);
+			if ($scope.accountData.accountName != undefined) {
+				console.log($scope.accountData.accountName);
 
 				$scope.loading = true;
 
-				$scope.accountData.username = $scope.customerData.username;
+				$scope.accountData.customerName = $scope.currCustomer.username;
+
+				console.log($scope.accountData.customerName);
 
 				Accounts.create($scope.accountData).success(function(data) {
 						$scope.loading = false;

@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 
 // Define the Customer schema
 module.exports = mongoose.model('Account', {
-  username: {
+  customerName: {
       type: String,
       default: ''
   },
-  account: {
+  accountName: {
       type: String,
       default: ''
   },

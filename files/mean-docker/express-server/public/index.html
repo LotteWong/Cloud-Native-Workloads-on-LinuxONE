@@ -219,7 +219,7 @@
 
 										<div class="checkbox" ng-repeat="account in accounts">
 											<label>
-												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.account }}: {{ account.balance }}
+												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountName }}: {{ account.balance }}
 											</label>
 										</div>
 
@@ -236,7 +236,7 @@
 											<div class="form-group">
 
 												<!-- 输入新账户名 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.account">
+												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.accountName">
 
 											</div>
 										</form>

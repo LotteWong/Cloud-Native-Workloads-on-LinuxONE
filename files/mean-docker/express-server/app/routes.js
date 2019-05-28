@@ -27,7 +27,7 @@ function getCustomers(res) {
 };
 
 function getAccounts(res) {
-    Customer.find(function (err, accounts) {
+    Account.find(function (err, accounts) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {

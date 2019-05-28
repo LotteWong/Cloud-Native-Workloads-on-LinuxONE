@@ -10,7 +10,7 @@ angular.module('todoController', [])
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
 		$scope.currAccount = {}; // 绑定数据库的账户数据
 		
-		$scope.transAccount = {}; // 转账的账号
+		$scope.transAccount; // 转账的账号
 		$scope.transAmount; // 转账的金额
 
 		$scope.selectedAccount = {}; // 选中的账号
@@ -71,6 +71,9 @@ angular.module('todoController', [])
 				console.log(msg);
 
 				Customers.create($scope.customerData).success(function(data) {
+						var msg = JSON.stringify(data);
+						console.log(msg);
+					
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
 						$scope.customers = data;
@@ -167,7 +170,11 @@ angular.module('todoController', [])
 				console.log(msg);
 
 				Accounts.create($scope.accountData).success(function(data) {
+						var msg = JSON.stringify(data);
+						console.log(msg);
+					
 						$scope.loading = false;
+						$scope.currAccount = $scope.accountData;
 						$scope.accountData = {};
 						$scope.accounts = data;
 						// 更新当前客户的数据库账户数据

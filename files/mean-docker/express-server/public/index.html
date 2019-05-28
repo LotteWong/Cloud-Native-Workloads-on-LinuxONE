@@ -151,9 +151,9 @@
 										<form>
 											<div class="form-group">
 												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="account">
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transAccount">
 												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="amount">
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transAmount">
 
 											</div>
 										</form>
@@ -240,10 +240,10 @@
 										</form>
 
 										<!-- 取消开户 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelNewAccount()">Cancel</button>
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelAccount()">Cancel</button>
 
 										<!-- 确认开户 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="createNewAccount()">Create</button>
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="createAccount()">Create</button>
 									</div>
 								</div>
 							</div>
@@ -316,29 +316,31 @@
 					</div><!-- /.col-sm-4 -->
      	  </div>
 
-				<!-- FORM TO CREATE TODOS -->
 				<div id="todo-form" class="row">
 					<div class="col-sm-8 col-sm-offset-2 text-center">
 						<form>
 							<div class="form-group">
 
-								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-								<input type="text" class="form-control input-lg text-center" placeholder="id's go here" ng-model="formData.id">
+								<!-- 输入昵称 -->
+								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
 
-								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-								<input type="text" class="form-control input-lg text-center" placeholder="pwd's go here" ng-model="formData.pwd">
+								<!-- 输入密码 -->
+								<input type="text" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
 
 							</div>
-
-							<!-- createToDo() WILL CREATE NEW TODOS -->
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">SignUp</button>
-							<!-- createToDo() WILL CREATE NEW TODOS -->
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">SignIn</button>
 						</form>
+
+						<!-- 注册 -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
+
+						<!-- 登录 -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
 					</div>
 				</div>
 
+				<!-- 结束语 -->
 				<div class="text-center text-muted">
+					<!-- 显示技术支持 -->
 					<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 				</div>
 			</div>

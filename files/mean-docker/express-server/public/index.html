@@ -146,26 +146,25 @@
 									<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
-									<!-- TODO: todo-list和todo-form需要修改或删除 -->
-									<div id="todo-form" class="row">
-										<div class="col-sm-8 col-sm-offset-2 text-center">
-											<form>
-												<div class="form-group">
-													<!-- 输入转账账户 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="account">
-													<!-- 输入转账金额 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="amount">
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="account">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="amount">
 
-												</div>
-											</form>
+											</div>
+										</form>
 
-											<!-- 取消转账 -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
 
-											<!-- 确认转账 -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-										</div>
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
 									</div>
+								</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
@@ -212,13 +211,30 @@
 								<h3 class="panel-title">Cards</h3>
 							</div>
 							<div class="panel-body" style="height: 200px; overflow:auto">
+								<!-- 已有账户列表 -->
+								<div id="todo-list" class="row">
+									<div class="col-sm-4 col-sm-offset-4">
+
+										<div class="checkbox" ng-repeat="todo in todos">
+											<label>
+												<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.id }}
+											</label>
+										</div>
+
+										<p class="text-center" ng-show="loading">
+											<span class="fa fa-spinner fa-spin fa-3x"></span>
+										</p>
+
+									</div>
+								</div>
+								
 								<div id="todo-form" class="row">
 									<div class="col-sm-8 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
 
 												<!-- 输入新账户名 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="account">
+												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="formData.id">
 
 											</div>
 										</form>
@@ -319,24 +335,6 @@
 							<!-- createToDo() WILL CREATE NEW TODOS -->
 							<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">SignIn</button>
 						</form>
-					</div>
-				</div>
-
-				<!-- TODO LIST -->
-				<div id="todo-list" class="row">
-					<div class="col-sm-4 col-sm-offset-4">
-
-						<!-- LOOP OVER THE TODOS IN $scope.todos -->
-						<div class="checkbox" ng-repeat="todo in todos">
-							<label>
-								<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.id }}
-							</label>
-						</div>
-
-						<p class="text-center" ng-show="loading">
-							<span class="fa fa-spinner fa-spin fa-3x"></span>
-						</p>
-
 					</div>
 				</div>
 

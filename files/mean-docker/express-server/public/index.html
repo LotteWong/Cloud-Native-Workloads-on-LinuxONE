@@ -7,7 +7,7 @@
 	<meta charset="utf-8"><!-- Set charset Unicode -->
 	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
 
-	<title>SCUT Online Bank</title>
+	<title>SCUT Online Bank Application</title>
 
 	<!-- SCROLLS -->
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap widget -->
@@ -41,7 +41,7 @@
 			<div class="container-fluid">
         <div class="navbar-header">
 					<!-- 项目名称 -->
-          <a class="navbar-brand" href="#">SCUT Online Bank</a>
+          <a class="navbar-brand" href="#">SCUT Online Bank Application</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!-- 导航项 -->
@@ -270,28 +270,30 @@
 							</div>
 							<div class="panel-body" style="height: 200px; overflow:auto">
 								<div class="row">
-									<!-- 产品信息 -->
-									<h4>
-										<span class="label label-default">Product Name: {{ finance.type }}</span>
-									</h4>
-									<h4>
-										<span class="label label-danger">Annual Rate: {{ finance.rate }}</span>
-									</h4>
-									<h4>
-										<span class="label label-success">Estimated Interest: {{ finance.interest }}</span>
-									</h4>
+									<div class="col-sm-8">
+										<!-- 产品信息 -->
+										<h4>
+											<span class="label label-default">Product Name: {{ finance.type }}</span>
+										</h4>
+										<h4>
+											<span class="label label-danger">Annual Rate: {{ finance.rate }}</span>
+										</h4>
+										<h4>
+											<span class="label label-success">Estimated Interest: {{ finance.interest }}</span>
+										</h4>
 
-									<!-- 持有金额 -->
-									<div class="progress">
-										<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>
+										<!-- 持有金额 -->
+										<div class="progress">
+											<div class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%"><span class="sr-only">60% Complete</span></div>
+										</div>
+
+										<!-- 购买选项 -->
+										<p>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finance.type, 12)">For One Year</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finace.type, 6)">For Six Months</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finace.type, 3)">For Three Months</button>
+										</p>
 									</div>
-
-									<!-- 购买选项 -->
-									<p>
-										<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finance.type, 12)">For One Year</button>
-										<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finace.type, 6)">For Six Months</button>
-										<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(finace.type, 3)">For Three Months</button>
-									</p>
 								</div>
 							</div>
 						</div>

@@ -85,37 +85,38 @@
 
 				<!-- HEADER AND TODO COUNT -->
 				<div class="jumbotron text-center">
-					<h1>Welcome to SCUT Bank serving <span class="label label-info">{{ todos.length }} people</span></h1>
+					<h3>Welcome Back, <span class="label label-info">{{ username }}!</span></h3>
+					<h3>Last time when you logged in is <span class="label label-info">{{ lastTimeLoggedIn }}.</span></h3>
 				</div>
 
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="panel panel-default">
+						<div class="panel panel-info">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Balance</h3>
 							</div>
 							<div class="panel-body">
-								总额
+								总额：{{ balance }}
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<div class="panel panel-success">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Income</h3>
 							</div>
 							<div class="panel-body">
-								收入
+								收入： {{ income }}
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-warning">
+						<div class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Outcome</h3>
 							</div>
 							<div class="panel-body">
-								支出
+								支出： {{ outcome }}
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
@@ -125,17 +126,36 @@
 					<div class="col-sm-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
 							<div class="panel-body">
-								转账
+									<!-- FORM TO CREATE TODOS -->
+									<div id="todo-form" class="row">
+										<div class="col-sm-4 col-sm-offset-2 text-center">
+											<form>
+												<div class="form-group">
+
+													<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+													<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
+
+												</div>
+
+												<!-- createToDo() WILL CREATE NEW TODOS -->
+												<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Query</button>
+												<!-- createToDo() WILL CREATE NEW TODOS -->
+												<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+												<!-- createToDo() WILL CREATE NEW TODOS -->
+												<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+											</form>
+										</div>
+									</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-warning">
+						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Transaction</h3>
 							</div>
 							<div class="panel-body">
 								记录
@@ -146,29 +166,59 @@
 
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="panel panel-default">
+						<div class="panel panel-danger">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Withdraw</h3>
 							</div>
 							<div class="panel-body">
-								取钱
+								<!-- FORM TO CREATE TODOS -->
+								<div id="todo-form" class="row">
+									<div class="col-sm-4 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+
+												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
+
+											</div>
+
+											<!-- createToDo() WILL CREATE NEW TODOS -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<div class="panel panel-success">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Deposit</h3>
 							</div>
 							<div class="panel-body">
-								存钱
+								<!-- FORM TO CREATE TODOS -->
+								<div id="todo-form" class="row">
+									<div class="col-sm-4 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+
+												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
+
+											</div>
+											
+											<!-- createToDo() WILL CREATE NEW TODOS -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<div class="panel panel-warning">
 							<div class="panel-heading">
-								<h3 class="panel-title">Panel title</h3>
+								<h3 class="panel-title">Finance</h3>
 							</div>
 							<div class="panel-body">
 								理财
@@ -217,26 +267,6 @@
 					</div>
 				</div>
 
-				<!-- FORM TO CREATE TODOS -->
-				<div id="todo-form" class="row">
-					<div class="col-sm-8 col-sm-offset-2 text-center">
-						<form>
-							<div class="form-group">
-
-								<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-								<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
-
-							</div>
-
-							<!-- createToDo() WILL CREATE NEW TODOS -->
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Query</button>
-							<!-- createToDo() WILL CREATE NEW TODOS -->
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
-							<!-- createToDo() WILL CREATE NEW TODOS -->
-							<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
-						</form>
-					</div>
-				</div>
 				<div class="text-center text-muted">
 					<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 				</div>

@@ -6,6 +6,11 @@ angular.module('todoController', [])
 		$scope.amount;
 		$scope.loading = true;
 		$scope.selected;
+		$scope.username = "LotteWong";
+		$scope.password = "password";
+		$scope.lastTimeLoggedIn = "20190528";
+		$scope.income = 233;
+		$scope.outcome = 666;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them

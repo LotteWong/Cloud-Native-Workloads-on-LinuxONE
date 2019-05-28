@@ -57,14 +57,14 @@ angular.module('todoController', [])
 			// 情况二：已存在该客户则alert提醒并清空form
 			// ......
 
-			if ($scope.CustomerData.username != undefined && $scope.CustomerData.password != undefined) {
-				console.log($scope.CustomerData.username);
-				console.log($scope.CustomerData.password);
+			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
+				console.log($scope.customerData.username);
+				console.log($scope.customerData.password);
 
-				/*Customers.create($scope.formData).success(function(data) {
+				Customers.create($scope.customerData).success(function(data) {
 						$scope.customerData = {};
 						$scope.customers = data;
-					});*/
+					});
 			}
 		};
 

@@ -13,7 +13,7 @@ function getTodos(res) {
     });
 };
 
-/*function getCustomers(res) {
+function getCustomers(res) {
     Customer.find(function (err, customers) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
@@ -23,7 +23,7 @@ function getTodos(res) {
 
         res.json(customers); // return all todos in JSON format
     });
-};*/
+};
 
 module.exports = function (app) {
 
@@ -36,10 +36,10 @@ module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
     // get all todos
-    /*app.get('/api/customers', function (req, res) {
+    app.get('/api/customers', function (req, res) {
         // use mongoose to get all todos in the database
         getCustomers(res);
-    });*/
+    });
 
     // create todo and send back all todos after creation
     app.post('/api/todos', function (req, res) {
@@ -60,7 +60,7 @@ module.exports = function (app) {
     });
 
     // create todo and send back all todos after creation
-    /*app.post('/api/customers', function (req, res) {
+    app.post('/api/customers', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
         Customer.create({
@@ -75,7 +75,7 @@ module.exports = function (app) {
             getCustomers(res);
         });
 
-    });*/
+    });
 
     // update a todo
     app.put('/api/todos/:todo_id', function(req, res) {

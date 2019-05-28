@@ -67,6 +67,9 @@ angular.module('todoController', [])
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);
 
+				var msg = JSON.stringify(customerData);
+				console.log(msg);
+
 				Customers.create($scope.customerData).success(function(data) {
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
@@ -126,11 +129,11 @@ angular.module('todoController', [])
 		// ......
 
 		// 已有账户显示
-		Accounts.get()
+		/*Accounts.get()
 			.success(function(data) {
 				$scope.accounts = data;
 				$scope.loading = false;
-			});
+			});*/
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {
@@ -159,6 +162,9 @@ angular.module('todoController', [])
 				$scope.accountData.customerName = $scope.currCustomer.username;
 
 				console.log($scope.accountData.customerName);
+
+				var msg = JSON.stringify(accountData);
+				console.log(msg);
 
 				Accounts.create($scope.accountData).success(function(data) {
 						$scope.loading = false;

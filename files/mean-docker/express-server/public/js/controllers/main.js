@@ -50,7 +50,7 @@ angular.module('todoController', [])
 		// ......
 
 		// 添加未注册的客户
-		/*$scope.signUp = function() {
+		$scope.signUp = function() {
 			// 情况一：不存在该客户则向数据库插入新的Customer元组
 			// ......
 			
@@ -61,12 +61,12 @@ angular.module('todoController', [])
 				console.log($scope.CustomerData.username);
 				console.log($scope.CustomerData.password);
 
-				Customers.create($scope.formData).success(function(data) {
+				/*Customers.create($scope.formData).success(function(data) {
 						$scope.customerData = {};
 						$scope.customers = data;
-					});
+					});*/
 			}
-		};*/
+		};
 
 		// 检查已存在的客户
 		$scope.signIn = function() {

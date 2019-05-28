@@ -92,9 +92,9 @@
 				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
 					<!-- 显示客户昵称 -->
-					<h1>Welcome Back, <span class="label label-primary">{{ customer.username }}</span> !</h1>
+					<h1>Welcome Back, <span class="label label-primary">{{ customer.username }}</span></h1>
 					<!-- 显示上次成功登陆时间 -->
-					<h2>Last successful login: <span class="label label-success">{{ customer.lastSuccessfulLogin }}</span> .</h2>
+					<h2>Last successful login: <span class="label label-success">{{ customer.lastSuccessfulLogin }}</span></h2>
 				</div>
 
 				<div class="row">
@@ -177,7 +177,8 @@
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
-									<table class="table table-striped" ng-repeat="transaction in transactions">
+									<!--<table class="table table-striped" ng-repeat="transaction in transactions">-->
+									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>Type</th>

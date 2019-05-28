@@ -13,6 +13,13 @@ angular.module('todoController', [])
 		$scope.balance = 1024;
 		$scope.income = 233;
 		$scope.outcome = 666;
+		$scope.transaction = {
+			type: "Transfer",
+			from: "Charlotte",
+			to: "Greta",
+			amount: "1024",
+			time: "20190528"
+		};
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them

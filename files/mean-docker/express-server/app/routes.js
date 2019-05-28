@@ -103,7 +103,8 @@ module.exports = function (app) {
 
         // create a todo, information comes from AJAX request from Angular
         Account.create({
-            account: req.body.account,
+            customerName: req.body.customerName,
+            accountName: req.body.accountName,
             balance: req.body.balance,
             income: req.body.income,
             outcome: req.body.outcome,

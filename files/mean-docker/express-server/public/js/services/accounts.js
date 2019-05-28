@@ -10,7 +10,7 @@ angular.module('accountService', [])
 			create : function(accountData) {
 				return $http.post('/api/accounts', accountData);
 			},
-			put : function(id, customerData) {
+			put : function(id, accountData) {
 				return $http.put('/api/accounts/' + id, accountData);
 			},
 			delete : function(id) {

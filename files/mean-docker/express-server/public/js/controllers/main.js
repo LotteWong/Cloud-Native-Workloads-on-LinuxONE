@@ -170,6 +170,7 @@ angular.module('todoController', [])
 						$scope.loading = false;
 						$scope.accountData = {};
 						$scope.accounts = data;
+						// 更新当前客户的数据库账户数据
 					});
 			}
 		};

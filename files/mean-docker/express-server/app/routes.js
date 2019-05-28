@@ -1,6 +1,6 @@
 var Todo = require('./models/todo');
 var Customer = require('./models/customer');
-var Customer = require('./models/account');
+var Account = require('./models/account');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -88,7 +88,7 @@ module.exports = function (app) {
             password: req.body.password,
             accounts: req.body.accounts,
             done: false
-        }, function (err, todo) {
+        }, function (err, customer) {
             if (err)
                 res.send(err);
 
@@ -109,7 +109,7 @@ module.exports = function (app) {
             income: req.body.income,
             outcome: req.body.outcome,
             done: false
-        }, function (err, todo) {
+        }, function (err, account) {
             if (err)
                 res.send(err);
 

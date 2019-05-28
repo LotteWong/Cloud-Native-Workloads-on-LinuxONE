@@ -129,11 +129,11 @@ angular.module('todoController', [])
 		// ......
 
 		// 已有账户显示
-		/*Accounts.get()
+		Accounts.get()
 			.success(function(data) {
 				$scope.accounts = data;
 				$scope.loading = false;
-			});*/
+			});
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {

@@ -92,9 +92,9 @@
 				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
 					<!-- 显示客户昵称 -->
-					<h1>Welcome Back, <span class="label label-primary">{{ customer.username }}</span></h1>
+					<h1>Welcome Back, <span class="label label-primary">{{ currCustomer.username }}</span></h1>
 					<!-- 显示上次成功登陆时间 -->
-					<h2>Last successful login: <span class="label label-success">{{ customer.lastSuccessfulLogin }}</span></h2>
+					<h2>Last successful login: <span class="label label-success">{{ currCustomer.lastSuccessfulLogin }}</span></h2>
 				</div>
 
 				<div class="row">
@@ -106,7 +106,7 @@
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								总额：{{ customer.balance }}
+								{{ getBalance() }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
@@ -119,7 +119,7 @@
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								收入： {{ income }}
+								{{ getIncome() }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								支出： {{ outcome }}
+								{{ getOutcome() }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
@@ -176,8 +176,7 @@
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
-									<!--<table class="table table-striped" ng-repeat="transaction in transactions">-->
-									<table class="table table-striped">
+									<table class="table table-striped" ng-repeat="transaction in transactions">
 										<thead>
 											<tr>
 												<th>Type</th>
@@ -215,9 +214,9 @@
 								<div id="todo-list" class="row">
 									<div class="col-sm-4 col-sm-offset-4">
 
-										<div class="checkbox" ng-repeat="todo in todos">
+										<div class="checkbox" ng-repeat="account in accounts">
 											<label>
-												<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.id }}
+												<input type="checkbox" ng-click="selectAccount(accout._id)"> {{ todo.id }}
 											</label>
 										</div>
 
@@ -234,7 +233,7 @@
 											<div class="form-group">
 
 												<!-- 输入新账户名 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="formData.id">
+												<input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.account_id">
 
 											</div>
 										</form>
@@ -263,7 +262,7 @@
 											<div class="form-group">
 
 												<!-- 输入操作金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Deposit or withdraw the money." ng-model="amount">
+												<input type="text" class="form-control input-lg text-center" placeholder="Deposit or withdraw the money." ng-model="operationAmount">
 
 											</div>
 										</form>
@@ -325,7 +324,7 @@
 								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
 
 								<!-- 输入密码 -->
-								<input type="text" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
+								<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
 
 							</div>
 						</form>

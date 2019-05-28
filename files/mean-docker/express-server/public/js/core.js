@@ -1,1 +1,8 @@
-angular.module('meanTodo', ['todoController', 'todoService']);
+angular.module('meanTodo', 
+              ['todoController', 
+               'todoService', 
+               'customerService',
+               'accountService',
+               'transactionService',
+               'financeService'
+              ]);

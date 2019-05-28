@@ -1,7 +1,7 @@
 angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
+	.controller('mainController', ['$scope','$http','Todos', 'Customers', function($scope, $http, Todos) {
 		$scope.customerData = {}; // 绑定前端的客户数据
 		$scope.accountData = {}; // 绑定前端的账户数据
 
@@ -31,13 +31,13 @@ angular.module('todoController', [])
 			income: 233,
 			outcome: 666,
 		};
-		$scope.transaction = {
+		/*$scope.transaction = {
 			type: "Transfer",
 			from: "Charlotte",
 			to: "Greta",
 			amount: "1024",
 			time: "20190528"
-		};
+		};*/
 		$scope.finance = {
 			type: "Yu'E Bao",
 			rate: "2.33%",
@@ -54,6 +54,16 @@ angular.module('todoController', [])
 			
 			// 情况二：已存在该客户则alert提醒并清空form
 			// ......
+
+			if ($scope.CustomerData.username != undefined && $scope.CustomerData.password != undefined) {
+				console.log($scope.CustomerData.username);
+				console.log($scope.CustomerData.password);
+
+				Customers.create($scope.formData).success(function(data) {
+						$scope.customerData = {};
+						$scope.customers = data;
+					});
+			}
 		};
 
 		// 检查已存在的客户
@@ -65,6 +75,8 @@ angular.module('todoController', [])
 			// ......
 
 			// 情况三：客户密码匹配则读取客户关联的账户
+			// 更新前端显示上次登录时间
+			// 更新数据库存储本次登录时间
 			// ......
 		};
 
@@ -108,9 +120,9 @@ angular.module('todoController', [])
 		// ......
 
 		// 读取当前账户信息，更新$scope.currAccount
-		$scope.selectAccount(id) {
+		$scope.selectAccount = function(id) {
 			// ......
-		}
+		};
 
 		// 取消开户
 		$scope.cancelAccount = function() {
@@ -121,6 +133,7 @@ angular.module('todoController', [])
 		// 确认开户
 		$scope.createAccount = function() {
 			// 情况一：不存在该账户则向数据库插入新的Account元组
+			// 同时更新客户的数据
 			// ......
 			
 			// 情况二：已存在该账户则alert提醒并清空form
@@ -129,12 +142,15 @@ angular.module('todoController', [])
 
 		// 存款
 		$scope.deposit = function() {
-
+			// 注意更新交易记录
+			// ......
 		};
 
 		// 取款
 		$scope.withdraw = function() {
+			// 注意更新交易记录
 			// 注意不够钱取款的错误处理
+			// ......
 		};
 
 		// 理财产品显示还没有头绪，先码着

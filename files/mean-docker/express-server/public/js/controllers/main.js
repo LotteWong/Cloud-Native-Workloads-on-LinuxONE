@@ -67,7 +67,7 @@ angular.module('todoController', [])
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);
 
-				var msg = JSON.stringify(customerData);
+				var msg = JSON.stringify($scope.customerData);
 				console.log(msg);
 
 				Customers.create($scope.customerData).success(function(data) {
@@ -163,7 +163,7 @@ angular.module('todoController', [])
 
 				console.log($scope.accountData.customerName);
 
-				var msg = JSON.stringify(accountData);
+				var msg = JSON.stringify($scope.accountData);
 				console.log(msg);
 
 				Accounts.create($scope.accountData).success(function(data) {

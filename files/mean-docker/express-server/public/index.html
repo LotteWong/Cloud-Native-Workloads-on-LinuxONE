@@ -85,8 +85,8 @@
 
 				<!-- HEADER AND TODO COUNT -->
 				<div class="jumbotron text-center">
-					<h1>Welcome Back, <span class="label label-info">{{ username }}</span> !</h1>
-					<h1>Last time when you logged in is <span class="label label-info">{{ lastTimeLoggedIn }}</span> .</h1>
+					<h1>Welcome Back, <span class="label label-primary">{{ username }}</span> !</h1>
+					<h2>Last time when you logged in is <span class="label label-success">{{ lastTimeLoggedIn }}</span> .</h2>
 				</div>
 
 				<div class="row">
@@ -126,11 +126,7 @@
 					<div class="col-sm-8">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<div class="row">
 									<h3 class="panel-title">Payment & Transfer</h3>
-									<!-- createToDo() WILL CREATE NEW TODOS -->
-									<button type="submit" class="btn btn-sm btn-info" ng-click="withdraw()">Confirm</button>
-								</div>
 							</div>
 							<div class="panel-body">
 									<!-- FORM TO CREATE TODOS -->
@@ -146,6 +142,12 @@
 
 												</div>
 											</form>
+
+											<!-- createToDo() WILL CREATE NEW TODOS -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
+
+											<!-- createToDo() WILL CREATE NEW TODOS -->
+											<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Confirm</button>
 										</div>
 									</div>
 							</div>
@@ -172,18 +174,21 @@
 							<div class="panel-body">
 								<!-- FORM TO CREATE TODOS -->
 								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
+									<div class="col-sm-12 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
 
 												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
 
-												<!-- createToDo() WILL CREATE NEW TODOS -->
-											  <button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
-
 											</div>
 										</form>
+
+										<!-- createToDo() WILL CREATE NEW TODOS -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
+
+										<!-- createToDo() WILL CREATE NEW TODOS -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
 									</div>
 								</div>
 							</div>
@@ -197,18 +202,22 @@
 							<div class="panel-body">
 								<!-- FORM TO CREATE TODOS -->
 								<div id="todo-form" class="row">
-									<div class="col-sm-4 col-sm-offset-2 text-center">
+									<div class="col-sm-12 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
 
 												<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 												<input type="text" class="form-control input-lg text-center" placeholder="amount's go here" ng-model="amount">
 
-												<!-- createToDo() WILL CREATE NEW TODOS -->
-											  <button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
-
 											</div>
 										</form>
+
+										
+										<!-- createToDo() WILL CREATE NEW TODOS -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="query()">Cancel</button>
+										
+										<!-- createToDo() WILL CREATE NEW TODOS -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
 									</div>
 								</div>
 							</div>

@@ -1,7 +1,7 @@
 angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', function($scope, $http, Todos, Customers) {
+	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', function($scope, $http, Todos, Customers, Accounts) {
 	// .controller('mainController', ['$scope','$http', 'Customers', function($scope, $http, Customers) {	
 	// .controller('mainController', ['$scope','$http', 'Todos', function($scope, $http, Todos) {	
 		$scope.customerData = {}; // 绑定前端的客户数据

@@ -1,7 +1,7 @@
 angular.module('meanTodo', 
               ['todoController', 
                'todoService', 
-               // 'customerService',
+               'customerService',
                // 'accountService',
                // 'transactionService',
                // 'financeService'

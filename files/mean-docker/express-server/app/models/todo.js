@@ -16,6 +16,7 @@ module.exports = mongoose.model('Todo', {
     }
 });
 
+/*
 // Define the Customer schema
 module.exports = mongoose.model('Customer', {
     username: {
@@ -91,3 +92,4 @@ module.exports = mongoose.model('Finance', {
         default: 0.0
     }
 });
+*/

@@ -5,16 +5,16 @@ angular.module('customerService', [])
 	.factory('Customers', ['$http',function($http) {
 		return {
 			get : function() {
-				return $http.get('/api/todos');
+				return $http.get('/api/cutomers');
 			},
-			create : function(todoData) {
-				return $http.post('/api/todos', todoData);
+			create : function(customerData) {
+				return $http.post('/api/customers', customerData);
 			},
-			put : function(id, todoData) {
-				return $http.put('/api/todos/' + id, todoData);
+			put : function(id, customerData) {
+				return $http.put('/api/customers/' + id, customerData);
 			},
 			delete : function(id) {
-				return $http.delete('/api/todos/' + id);
+				return $http.delete('/api/customers/' + id);
 			}
 		}
 	}]);

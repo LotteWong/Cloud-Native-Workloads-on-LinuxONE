@@ -73,7 +73,7 @@ angular.module('todoController', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.id != undefined && $scope.formData.pwd != undefined) {
+			if ($scope.formData.id != undefined) {
 				$scope.loading = true;
 
 				console.log($scope.formData.id);

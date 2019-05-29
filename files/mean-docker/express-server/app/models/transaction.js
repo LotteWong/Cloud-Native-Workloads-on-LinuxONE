@@ -2,6 +2,10 @@ var mongoose = require('mongoose');
 
 // Define the Transaction schema
 module.exports = mongoose.model('Transaction', {
+  account: {
+      type: String,
+      default: ''
+  },
   operation: {
       type: String,
       default: ''

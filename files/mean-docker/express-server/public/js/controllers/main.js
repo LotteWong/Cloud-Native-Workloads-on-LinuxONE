@@ -44,6 +44,8 @@ angular.module('todoController', [])
 			$scope.loading = false;
 		});
 
+		var cardId = 100000; // 随机卡号
+
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
 		// 参考代码： 	
@@ -194,9 +196,6 @@ angular.module('todoController', [])
 			// ......
 		}
 
-		// 交易记录显示还没有头绪，先码着
-		// ......
-
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {
 			// ......
@@ -284,6 +283,7 @@ angular.module('todoController', [])
 						});
 
 						// 更新当前客户的数据库账户数据
+						// ......
 					}
 				});
 			}
@@ -292,7 +292,41 @@ angular.module('todoController', [])
 
 		// 随机开户
 		$scope.createRandomAccount = function() {
+			console.log("it is a new account");
+			$scope.accountData.customerName = $scope.currCustomer.username;
+			$scope.accountData.accountId = (cardId++).toString;
 
+			Accounts.create($scope.accountData).success(function(data) {				
+				var msg = JSON.stringify(data);
+				console.log(msg);
+
+				$scope.loading = false;
+				$scope.currAccount = $scope.accountData;
+				$scope.accountData = {};
+				$scope.accounts = data;
+			});
+
+			// 更新当前交易记录的数据库数据
+			var dateTime = new Date();
+			$scope.transactionData.account = $scope.currAccount.accountId;
+			$scope.transactionData.operation = 'Create';
+			$scope.transactionData.from = $scope.currCustomer.username;
+			$scope.transactionData.to = $scope.currCustomer.username;
+			$scope.transactionData.time = dateTime.toLocaleString();
+
+			var msg = JSON.stringify($scope.transactionData);
+			console.log(msg);
+
+			Transactions.create($scope.transactionData).success(function(data) {
+				var msg = JSON.stringify(data);
+				console.log(msg);
+
+				$scope.currTransaction = $scope.transactionData;
+				$scope.transactionData = {};
+				$scope.transactions = data;
+			});
+
+			// 更新当前客户的数据库账户数据
 		};
 
 		// 存款
@@ -317,6 +351,8 @@ angular.module('todoController', [])
 				}
 			})
 
+			// 更新当前交易记录的数据库数据
+			// ......
 		};
 
 		// 取款
@@ -347,6 +383,9 @@ angular.module('todoController', [])
 					}
 				}
 			})
+
+			// 更新当前交易记录的数据库数据
+			// ......
 		};
 
 		// 理财产品显示还没有头绪，先码着

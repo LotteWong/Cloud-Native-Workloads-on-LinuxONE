@@ -99,6 +99,7 @@ angular.module('todoController', [])
 
 		// 检查已存在的客户
 		$scope.signIn = function() {
+			$scope.accounts = {};
 			// 情况一：不存在该客户则alert提醒并清空form
 			// ......
 
@@ -134,7 +135,26 @@ angular.module('todoController', [])
 				}
 			})
 			
-			$scope.accounts = {};
+			// 已有账户显示
+			Accounts.get()
+			.success(function(data) {
+				console.log("accounts get");
+				var i=0;
+				for(var accountx in data){
+					console.log("data中的数据"+data[accountx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[accountx]["customerName"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.accounts[++i]=data[accountx];
+						var msg = JSON.stringify($scope.accounts);
+						console.log(msg);
+					}
+				}
+				// $scope.accounts = data;
+				$scope.loading = false;
+			});
 		};
 
 		// 计算该个客户所有账户的余额
@@ -172,27 +192,6 @@ angular.module('todoController', [])
 
 		// 交易记录显示还没有头绪，先码着
 		// ......
-
-		// 已有账户显示
-		Accounts.get()
-			.success(function(data) {
-				console.log("accounts get");
-				var i=0;
-				for(var accountx in data){
-					console.log("data中的数据"+data[accountx]["customerName"]);
-					console.log("currCustomer:"+$scope.currCustomer.username);
-					if(data[accountx]["customerName"]==$scope.currCustomer.username)
-					{
-
-						console.log("找到账户");
-						$scope.accounts[++i]=data[accountx];
-						var msg = JSON.stringify($scope.accounts);
-						console.log(msg);
-					}
-				}
-				// $scope.accounts = data;
-				$scope.loading = false;
-			});
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {

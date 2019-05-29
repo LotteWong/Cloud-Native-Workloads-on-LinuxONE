@@ -178,8 +178,11 @@ angular.module('todoController', [])
 				console.log("accounts get");
 				var i=0;
 				for(var accountx in data){
+					console.log("data中的数据"+data[accountx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
 					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
+
 						console.log("找到账户");
 						$scope.accounts[++i]=data[accountx];
 						var msg = JSON.stringify($scope.accounts);

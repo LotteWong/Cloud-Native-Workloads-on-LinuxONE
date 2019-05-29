@@ -217,6 +217,7 @@ angular.module('todoController', [])
 				})
 
 				if($scope.accountData!=null){
+					console.log("it is a new account");
 					$scope.accountData.customerName = $scope.currCustomer.username;
 
 					console.log($scope.accountData.customerName);

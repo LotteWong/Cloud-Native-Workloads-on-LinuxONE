@@ -115,23 +115,27 @@ angular.module('todoController', [])
 			// ......
 			var userexist=false;
 			var pwdcorrect=true;
-			for(var usernamex in data){
-				if(data[usernamex]["username"]==$scope.customerData.username){
-					console.log("找到名字");
-					userexist=true;
-					if(data[usernamex]["password"]!=$scope.customerData.password){
-						alert("密码错误！");
-						pwdcorrect=false;
+			Customers.get().success(function(data){
+				console.log("获取到data");
+				for(var usernamex in data){
+					if(data[usernamex]["username"]==$scope.customerData.username){
+						console.log("找到名字");
+						userexist=true;
+						if(data[usernamex]["password"]!=$scope.customerData.password){
+							alert("密码错误！");
+							pwdcorrect=false;
+						}
 					}
 				}
-			}
-			if(userexist==false){
-				alert("customer does not exist!");
-				$scope.customerData={};
-			}
-			if(userexist==true&&pwdcorrect==true){
-				
-			}
+				if(userexist==false){
+					alert("customer does not exist!");
+					$scope.customerData={};
+				}
+				if(userexist==true&&pwdcorrect==true){
+	
+				}
+			})
+			
 		};
 
 		// 计算该个客户所有账户的余额

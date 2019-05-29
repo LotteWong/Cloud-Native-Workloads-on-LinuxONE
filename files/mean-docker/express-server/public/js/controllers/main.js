@@ -260,7 +260,8 @@ angular.module('todoController', [])
 			Accounts.get().success(function(data){
 				console.log("成功获取信息");
 				for(var accountx in data){
-					if(data[accountx]==$scope.currAccount){
+					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
+						console.log("找到对应的账户")；
 						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);

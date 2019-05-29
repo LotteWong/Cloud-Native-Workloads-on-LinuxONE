@@ -135,6 +135,7 @@ angular.module('todoController', [])
 					$scope.customerData={};
 				}
 				if(userexist==true&&pwdcorrect==true){
+					$scope.currCustomer=$scope.customerData;
 					$scope.customerData={};
 				}
 			})
@@ -183,7 +184,7 @@ angular.module('todoController', [])
 				console.log("accounts get");
 				var i=0;
 				for(var accountx in data){
-					if(data[accountx]["customerName"]==$scope.customerData.username)
+					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
 						console.log("找到账户");
 						$scope.accounts[++i]=data[accountx];

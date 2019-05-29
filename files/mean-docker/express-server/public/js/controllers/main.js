@@ -215,30 +215,29 @@ angular.module('todoController', [])
 							$scope.loading=false;							
 						}
 					}
-				})
 
-				if($scope.accountData.accountName!=null){
-					console.log("it is a new account");
-					$scope.accountData.customerName = $scope.currCustomer.username;
-
-					console.log($scope.accountData.customerName);
-
-					var msg = JSON.stringify($scope.accountData);
-					console.log(msg);
-
-					Accounts.create($scope.accountData).success(function(data) {
-						var msg = JSON.stringify(data);
+					if($scope.accountData.accountName!=null){
+						console.log("it is a new account");
+						$scope.accountData.customerName = $scope.currCustomer.username;
+	
+						console.log($scope.accountData.customerName);
+	
+						var msg = JSON.stringify($scope.accountData);
 						console.log(msg);
-					
-						$scope.loading = false;
-						$scope.currAccount = $scope.accountData;
-						$scope.accountData = {};
-						$scope.accounts = data;
-						// 更新当前客户的数据库账户数据
-
-					});
-				}
-				
+	
+						Accounts.create($scope.accountData).success(function(data) {
+							var msg = JSON.stringify(data);
+							console.log(msg);
+						
+							$scope.loading = false;
+							$scope.currAccount = $scope.accountData;
+							$scope.accountData = {};
+							$scope.accounts = data;
+							// 更新当前客户的数据库账户数据
+	
+						});
+					}
+				})			
 			}
 		};
 

@@ -1,9 +1,6 @@
 angular.module('todoController', [])
 
-	// inject the Todo service factory into our controller
-	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', function($scope, $http, Todos, Customers, Accounts) {
-	// .controller('mainController', ['$scope','$http', 'Customers', function($scope, $http, Customers) {	
-	// .controller('mainController', ['$scope','$http', 'Todos', function($scope, $http, Todos) {	
+	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', 'Transactions', function($scope, $http, Todos, Customers, Accounts, Transactions) {
 		$scope.customerData = {}; // 绑定前端的客户数据
 		$scope.accountData = {}; // 绑定前端的账户数据
 
@@ -17,10 +14,12 @@ angular.module('todoController', [])
 
 		$scope.operationAmount; // 操作的金额
 
-		$scope.formData = {};
-		$scope.loading = true;
-		$scope.selected;
+		/* 以下是原Todo的数据，暂时用不到了 */
+		// $scope.formData = {};
+		// $scope.loading = true;
+		// $scope.selected;
 
+		/* 以下是暂时硬编码的数据，可以根据需要修改 */
 		$scope.balance = 1024;
 		$scope.income = 233;
 		$scope.outcome = 666;
@@ -33,18 +32,6 @@ angular.module('todoController', [])
 			income: 233,
 			outcome: 666,
 		};
-		/*$scope.account = {
-
-		}
-
-		 */
-		/*$scope.transaction = {
-			type: "Transfer",
-			from: "Charlotte",
-			to: "Greta",
-			amount: "1024",
-			time: "20190528"
-		};*/
 		$scope.finance = {
 			type: "Yu'E Bao",
 			rate: "2.33%",
@@ -53,6 +40,12 @@ angular.module('todoController', [])
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
+		// 参考代码： 	
+		// Accounts.get()
+		// 	.success(function(data) {
+		//		$scope.accounts = data;
+		//		$scope.loading = false;
+		//	});
 
 		// 添加未注册的客户
 		$scope.signUp = function() {
@@ -157,6 +150,8 @@ angular.module('todoController', [])
 			
 			// 情况二：已存在该账户则alert提醒并清空form
 			// ......
+
+			// 最简单什么都不考虑的情况：
 			if ($scope.accountData.accountName != undefined) {
 				console.log($scope.accountData.accountName);
 
@@ -198,6 +193,7 @@ angular.module('todoController', [])
 		// 理财产品显示还没有头绪，先码着
 		// ......
 
+		/* 以下是原Todo的函数，暂时用不到了 */
 		/*
 		// GET ==================================================================
 		// get a todo when browsering	

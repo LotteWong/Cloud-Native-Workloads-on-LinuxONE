@@ -32,6 +32,7 @@
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
 	<script src="js/services/customers.js"></script> <!-- load our customer service -->
 	<script src="js/services/accounts.js"></script> <!-- load our account service -->
+	<script src="js/services/transactions.js"></script> <!-- load our transaction service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
@@ -182,7 +183,7 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
-												<th>Type</th>
+												<th>Operation</th>
 												<th>From</th>
 												<th>To</th>
 												<th>Amount</th>
@@ -191,7 +192,7 @@
 										</thead>
 										<tbody>
 											<tr>
-												<td>{{ transaction.type }}</td>
+												<td>{{ transaction.operation }}</td>
 												<td>{{ transaction.from }}</td>
 												<td>{{ transaction.to }}</td>
 												<td>{{ transaction.amount }}</td>

@@ -6,7 +6,7 @@ module.exports = mongoose.model('Account', {
       type: String,
       default: ''
   },
-  accountName: {
+  accountId: {
       type: String,
       default: ''
   },

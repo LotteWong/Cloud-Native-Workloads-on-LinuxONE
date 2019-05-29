@@ -1,6 +1,7 @@
 var Todo = require('./models/todo');
 var Customer = require('./models/customer');
 var Account = require('./models/account');
+var Transaction = require('./models/transaction');
 
 function getTodos(res) {
     Todo.find(function (err, todos) {
@@ -38,6 +39,18 @@ function getAccounts(res) {
     });
 };
 
+function getTransactions(res) {
+    Transaction.find(function (err, transactions) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(transactions); // return all todos in JSON format
+    });
+};
+
 module.exports = function (app) {
 
     // api ---------------------------------------------------------------------
@@ -59,6 +72,13 @@ module.exports = function (app) {
     app.get('/api/accounts', function (req, res) {
         // use mongoose to get all todos in the database
         getAccounts(res);
+    });
+
+    // api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/transactions', function (req, res) {
+        // use mongoose to get all todos in the database
+        getTransactions(res);
     });
 
     // create todo and send back all todos after creation
@@ -104,7 +124,7 @@ module.exports = function (app) {
         // create a todo, information comes from AJAX request from Angular
         Account.create({
             customerName: req.body.customerName,
-            accountName: req.body.accountName,
+            accountId: req.body.accountId,
             balance: req.body.balance,
             income: req.body.income,
             outcome: req.body.outcome,
@@ -115,6 +135,27 @@ module.exports = function (app) {
 
             // get and return all the todos after you create another
             getAccounts(res);
+        });
+
+    });
+
+    // create todo and send back all todos after creation
+    app.post('/api/transactions', function (req, res) {
+
+        // create a todo, information comes from AJAX request from Angular
+        Transaction.create({
+            operation: req.body.operation,
+            from: req.body.from,
+            to: req.body.to,
+            amount: req.body.amount,
+            time: req.body.time,
+            done: false
+        }, function (err, transaction) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            getTransactions(res);
         });
 
     });

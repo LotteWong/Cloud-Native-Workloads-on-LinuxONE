@@ -179,7 +179,7 @@
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
-									<table class="table table-striped" ng-repeat="transaction in transactions">
+									<table class="table table-striped">
 										<thead>
 											<tr>
 												<th>Operation</th>
@@ -189,7 +189,7 @@
 												<th>Time</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody ng-repeat="transaction in transactions">
 											<tr>
 												<td>{{ transaction.operation }}</td>
 												<td>{{ transaction.from }}</td>

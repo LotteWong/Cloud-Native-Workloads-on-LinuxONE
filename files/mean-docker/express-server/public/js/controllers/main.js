@@ -206,7 +206,7 @@ angular.module('todoController', [])
 
 				$scope.loading = true;
 
-				Customers.get().success(function(data){
+				Accounts.get().success(function(data){
 					for(var accountnamex in data){
 						if(data[accountnamex]["accountName"]==$scope.accountData.accountName){
 							alert("account is already existed!");
@@ -233,6 +233,7 @@ angular.module('todoController', [])
 						$scope.accountData = {};
 						$scope.accounts = data;
 						// 更新当前客户的数据库账户数据
+
 					});
 				}
 				
@@ -243,6 +244,7 @@ angular.module('todoController', [])
 		$scope.deposit = function() {
 			// 注意更新交易记录
 			// ......
+
 		};
 
 		// 取款

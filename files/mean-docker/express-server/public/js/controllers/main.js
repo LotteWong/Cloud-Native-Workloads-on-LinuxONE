@@ -262,6 +262,7 @@ angular.module('todoController', [])
 				for(var accountx in data){
 					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
 						console.log("找到对应的账户");
+						console.log($scope.currAccount.accountName);
 						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);

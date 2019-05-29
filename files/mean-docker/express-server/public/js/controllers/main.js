@@ -288,8 +288,8 @@ angular.module('todoController', [])
 		};
 
 		// 随机开户
-		$scope.createRandomAccount() = function() {
-			
+		$scope.createRandomAccount = function() {
+
 		};
 
 		// 存款

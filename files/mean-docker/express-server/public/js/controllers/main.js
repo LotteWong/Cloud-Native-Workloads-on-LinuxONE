@@ -258,6 +258,7 @@ angular.module('todoController', [])
 			// 注意更新交易记录
 			// ......
 			Accounts.get().success(function(data){
+				console.log("成功获取信息");
 				for(var accountx in data){
 					if(data[accountx]==$scope.currAccount){
 						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){

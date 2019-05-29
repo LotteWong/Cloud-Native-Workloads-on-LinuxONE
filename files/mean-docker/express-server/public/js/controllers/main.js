@@ -180,7 +180,14 @@ angular.module('todoController', [])
 		// 已有账户显示
 		Accounts.get()
 			.success(function(data) {
-				$scope.accounts = data;
+				var i=0;
+				for(var accountx in data){
+					if(data[accountx]["customerName"]==$scope.customerData.username)
+					{
+						$scope.accounts[++i]=data[accountx];
+					}
+				}
+				// $scope.accounts = data;
 				$scope.loading = false;
 			});
 
@@ -203,6 +210,7 @@ angular.module('todoController', [])
 		$scope.cancelAccount = function() {
 			// 清空form
 			// ......
+			$scope.accountData.accountName="";
 		};
 
 		// 确认开户
@@ -292,6 +300,7 @@ angular.module('todoController', [])
 						console.log($scope.currAccount.accountName);
 						if(data[accountx]["balance"]<parseFloat($scope.operationAmount)){
 							alert("账户余额不足");
+							$scope.operationAmount="";
 						}
 						else{
 							Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.operationAmount)}).success(function(data){

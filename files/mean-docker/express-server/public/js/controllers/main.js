@@ -135,7 +135,7 @@ angular.module('todoController', [])
 					$scope.customerData={};
 				}
 				if(userexist==true&&pwdcorrect==true){
-	
+					$scope.customerData={};
 				}
 			})
 			
@@ -282,6 +282,28 @@ angular.module('todoController', [])
 			// 注意更新交易记录
 			// 注意不够钱取款的错误处理
 			// ......
+			Accounts.get().success(function(data){
+				console.log("成功获取信息");
+				var msg=JSON.stringify(data);
+				console.log(msg);
+				for(var accountx in data){
+					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
+						console.log("找到对应的账户");
+						console.log($scope.currAccount.accountName);
+						if(data[accountx]["balance"]<parseFloat($scope.operationAmount)){
+							alert("账户余额不足");
+						}
+						else{
+							Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.operationAmount)}).success(function(data){
+								var msg=JSON.stringify(data);
+								console.log(msg);
+								$scope.operationAmount="";
+								$scope.accounts=data;
+							})
+						}
+					}
+				}
+			})
 		};
 
 		// 理财产品显示还没有头绪，先码着

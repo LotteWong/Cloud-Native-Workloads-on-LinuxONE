@@ -144,7 +144,7 @@ module.exports = function (app) {
                 res.send(err);
 
             // get and return all the todos after you create another
-            getTodos(res);
+            getAccounts(res);
         });
     });
 

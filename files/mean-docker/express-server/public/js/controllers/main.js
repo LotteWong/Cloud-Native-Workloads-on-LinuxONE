@@ -268,7 +268,6 @@ angular.module('todoController', [])
 						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);
-							console.log(data[accountx]["balance"]);
 							$scope.operationAmount="";
 							$scope.accounts=data;
 						})

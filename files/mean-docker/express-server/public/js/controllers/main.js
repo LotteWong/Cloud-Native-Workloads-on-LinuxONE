@@ -212,7 +212,7 @@ angular.module('todoController', [])
 		$scope.cancelAccount = function() {
 			// 清空form
 			// ......
-			$scope.accountData.accountName="";
+			$scope.accountData.accountId="";
 		};
 
 		// 确认开户
@@ -231,8 +231,8 @@ angular.module('todoController', [])
 				$scope.loading = true;
 
 				Accounts.get().success(function(data){
-					for(var accountnamex in data){
-						if(data[accountnamex]["accountName"]==$scope.accountData.accountName){
+					for(var accountIdx in data){
+						if(data[accountIdx]["accountId"]==$scope.accountData.accountId){
 							// alert("account is already existed!");
 							console.log("account is already existed");
 							$scope.accountData={};
@@ -240,7 +240,7 @@ angular.module('todoController', [])
 						}
 					}
 
-					if($scope.accountData.accountName!=null){
+					if($scope.accountData.accountId!=null){
 						console.log("it is a new account");
 						$scope.accountData.customerName = $scope.currCustomer.username;
 	
@@ -294,9 +294,9 @@ angular.module('todoController', [])
 				var msg=JSON.stringify(data);
 				console.log(msg);
 				for(var accountx in data){
-					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
+					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
 						console.log("找到对应的账户");
-						console.log($scope.currAccount.accountName);
+						console.log($scope.currAccount.accountId);
 						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);
@@ -319,9 +319,9 @@ angular.module('todoController', [])
 				var msg=JSON.stringify(data);
 				console.log(msg);
 				for(var accountx in data){
-					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
+					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
 						console.log("找到对应的账户");
-						console.log($scope.currAccount.accountName);
+						console.log($scope.currAccount.accountId);
 						if(data[accountx]["balance"]<parseFloat($scope.operationAmount)){
 							alert("账户余额不足");
 							$scope.operationAmount="";

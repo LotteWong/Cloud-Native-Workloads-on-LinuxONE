@@ -184,7 +184,14 @@ angular.module('todoController', [])
 						$scope.accounts = data;
 						// 更新当前客户的数据库账户数据
 
-						Transactions.create($scope.tra)
+						Transactions.create($scope.transactionData).success(function(data) {
+							var msg = JSON.stringify(data);
+							console.log(msg);
+
+							$scope.currTransaction = $scope.transactionData;
+							$scope.transactionData = {};
+							$scope.transactions = data;
+						})
 					});
 			}
 		};

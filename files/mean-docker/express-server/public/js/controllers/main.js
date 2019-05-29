@@ -134,6 +134,7 @@ angular.module('todoController', [])
 				}
 			})
 			
+			$scope.accounts = {};
 		};
 
 		// 计算该个客户所有账户的余额
@@ -261,6 +262,7 @@ angular.module('todoController', [])
 				
 						// 更新当前交易记录的数据库数据
 						var dateTime = new Date();
+						$scope.transactionData.account = $scope.selectedAccount.accountId;
 						$scope.transactionData.operation = 'Create';
 						$scope.transactionData.from = $scope.currCustomer.username;
 						$scope.transactionData.to = $scope.currCustomer.username;
@@ -283,6 +285,11 @@ angular.module('todoController', [])
 				});
 			}
 
+		};
+
+		// 随机开户
+		$scope.createRandomAccount() = function() {
+			
 		};
 
 		// 存款

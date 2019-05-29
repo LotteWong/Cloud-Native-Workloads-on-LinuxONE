@@ -179,7 +179,8 @@ angular.module('todoController', [])
 				// 更新当前交易记录的数据库数据
 				var dateTime = new Date();
 				$scope.transactionData.operation = 'Create';
-				$scope.transactionData.from = $scope.selectedAccount.accountId;
+				$scope.transactionData.from = $scope.currCustomer.username;
+				$scope.transactionData.to = $scope.currCustomer.username;
 				$scope.transactionData.time = dateTime.toLocaleString();
 
 				var msg = JSON.stringify($scope.transactionData);

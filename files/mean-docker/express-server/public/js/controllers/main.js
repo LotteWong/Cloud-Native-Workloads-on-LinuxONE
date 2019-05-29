@@ -85,8 +85,7 @@ angular.module('todoController', [])
 							$scope.customerData={};
 						}
 					}
-				})
-				if($scope.customerData!=null)
+					if($scope.customerData!=null)
 				{
 					console.log("customerData的值不为空");
 					Customers.create($scope.customerData).success(function(data) {
@@ -98,6 +97,7 @@ angular.module('todoController', [])
 						$scope.customers = data;
 					});
 				}
+				})
 			}
 		};
 

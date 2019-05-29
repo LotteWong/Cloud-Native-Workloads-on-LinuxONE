@@ -206,14 +206,25 @@ angular.module('todoController', [])
 
 				$scope.loading = true;
 
-				$scope.accountData.customerName = $scope.currCustomer.username;
+				Customers.get().success(function(data){
+					for(var accountnamex in data){
+						if(data[accountnamex]["accountName"]==$scope.accountData.accountName){
+							alert("account is already existed!");
+							$scope.loading=false;
+							$scope.accountData={};
+						}
+					}
+				})
 
-				console.log($scope.accountData.customerName);
+				if($scope.accountData!=null){
+					$scope.accountData.customerName = $scope.currCustomer.username;
 
-				var msg = JSON.stringify($scope.accountData);
-				console.log(msg);
+					console.log($scope.accountData.customerName);
 
-				Accounts.create($scope.accountData).success(function(data) {
+					var msg = JSON.stringify($scope.accountData);
+					console.log(msg);
+
+					Accounts.create($scope.accountData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);
 					
@@ -223,6 +234,8 @@ angular.module('todoController', [])
 						$scope.accounts = data;
 						// 更新当前客户的数据库账户数据
 					});
+				}
+				
 			}
 		};
 

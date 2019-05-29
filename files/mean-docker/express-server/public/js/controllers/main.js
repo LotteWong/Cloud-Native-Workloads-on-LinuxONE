@@ -184,7 +184,10 @@ angular.module('todoController', [])
 				for(var accountx in data){
 					if(data[accountx]["customerName"]==$scope.customerData.username)
 					{
+						console.log("找到账户");
 						$scope.accounts[++i]=data[accountx];
+						var msg = JSON.stringify($scope.accounts);
+						console.log(msg);
 					}
 				}
 				// $scope.accounts = data;

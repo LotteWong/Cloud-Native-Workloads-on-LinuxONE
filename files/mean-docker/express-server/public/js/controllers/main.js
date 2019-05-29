@@ -185,6 +185,15 @@ angular.module('todoController', [])
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {
 			// ......
+			console.log("id");
+			Accounts.get().success(function(data){
+				for(var idx in data){
+					if(data[idx]["_id"]==id){
+						console.log("获取到当前账户信息！");
+						$scope.currAccount=data[idx];
+					}
+				}
+			})
 		};
 
 		// 取消开户

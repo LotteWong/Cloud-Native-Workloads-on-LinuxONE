@@ -51,6 +51,12 @@ angular.module('todoController', [])
 			interest: "6.66",
 		};
 
+		Customers.get().success(function(data) {
+			console.log("i got the data i requested")
+			$scope.todos = data;
+			$scope.loading = false;
+		});
+
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
 

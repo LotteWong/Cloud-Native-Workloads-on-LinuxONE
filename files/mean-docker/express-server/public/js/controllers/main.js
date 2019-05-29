@@ -294,7 +294,7 @@ angular.module('todoController', [])
 		$scope.createRandomAccount = function() {
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
-			$scope.accountData.accountId = (cardId++).toString;
+			$scope.accountData.accountId = (cardId++).toString();
 
 			Accounts.create($scope.accountData).success(function(data) {				
 				var msg = JSON.stringify(data);

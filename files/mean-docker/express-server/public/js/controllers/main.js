@@ -124,6 +124,7 @@ angular.module('todoController', [])
 						if(data[usernamex]["password"]!=$scope.customerData.password){
 							alert("密码错误！");
 							pwdcorrect=false;
+							$scope.customerData={};
 						}
 					}
 				}

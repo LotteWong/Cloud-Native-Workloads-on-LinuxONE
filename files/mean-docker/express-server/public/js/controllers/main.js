@@ -17,6 +17,8 @@ angular.module('todoController', [])
 
 		$scope.operationAmount; // 操作的金额
 
+		$scope.amount;
+
 		$scope.formData = {};
 		$scope.loading = true;
 		$scope.selected;
@@ -255,6 +257,18 @@ angular.module('todoController', [])
 		$scope.deposit = function() {
 			// 注意更新交易记录
 			// ......
+			Accounts.get().success(function(data){
+				for(var accountx in data){
+					if(data[accountx]==$scope.currAccount){
+						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
+							var msg=JSON.stringify(data);
+							console.log(msg);
+							$scope.operationAmount="";
+							$scope.accounts=data;
+						})
+					}
+				}
+			})
 
 		};
 

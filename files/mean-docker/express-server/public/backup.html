@@ -1,0 +1,18 @@
+<div id="todo-form" class="row">
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+    <form>
+      <div class="form-group">
+
+        <!-- 输入新账户名 -->
+        <input type="text" class="form-control input-lg text-center" placeholder="Create a new account." ng-model="accountData.accountId">
+
+      </div>
+    </form>
+
+    <!-- 取消开户 -->
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="cancelAccount()">Cancel</button>
+
+    <!-- 确认开户 -->
+    <button type="submit" class="btn btn-primary btn-lg" ng-click="createAccount()">Create</button>
+  </div>
+</div>

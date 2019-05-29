@@ -219,7 +219,7 @@ angular.module('todoController', [])
 		};
 
 		// 确认开户
-		$scope.createAccount = function() {
+		/*$scope.createAccount = function() {
 			// 情况一：不存在该账户则向数据库插入新的Account元组
 			// 同时更新客户的数据
 			// ......
@@ -288,7 +288,7 @@ angular.module('todoController', [])
 				});
 			}
 
-		};
+		};*/
 
 		// 随机开户
 		$scope.createRandomAccount = function() {

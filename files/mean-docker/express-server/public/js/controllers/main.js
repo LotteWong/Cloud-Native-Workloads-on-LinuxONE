@@ -166,14 +166,6 @@ angular.module('todoController', [])
 				var msg = JSON.stringify($scope.accountData);
 				console.log(msg);
 
-				var dateTime = new Date();
-				$scope.transactionData.operation = 'Create';
-				$scope.transactionData.from = $scope.selectedAccount.accountId;
-				$scope.transactionData.time = dateTime.toLocaleString();
-
-				var msg = JSON.stringify($scope.transactionData);
-				console.log(msg);
-
 				Accounts.create($scope.accountData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);
@@ -182,17 +174,27 @@ angular.module('todoController', [])
 						$scope.currAccount = $scope.accountData;
 						$scope.accountData = {};
 						$scope.accounts = data;
-						// 更新当前客户的数据库账户数据
-
-						Transactions.create($scope.transactionData).success(function(data) {
-							var msg = JSON.stringify(data);
-							console.log(msg);
-
-							$scope.currTransaction = $scope.transactionData;
-							$scope.transactionData = {};
-							$scope.transactions = data;
-						})
 					});
+				
+				// 更新当前交易记录的数据库数据
+				var dateTime = new Date();
+				$scope.transactionData.operation = 'Create';
+				$scope.transactionData.from = $scope.selectedAccount.accountId;
+				$scope.transactionData.time = dateTime.toLocaleString();
+
+				var msg = JSON.stringify($scope.transactionData);
+				console.log(msg);
+
+				Transactions.create($scope.transactionData).success(function(data) {
+					var msg = JSON.stringify(data);
+					console.log(msg);
+
+					$scope.currTransaction = $scope.transactionData;
+					$scope.transactionData = {};
+					$scope.transactions = data;
+				});
+
+				// 更新当前客户的数据库账户数据
 			}
 		};
 

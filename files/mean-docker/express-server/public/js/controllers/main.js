@@ -209,9 +209,9 @@ angular.module('todoController', [])
 				Accounts.get().success(function(data){
 					for(var accountnamex in data){
 						if(data[accountnamex]["accountName"]==$scope.accountData.accountName){
-							alert("account is already existed!");
-							$scope.loading=false;
 							$scope.accountData={};
+							alert("account is already existed!");
+							$scope.loading=false;							
 						}
 					}
 				})

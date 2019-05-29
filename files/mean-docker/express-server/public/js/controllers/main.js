@@ -154,8 +154,8 @@ angular.module('todoController', [])
 			// ......
 
 			// 最简单什么都不考虑的情况：
-			if ($scope.accountData.accountName != undefined) {
-				console.log($scope.accountData.accountName);
+			if ($scope.accountData.accountId != undefined) {
+				console.log($scope.accountData.accountId);
 
 				$scope.loading = true;
 

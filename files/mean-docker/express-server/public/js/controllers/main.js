@@ -59,7 +59,8 @@ angular.module('todoController', [])
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);
 
-				$scope.customerData.lastSuccessfulLogin = new Date().toLocaleString;
+				var dateTime = new Date();
+				$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
 
 				var msg = JSON.stringify($scope.customerData);
 				console.log(msg);
@@ -165,9 +166,13 @@ angular.module('todoController', [])
 				var msg = JSON.stringify($scope.accountData);
 				console.log(msg);
 
+				var dateTime = new Date();
 				$scope.transactionData.operation = 'Create';
 				$scope.transactionData.from = $scope.selectedAccount.accountId;
-				$scope.transactionData.time = new Date().toLocaleString;
+				$scope.transactionData.time = dateTime.toLocaleString();
+
+				var msg = JSON.stringify($scope.transactionData);
+				console.log(msg);
 
 				Accounts.create($scope.accountData).success(function(data) {
 						var msg = JSON.stringify(data);

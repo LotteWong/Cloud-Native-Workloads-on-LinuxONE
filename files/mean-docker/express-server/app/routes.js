@@ -139,7 +139,7 @@ module.exports = function (app) {
     app.put('/api/accounts/:account_id',function(req,res){
         var wherestr = {'_id': req.params.account_id};
         var updatestr = {'balance' : req.body.amount};
-        Account.update(wherestr, updatestr, function (err, todo) {
+        Account.update(wherestr, updatestr, function (err, account) {
             if (err)
                 res.send(err);
 

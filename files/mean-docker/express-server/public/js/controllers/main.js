@@ -259,6 +259,8 @@ angular.module('todoController', [])
 			// ......
 			Accounts.get().success(function(data){
 				console.log("成功获取信息");
+				var msg=JSON.stringify(data);
+				console.log(msg);
 				for(var accountx in data){
 					if(data[accountx]["accountName"]==$scope.currAccount.accountName){
 						console.log("找到对应的账户");

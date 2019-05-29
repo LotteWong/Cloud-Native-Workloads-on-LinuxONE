@@ -70,7 +70,17 @@ angular.module('todoController', [])
 				var msg = JSON.stringify($scope.customerData);
 				console.log(msg);
 
-				Customers.create($scope.customerData).success(function(data) {
+				Customers.get().success(function(data){
+					for(var usernamex in data){
+						if(data[usernamex]["username"]==$scope.customerData.username){
+							alert("username is already existed");
+							$scope.customerData={};
+						}
+					}
+				})
+				if($scope.customerData!=null)
+				{
+					Customers.create($scope.customerData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);
 					
@@ -78,6 +88,7 @@ angular.module('todoController', [])
 						$scope.customerData = {};
 						$scope.customers = data;
 					});
+				}
 			}
 		};
 

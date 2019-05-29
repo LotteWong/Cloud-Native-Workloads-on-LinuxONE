@@ -180,6 +180,7 @@ angular.module('todoController', [])
 		// 已有账户显示
 		Accounts.get()
 			.success(function(data) {
+				console.log("accounts get");
 				var i=0;
 				for(var accountx in data){
 					if(data[accountx]["customerName"]==$scope.customerData.username)

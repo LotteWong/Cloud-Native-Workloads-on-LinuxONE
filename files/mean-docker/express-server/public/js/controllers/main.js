@@ -3,12 +3,11 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', 'Transactions', function($scope, $http, Todos, Customers, Accounts, Transactions) {
 		$scope.customerData = {}; // 绑定前端的客户数据
 		$scope.accountData = {}; // 绑定前端的账户数据
+		$scope.transactionData = {}; // 绑定前端的交易记录数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
 		$scope.currAccount = {}; // 绑定数据库的账户数据
-		
-		$scope.transAccount; // 转账的账号
-		$scope.transAmount; // 转账的金额
+		$scope.currTransaction = {}; // 绑定数据库的交易交路数据
 
 		$scope.selectedAccount = {}; // 选中的账号
 
@@ -59,6 +58,8 @@ angular.module('todoController', [])
 			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);
+
+				$scope.customerData.lastSuccessfulLogin = new Date().toLocaleString;
 
 				var msg = JSON.stringify($scope.customerData);
 				console.log(msg);
@@ -164,6 +165,10 @@ angular.module('todoController', [])
 				var msg = JSON.stringify($scope.accountData);
 				console.log(msg);
 
+				$scope.transactionData.operation = 'Create';
+				$scope.transactionData.from = $scope.selectedAccount.accountId;
+				$scope.transactionData.time = new Date().toLocaleString;
+
 				Accounts.create($scope.accountData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);
@@ -173,6 +178,8 @@ angular.module('todoController', [])
 						$scope.accountData = {};
 						$scope.accounts = data;
 						// 更新当前客户的数据库账户数据
+
+						Transactions.create($scope.tra)
 					});
 			}
 		};

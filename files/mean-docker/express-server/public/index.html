@@ -154,9 +154,9 @@
 										<form>
 											<div class="form-group">
 												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transAccount">
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
 												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transAmount">
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
 
 											</div>
 										</form>
@@ -179,8 +179,7 @@
 							</div>
 							<div class="panel-body" style="height: 250px; overflow:auto">
 								<div class="col-md-8">
-									<!--<table class="table table-striped" ng-repeat="transaction in transactions">-->
-									<table class="table table-striped">
+									<table class="table table-striped" ng-repeat="transaction in transactions">
 										<thead>
 											<tr>
 												<th>Operation</th>

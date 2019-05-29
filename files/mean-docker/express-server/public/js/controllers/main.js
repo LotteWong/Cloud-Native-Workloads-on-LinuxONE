@@ -71,8 +71,10 @@ angular.module('todoController', [])
 				console.log(msg);
 
 				Customers.get().success(function(data){
+					console.log("获取到data");
 					for(var usernamex in data){
 						if(data[usernamex]["username"]==$scope.customerData.username){
+							console.log("重复名字");
 							alert("username is already existed");
 							$scope.customerData={};
 						}
@@ -80,6 +82,7 @@ angular.module('todoController', [])
 				})
 				if($scope.customerData!=null)
 				{
+					console.log("customerData的值不为空");
 					Customers.create($scope.customerData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);

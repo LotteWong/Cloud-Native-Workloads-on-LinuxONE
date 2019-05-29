@@ -33,3 +33,4 @@ docker rmi b19cabf1923b
 docker rmi c4f308f6a90b
 docker rmi f8b1c7e0e118
 docker rmi cb60f7608b18 
+docker rmi 4f02a156ec6b 

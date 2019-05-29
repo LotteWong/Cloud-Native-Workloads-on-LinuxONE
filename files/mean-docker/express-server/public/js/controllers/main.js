@@ -190,6 +190,7 @@ angular.module('todoController', [])
 				for(var idx in data){
 					if(data[idx]["_id"]==id){
 						console.log("获取到当前账户信息！");
+						console.log("matching id:"+data[idx]["_id"]);
 						$scope.currAccount=data[idx];
 					}
 				}

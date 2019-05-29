@@ -155,6 +155,10 @@ angular.module('todoController', [])
 				// $scope.accounts = data;
 				$scope.loading = false;
 			});
+
+			// 已有交易记录显示
+			// 仿照上面已有账户显示
+			// ......
 		};
 
 		// 计算该个客户所有账户的余额
@@ -261,7 +265,7 @@ angular.module('todoController', [])
 				
 						// 更新当前交易记录的数据库数据
 						var dateTime = new Date();
-						$scope.transactionData.account = $scope.selectedAccount.accountId;
+						$scope.transactionData.account = $scope.currAccount.accountId;
 						$scope.transactionData.operation = 'Create';
 						$scope.transactionData.from = $scope.currCustomer.username;
 						$scope.transactionData.to = $scope.currCustomer.username;

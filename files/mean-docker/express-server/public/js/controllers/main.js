@@ -305,6 +305,7 @@ angular.module('todoController', [])
 
 			Customers.get().success(function(data){
 				for(var customerx in data){
+					console.log("新建account的账户名为："+data[customerx]["username"]);
 					if(data[customerx]["username"]==$scope.currCustomer.username){
 						var length=data[customerx][accounts].length;
 						console.log("customer的账户有："+length+"个");

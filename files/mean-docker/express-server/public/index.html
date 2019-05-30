@@ -65,7 +65,7 @@
 
 		<div class="login" ng-show="!isLogin">
 			<div class="login-top">
-				Welcome!
+				Welcome to SCUT Bank!
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/name.png"/></div>
@@ -81,11 +81,11 @@
 					<div class="login-center-input-text">Password</div>
 				</div>
 			</div>
-			<div class="col-sm-4 col-sm-offset-2 text-center">
+			<div class="col-sm-4 col-sm-offset-1 text-center">
 				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
 			</div>
 			<div class="col-sm-4 col-sm-offset-2 text-center">
-				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
 			</div>
 		</div>
 
@@ -174,35 +174,6 @@
 
 				<div class="row">
 					<div class="col-sm-8">
-						<!-- 支付&转账面板 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-									<h3 class="panel-title">Payment & Transfer</h3>
-							</div>
-							<div class="panel-body" style="height: 250px; overflow:auto">
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
-
-											</div>
-										</form>
-
-										<!-- 取消转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
-
-										<!-- 确认转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -236,38 +207,38 @@
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
-     	  </div>
-
-				<div class="row">
 					<div class="col-sm-4">
-						<div class="panel panel-default">
-							<!-- 卡片账户面板 -->
-							<div class="panel-heading">
-								<h3 class="panel-title">
-									Cards
-									<button type="button" class="btn btn-xs btn-primary" ng-click="createRandomAccount()">New Card</button>
-								</h3>
-							</div>
-							<div class="panel-body" style="height: 200px; overflow:auto">
-								<!-- 已有账户列表 -->
-								<div id="todo-list" class="row">
-									<div class="col-sm-4 col-sm-offset-4">
+							<div class="panel panel-default">
+								<!-- 卡片账户面板 -->
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										Cards
+										<button type="button" class="btn btn-xs btn-primary" ng-click="createRandomAccount()">New Card</button>
+									</h3>
+								</div>
+								<div class="panel-body" style="height: 250px; overflow:auto">
+									<!-- 已有账户列表 -->
+									<div id="todo-list" class="row">
+										<div class="col-sm-4 col-sm-offset-4">
 
-										<div class="checkbox" ng-repeat="account in accounts">
-											<label>
-												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
-											</label>
+											<div class="checkbox" ng-repeat="account in accounts">
+												<label>
+													<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
+												</label>
+											</div>
+
+											<p class="text-center" ng-show="loading">
+												<span class="fa fa-spinner fa-spin fa-3x"></span>
+											</p>
+
 										</div>
-
-										<p class="text-center" ng-show="loading">
-											<span class="fa fa-spinner fa-spin fa-3x"></span>
-										</p>
-
 									</div>
 								</div>
 							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
+						</div><!-- /.col-sm-4 -->
+     	  </div>
+
+				<div class="row">
 					<div class="col-sm-4">
 						<!-- 存钱&取钱面板 -->
 						<div class="panel panel-default">
@@ -288,10 +259,39 @@
 										</form>
 
 										<!-- 存款 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+										<button type="submit" class="btn btn-primary btn-md" ng-click="deposit()">Deposit</button>
 										
 										<!-- 取款 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+										<button type="submit" class="btn btn-primary btn-md" ng-click="withdraw()">Withdraw</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<!-- 支付&转账面板 -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<h3 class="panel-title">Payment & Transfer</h3>
+							</div>
+							<div class="panel-body" style="height: 200px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-12 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+
+											</div>
+										</form>
+
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-md" ng-click="cancelTransfer()">Cancel</button>
+
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-md" ng-click="confirmTransfer()">Confirm</button>
 									</div>
 								</div>
 							</div>

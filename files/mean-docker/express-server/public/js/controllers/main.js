@@ -307,6 +307,7 @@ angular.module('todoController', [])
 				for(var customerx in data){
 					console.log("新建account的账户名为："+data[customerx]["username"]);
 					if(data[customerx]["username"]==$scope.currCustomer.username){
+						console.log("创建新卡时找到对应账户");
 						var length=data[customerx][accounts].length;
 						console.log("customer的账户有："+length+"个");
 						for(var i=0; i<length; ++i){

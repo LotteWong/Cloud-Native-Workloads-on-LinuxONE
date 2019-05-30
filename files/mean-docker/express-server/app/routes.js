@@ -190,8 +190,24 @@ module.exports = function (app) {
 
     app.put('/api/accounts/:account_id',function(req,res){
         var wherestr = {'_id': req.params.account_id};
-        var updatestr = {'balance' : req.body.amount};
-        Account.update(wherestr, updatestr, function (err, account) {
+        var updatestr1 = { 'balance': req.body.balance };
+        Account.update(wherestr, updatestr1, function (err, account) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            getAccounts(res);
+        });
+        var updatestr2 = { 'income': req.body.income };
+        Account.update(wherestr, updatestr2, function (err, account) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            getAccounts(res);
+        });
+        var updatestr3 = { 'outcome': req.body.outcome };
+        Account.update(wherestr, updatestr3, function (err, account) {
             if (err)
                 res.send(err);
 

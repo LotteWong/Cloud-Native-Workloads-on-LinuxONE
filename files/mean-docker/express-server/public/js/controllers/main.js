@@ -159,24 +159,21 @@ angular.module('todoController', [])
 			// 已有交易显示
 			Transactions.get()
 			.success(function(data){
-				console.log("accounts get");
+				console.log("transactions get");
 				var i=0;
-				for(var accountx in data){
-					console.log("data中的数据"+data[accountx]["customerName"]);
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					// 筛选存在账户
-					if(data[accountx]["customerName"]==$scope.currCustomer.username)
+					//筛选交易记录
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
-					    $scope.balance = $scope.balance + data[accountx]["balance"];
-					    $scope.income = $scope.income + data[accountx]["income"];
-					    $scope.outcome = $scope.outcome + data[accountx]["outcome"];
+
 						console.log("找到账户");
-						$scope.accounts[i++]=data[accountx];
-						var msg = JSON.stringify($scope.accounts);
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
 						console.log(msg);
 					}
 				}
-				$scope.loading = false;
 			})
 
 		};
@@ -264,18 +261,34 @@ angular.module('todoController', [])
 		            $scope.transactionData.account = $scope.currAccount.accountId;
 		            $scope.transactionData.operation = 'Transfer';
 		            $scope.transactionData.from = $scope.currAccount.accountId;
-		            $scope.transactionData.time = dateTime.toLocaleString();
+								$scope.transactionData.time = dateTime.toLocaleString();
+								// var msg = JSON.stringify($scope.transactionData);
+		            //console.log(msg);
+
+								Transactions.create($scope.transactionData).success(function (data) {
+									var msg = JSON.stringify(data);
+									console.log(msg);
+
+									$scope.currTransaction = $scope.transactionData;
+									$scope.transactionData = {};
+									$scope.transactions = data;
+								});
+
+		            $scope.transactionData.account = $scope.transactionData.to;
+								$scope.transactionData.operation = 'Transfer';
+								$scope.transactionData.from = $scope.currAccount.accountId;
+								$scope.transactionData.time = dateTime.toLocaleString();
 		            // var msg = JSON.stringify($scope.transactionData);
 		            //console.log(msg);
 
 		            Transactions.create($scope.transactionData).success(function (data) {
-		                var msg = JSON.stringify(data);
-		                console.log(msg);
+									var msg = JSON.stringify(data);
+									console.log(msg);
 
-		                $scope.currTransaction = $scope.transactionData;
-		                $scope.transactionData = {};
-		                $scope.transactions = data;
-		            });
+									$scope.currTransaction = $scope.transactionData;
+									$scope.transactionData = {};
+									$scope.transactions = data;
+								});
 
 		        }
 		    }

@@ -61,7 +61,10 @@ angular.module('todoController', [])
 			// 情况二：已存在该客户则alert提醒并清空form
 			// ......
 
-			// 最简单什么都不考虑的情况：
+		    // 最简单什么都不考虑的情况：
+		    $scope.balance = 0;
+		    $scope.income = 0;
+		    $scope.outcome = 0;
 			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
 				console.log($scope.customerData.username);
 				console.log($scope.customerData.password);

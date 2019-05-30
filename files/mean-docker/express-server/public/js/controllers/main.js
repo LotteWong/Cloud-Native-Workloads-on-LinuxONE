@@ -136,7 +136,7 @@ angular.module('todoController', [])
 				}
 				if(userexist==true&&pwdcorrect==true){
 					$scope.isLogin = true;
-					
+
 					$scope.currCustomer=$scope.customerData;
 					$scope.customerData={};
 				}
@@ -166,6 +166,10 @@ angular.module('todoController', [])
 			// 已有交易记录显示
 			// 仿照上面已有账户显示
 			// ......
+		};
+
+		$scope.signOut = function() {
+			$scope.isLogin = false;
 		};
 
 		// 计算该个客户所有账户的余额

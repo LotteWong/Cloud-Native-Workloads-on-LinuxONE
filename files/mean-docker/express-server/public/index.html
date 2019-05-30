@@ -174,35 +174,6 @@
 
 				<div class="row">
 					<div class="col-sm-8">
-						<!-- 支付&转账面板 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-									<h3 class="panel-title">Payment & Transfer</h3>
-							</div>
-							<div class="panel-body" style="height: 250px; overflow:auto">
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
-
-											</div>
-										</form>
-
-										<!-- 取消转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
-
-										<!-- 确认转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -232,6 +203,35 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<!-- 支付&转账面板 -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<h3 class="panel-title">Payment & Transfer</h3>
+							</div>
+							<div class="panel-body" style="height: 250px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+
+											</div>
+										</form>
+
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
+									</div>
 								</div>
 							</div>
 						</div>

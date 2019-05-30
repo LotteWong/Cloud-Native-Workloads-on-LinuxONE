@@ -107,6 +107,7 @@ angular.module('todoController', [])
 		// 检查已存在的客户
 		$scope.signIn = function() {
 			$scope.accounts = {};
+			$scope.transactions={};
 
 			var dateTime = new Date();
 			$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
@@ -165,6 +166,25 @@ angular.module('todoController', [])
 				// $scope.accounts = data;
 				$scope.loading = false;
 			});
+
+			//已有交易显示
+			Transactions.get()
+			.success(function(data){
+				console.log("transactions get");
+				var i=0;
+				for(var transactionx in data){
+					console.log("data中的数据"+data[accountx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[transactionx]["customerName"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
+				}
+			})
 
 			// 已有交易记录显示
 			// 仿照上面已有账户显示

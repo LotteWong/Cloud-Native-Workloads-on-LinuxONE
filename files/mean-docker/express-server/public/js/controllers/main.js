@@ -258,15 +258,24 @@ angular.module('todoController', [])
 		                }
 		            }
 		        }
+                //更新表单
 		        console.log("flag" + flag);
 		        if (flag == 2) {
 		            var dateTime = new Date();
+		            $scope.transactionData.time = dateTime.toLocaleString();
 		            $scope.transactionData.account = $scope.currAccount.accountId;
 		            $scope.transactionData.operation = 'Transfer';
-		            $scope.transactionData.from = $scope.currAccount.accountId;
-		            $scope.transactionData.time = dateTime.toLocaleString();
-		            // var msg = JSON.stringify($scope.transactionData);
-		            //console.log(msg);
+		            for (var accountx in data) {
+		                if (data[accountx]["accountId"] == $scope.currAccount.accountId) {
+		                    $scope.transactionData.from = data[accountx]["customerName"];
+		                }
+		            }
+		            for (var accountx in data) {
+		                if (data[accountx]["accountId"] == $scope.transactionData.to) {
+		                    $scope.transactionData.to = data[accountx]["customerName"];
+		                }
+		            }
+		         
 
 		            Transactions.create($scope.transactionData).success(function (data) {
 		                var msg = JSON.stringify(data);
@@ -274,7 +283,19 @@ angular.module('todoController', [])
 
 		                $scope.currTransaction = $scope.transactionData;
 		                $scope.transactionData = {};
-		                $scope.transactions = data;
+		                var i = 0;
+		                for (var transactionx in data) {
+		                    console.log("data中的数据" + data[transactionx]["customerName"]);
+		                    console.log("currCustomer:" + $scope.currCustomer.username);
+		                    //筛选交易记录
+		                    if (data[transactionx]["from"] == $scope.currCustomer.username || data[transactionx]["to"] == $scope.currCustomer.username) {
+
+		                        console.log("找到账户");
+		                        $scope.transactions[i++] = data[transactionx];
+		                        var msg = JSON.stringify($scope.transactions);
+		                        console.log(msg);
+		                    }
+		                }
 		            });
 
 		        }

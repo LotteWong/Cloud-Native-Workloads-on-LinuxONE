@@ -41,6 +41,8 @@ angular.module('todoController', [])
 		});
 
 		$scope.cardId = 100000; // 随机卡号
+		
+		$scope.isLogin = false;
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
@@ -85,6 +87,8 @@ angular.module('todoController', [])
 					Customers.create($scope.customerData).success(function(data) {
 						var msg = JSON.stringify(data);
 						console.log(msg);
+
+						$scope.isLogin = true;
 					
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
@@ -131,6 +135,8 @@ angular.module('todoController', [])
 					$scope.customerData={};
 				}
 				if(userexist==true&&pwdcorrect==true){
+					$scope.isLogin = true;
+					
 					$scope.currCustomer=$scope.customerData;
 					$scope.customerData={};
 				}

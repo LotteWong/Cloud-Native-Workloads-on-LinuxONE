@@ -1,3 +1,19 @@
+export const AppRoutes=[
+    {
+        path: '',
+        redirectTo: 'showmain',  //项目启动的第一个路由为showmain
+        pathMatch: 'full'
+    },
+    {  
+        path: 'showmain',
+        loadChildren: './showmain/showmain.module#ShowmainModule'
+    },
+    {
+        path: 'login',
+        loadChildren: './login/login.module#LoginModule'
+    }
+]
+
 var Todo = require('./models/todo');
 var Customer = require('./models/customer');
 var Account = require('./models/account');

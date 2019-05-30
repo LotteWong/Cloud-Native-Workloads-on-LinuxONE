@@ -90,8 +90,35 @@
         </div>
       </div>
 
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", ng-show="!isLogin">
+				<div id="todo-form" class="row">
+					<div class="col-sm-8 col-sm-offset-2 text-center">
+						<form>
+							<div class="form-group">
 
+								<!-- 输入昵称 -->
+								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
+
+								<!-- 输入密码 -->
+								<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
+
+							</div>
+						</form>
+
+						<!-- 注册 -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
+
+						<!-- 登录 -->
+						<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
+
+						<button type="submit" class="btn btn-primary btn-lg">
+							<a routerLink=["./html/signin.html", 1]>Redirect</a>
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", , ng-show="!isLogin">
 				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
 					<!-- 显示客户昵称 -->
@@ -305,32 +332,6 @@
 						</div>
 					</div><!-- /.col-sm-4 -->
      	  </div>
-
-				<div id="todo-form" class="row">
-					<div class="col-sm-8 col-sm-offset-2 text-center">
-						<form>
-							<div class="form-group">
-
-								<!-- 输入昵称 -->
-								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
-
-								<!-- 输入密码 -->
-								<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
-
-							</div>
-						</form>
-
-						<!-- 注册 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
-
-						<!-- 登录 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
-
-						<button type="submit" class="btn btn-primary btn-lg">
-							<a routerLink=["./html/signin.html", 1]>Redirect</a>
-						</button>
-					</div>
-				</div>
 
 				<!-- 结束语 -->
 				<div class="text-center text-muted">

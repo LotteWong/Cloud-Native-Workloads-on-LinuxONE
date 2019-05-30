@@ -4,10 +4,17 @@ angular.module('todoController', [])
 		$scope.customerData = {}; // 绑定前端的客户数据
 		$scope.accountData = {}; // 绑定前端的账户数据
 		$scope.transactionData = {}; // 绑定前端的交易记录数据
+		$scope.financeData = {
+			type: "Yu'E Bao",
+			rate: 0.233,
+			interest: 0,
+			amount: 0,
+		}; // 绑定前端的理财产品数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
 		$scope.currAccount = {}; // 绑定数据库的账户数据
 		$scope.currTransaction = {}; // 绑定数据库的交易交路数据
+		$scope.currFinance = {}; // 绑定数据库的理财产品数据
 
 		$scope.selectedAccount = {}; // 选中的账号
 
@@ -35,11 +42,6 @@ angular.module('todoController', [])
 			income: 233,
 			outcome: 666,
 		};
-		$scope.finance = {
-			type: "Yu'E Bao",
-			rate: "2.33%",
-			interest: "6.66",
-		};
 
 		Customers.get().success(function(data) {
 			console.log("i got the data i requested")
@@ -47,7 +49,7 @@ angular.module('todoController', [])
 			$scope.loading = false;
 		});
 
-		var cardId = 100000; // 随机卡号
+		$scope.cardId = 100000; // 随机卡号
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
@@ -415,8 +417,11 @@ angular.module('todoController', [])
 			// ......
 		};
 
-		// 理财产品显示还没有头绪，先码着
-		// ......
+		// 购买理财产品的预计收益
+		// 公式 = 持有月数 / 12 * 年利率
+		$scope.purchaseFinanceProduct = function(var month) {
+
+		};
 
 		/* 以下是原Todo的函数，暂时用不到了 */
 		/*

@@ -8,7 +8,7 @@ angular.module('todoController', [])
 			type: "Yu'E Bao",
 			rate: 0.233,
 			interest: 0,
-			amount:""
+			amount:null
 		}; // 绑定前端的理财产品数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据

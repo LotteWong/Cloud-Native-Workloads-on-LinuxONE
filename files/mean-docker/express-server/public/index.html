@@ -62,6 +62,24 @@
       </div>
     </nav>
 
+		<div class="container" ng-show="!isLogin">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="customerData.password">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
 			<div id="todo-form" class="row", ng-show="!isLogin">
 				<div class="col-sm-8 col-sm-offset-2 text-center">
 					<form>
@@ -87,7 +105,7 @@
 
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->
-    <div class="container-fluid", ng-show="isLogin">
+    <div class="container-fluid" ng-show="isLogin">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 					<!-- 导航项 -->
@@ -113,13 +131,12 @@
 
 					<!-- 导航项 -->
           <ul class="nav nav-sidebar">
-            <!-- 注销 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signOut()">Sign OuT</button>
+            <li><a href="" ng-click="signOut()">Sign out</a></li>
           </ul>
         </div>
       </div>
 			
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", ng-show="isLogin">
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-show="isLogin">
 				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
 					<!-- 显示客户昵称 -->
@@ -131,7 +148,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<!-- 余额面板 -->
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Balance</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
@@ -144,7 +161,7 @@
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 收入面板 -->
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Income</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
@@ -156,7 +173,7 @@
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Outcome</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
@@ -172,7 +189,7 @@
 				<div class="row">
 					<div class="col-sm-8">
 						<!-- 支付&转账面板 -->
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 									<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
@@ -237,7 +254,7 @@
 
 				<div class="row">
 					<div class="col-sm-4">
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<!-- 卡片账户面板 -->
 							<div class="panel-heading">
 								<h3 class="panel-title">
@@ -267,7 +284,7 @@
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 存钱&取钱面板 -->
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Deposit & Withdraw</h3>
 							</div>
@@ -295,7 +312,7 @@
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-primary">
+						<div class="panel panel-default">
 							<!-- 理财产品面板 -->
 							<div class="panel-heading">
 								<h3 class="panel-title">Finance</h3>
@@ -341,9 +358,9 @@
 						<a href="https://github.com/chen201730681280">Chen Yongxin</a>, 
 						<a href="https://github.com/LotteWong">Huang Xiuping</a>, 
 						<a href="https://github.com/KONG98">Kong Yihan</a>, 
-						<a href="https://github.com/prprprprbiu">Xian Wenting</a>
+						<a href="https://github.com/prprprprbiu">Xian Wenting</a> ，
 						<a href="https://github.com/sherele">Xie Yingyuan</a>, 
-						<a href="https://github.com/zhao201730685110">Zhao Zhuoran</a>, 
+						<a href="https://github.com/zhao201730685110">Zhao Zhuoran</a> 
 					</p>
 					<p>Supported ❤ by <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 				</div>

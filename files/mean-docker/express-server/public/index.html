@@ -62,46 +62,29 @@
       </div>
     </nav>
 
-		<div class="container" ng-show="!isLogin">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="customerData.password">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
-      </form>
-
-    </div> <!-- /container -->
-
-			<div id="todo-form" class="row", ng-show="!isLogin">
-				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form>
-						<div class="form-group">
-
-							<!-- 输入昵称 -->
-							<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
-
-							<!-- 输入密码 -->
-							<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
-
-						</div>
-					</form>
-
-					<!-- 注册 -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
-
-					<!-- 登录 -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
-
+		<div class="login" ng-show="!isLogin">
+			<div class="login-top">
+				Welcome to SCUT Online Bank Application!
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/name.png"/></div>
+				<div class="login-center-input">
+					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
+					<div class="login-center-input-text">Username</div>
 				</div>
 			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/password.png"/></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
+					<div class="login-center-input-text">Password</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-sm-offset-2 text-center">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign In</button>
+			</div>
+		</div>
 
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->

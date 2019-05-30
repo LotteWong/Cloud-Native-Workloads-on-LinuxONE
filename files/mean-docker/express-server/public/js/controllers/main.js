@@ -175,6 +175,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					//筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
@@ -326,6 +327,7 @@ angular.module('todoController', [])
 			$scope.accountData.accountId = ($scope.cardId++).toString();
 			console.log($scope.accountData.accountId);
 
+			//更新Customers的accounts数组
 			Customers.get().success(function(data){
 				for(var customerx in data){
 					console.log("新建account的账户名为："+data[customerx]["username"]);
@@ -350,6 +352,7 @@ angular.module('todoController', [])
 				var msg = JSON.stringify(data);
 				console.log(msg);
 
+				//筛选当前客户的账户
 				var i=0;
 				for(var accountx in data){
 					console.log("data中的数据"+data[accountx]["customerName"]);
@@ -391,6 +394,8 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					
+					//筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
@@ -400,7 +405,6 @@ angular.module('todoController', [])
 						console.log(msg);
 					}
 				}
-				// $scope.transactions = data;
 			});
 
 			// 更新当前客户的数据库账户数据
@@ -449,6 +453,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					//筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
@@ -514,6 +519,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					//筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
@@ -575,6 +581,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					//筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 

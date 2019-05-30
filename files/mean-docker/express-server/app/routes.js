@@ -177,6 +177,17 @@ module.exports = function (app) {
 
     });
 
+    app.put('/api/customers/:customer_id',function(req,res){
+        var wherestr={'_id':req.params.customer_id};
+        var updatestr={'accounts' : req.body.newaccount};
+        Customer.update(wherestr, updatestr, function(err,customer){
+            if(err)
+                res.send(err);
+
+            getCustomers(res);
+        })
+    })
+
     app.put('/api/accounts/:account_id',function(req,res){
         var wherestr = {'_id': req.params.account_id};
         var updatestr = {'balance' : req.body.amount};

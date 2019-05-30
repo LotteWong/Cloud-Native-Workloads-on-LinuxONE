@@ -20,7 +20,10 @@ angular.module('todoController', [])
 
 		$scope.operationAmount; // 操作的金额
 
-		$scope.amount;
+		$scope.amount;//用于更新balance
+		
+		var tempAccounts=new Array();
+		$scope.newaccount;//用于更新account[]
 
 		$scope.formData = {};
 		$scope.loading = true;
@@ -300,6 +303,27 @@ angular.module('todoController', [])
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();
+			console.log($scope.accountData.accountId);
+
+			Customers.get().success(function(data){
+				for(var customerx in data){
+					console.log("新建account的账户名为："+data[customerx]["username"]);
+					if(data[customerx]["username"]==$scope.currCustomer.username){
+						console.log("创建新卡时找到对应账户");
+						var length=data[customerx]["accounts"].length;
+						console.log("customer的账户有："+length+"个");
+						for(var i=0; i<length; ++i){
+							tempAccounts[i]=data[customerx]["accounts"][i];
+							console.log("customer可以有账户："+tempAccounts[i]);
+						}
+						tempAccounts[length]=$scope.accountData.accountId;
+						Customers.put(data[customerx]["_id"],{newaccount:tempAccounts}).success(function(data){
+							var msg=JSON.stringify(data);
+							console.log(msg);
+						})
+					}
+				}
+			});
 
 			Accounts.create($scope.accountData).success(function(data) {				
 				var msg = JSON.stringify(data);
@@ -395,9 +419,9 @@ angular.module('todoController', [])
 
 		// 购买理财产品的预计收益
 		// 公式 = 持有月数 / 12 * 年利率
-		$scope.purchaseFinanceProduct = function(var month) {
+		// $scope.purchaseFinanceProduct = function(var month) {
 
-		};
+		// };
 
 		/* 以下是原Todo的函数，暂时用不到了 */
 		/*

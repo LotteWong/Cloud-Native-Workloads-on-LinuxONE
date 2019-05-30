@@ -43,7 +43,6 @@ angular.module('todoController', [])
 		$scope.cardId = 100000; // 随机卡号
 		
 		$scope.isLogin = false;
-		$scope.isRegister = false;
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
@@ -53,16 +52,6 @@ angular.module('todoController', [])
 		//		$scope.accounts = data;
 		//		$scope.loading = false;
 		//	});
-
-		$scope.goSignIn = function() {
-			$scope.isRegister = true;
-			$scope.isLogin = false;
-		}
-
-		$scope.goSignUp = function() {
-			$scope.isRegister = false;
-			$scope.isLogin = false;
-		}
 
 		// 添加未注册的客户
 		$scope.signUp = function() {
@@ -99,7 +88,7 @@ angular.module('todoController', [])
 						var msg = JSON.stringify(data);
 						console.log(msg);
 
-						$scope.isRegister = true;
+						$scope.isLogin = true;
 					
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
@@ -112,8 +101,6 @@ angular.module('todoController', [])
 
 		// 检查已存在的客户
 		$scope.signIn = function() {
-			$scope.isRegister = false;
-
 			$scope.accounts = {};
 
 			var dateTime = new Date();
@@ -182,7 +169,6 @@ angular.module('todoController', [])
 		};
 
 		$scope.signOut = function() {
-			$scope.isRegister = false;
 			$scope.isLogin = false;
 		};
 

@@ -8,31 +8,30 @@ angular.module('todoController', [])
 			type: "Yu'E Bao",
 			rate: 0.233,
 			interest: 0,
-			amount:null
+			amount: null,
 		}; // 绑定前端的理财产品数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
 		$scope.currAccount = {}; // 绑定数据库的账户数据
-		$scope.currTransaction = {}; // 绑定数据库的交易交路数据
+		$scope.currTransaction = {}; // 绑定数据库的交易记录数据
 		$scope.currFinance = {}; // 绑定数据库的理财产品数据
 
 		$scope.selectedAccount = {}; // 选中的账号
 
 		$scope.operationAmount; // 操作的金额
 
-		$scope.amount;//用于更新balance
+		$scope.cardId = 100000; // 随机的卡号
+
+		$scope.amount; //用于更新
+		$scope.balance; // 用于更新balance
+		$scope.income; // 用于更新income
+		$scope.outcome; // 用于更新outcome
 		
-		var tempAccounts=new Array();
-		$scope.newaccount;//用于更新account[]
+		var tempAccounts = new Array(); // 用于更新account[]
+		$scope.newaccount; // 用于更新account[]
 
-		$scope.formData = {};
-		$scope.loading = true;
-		$scope.selected;
-
-		/* 以下是暂时硬编码的数据，可以根据需要修改 */
-		$scope.balance;
-		$scope.income;
-		$scope.outcome;
+		$scope.loading = true; // 控制账户加载显示
+		$scope.isLogin = false; // 控制页面跳转显示
 
 		Customers.get().success(function(data) {
 			console.log("i got the data i requested")
@@ -40,111 +39,94 @@ angular.module('todoController', [])
 			$scope.loading = false;
 		});
 
-		$scope.cardId = 100000; // 随机卡号
-		
-		$scope.isLogin = false;
-
-		// 读取当前客户信息，更新$scope.currCustomer
-		// ......
-		// 参考代码： 	
-		// Accounts.get()
-		// 	.success(function(data) {
-		//		$scope.accounts = data;
-		//		$scope.loading = false;
-		//	});
-
-		// 添加未注册的客户
+		// 客户注册
 		$scope.signUp = function() {
-			// 情况一：不存在该客户则向数据库插入新的Customer元组
-			// ......
 			
-			// 情况二：已存在该客户则alert提醒并清空form
-			// ......
-
-		    // 最简单什么都不考虑的情况：
-		    $scope.balance = 0;
-		    $scope.income = 0;
-		    $scope.outcome = 0;
-			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
-				console.log($scope.customerData.username);
-				console.log($scope.customerData.password);
-
-				var dateTime = new Date();
-				$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
-
-				var msg = JSON.stringify($scope.customerData);
-				console.log(msg);
-
-				Customers.get().success(function(data){
-					console.log("获取到data");
-					for(var usernamex in data){
-						if(data[usernamex]["username"]==$scope.customerData.username){
-							console.log("重复名字");
-							alert("username is already existed");
-							$scope.customerData={};
-						}
-					}
-					if($scope.customerData.username!=null)
-				{
-					console.log("customerData的值不为空");
-					Customers.create($scope.customerData).success(function(data) {
-						var msg = JSON.stringify(data);
-						console.log(msg);
-
-						// $scope.isLogin = true;
-					
-						$scope.currCustomer = $scope.customerData;
-						$scope.customerData = {};
-						$scope.customers = data;
-					});
-				}
-				})
-			}
-		};
-
-		// 检查已存在的客户
-		$scope.signIn = function() {
-			$scope.accounts = {};
-
-			$scope.transactions={};
+			// 重置余额、收入、支出
 			$scope.balance = 0;
 			$scope.income = 0;
 			$scope.outcome = 0;
 
 
+			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
+				console.log('客户昵称：' + $scope.customerData.username);
+				console.log('客户密码：' + $scope.customerData.password);
+
+				// 更新上次注册时间
+				var dateTime = new Date();
+				$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
+
+				console.log('当前customerData对象：');
+				var msg = JSON.stringify($scope.customerData);
+				console.log(msg);
+
+				// 错误处理：重复用户名
+				Customers.get().success(function(data) {
+					console.log("获取到data");
+					for(var usernamex in data){
+						if(data[usernamex]["username"]==$scope.customerData.username){
+							console.log("重复用户名");
+							alert("customer has already existed");
+							$scope.customerData = {};
+						}
+					}
+
+				// 正常流程：创建新客户
+				Customers.create($scope.customerData).success(function(data) {
+						console.log('当前customers对象：');
+						var msg = JSON.stringify(data);
+						console.log(msg);
+
+						console.log("创建新客户");
+					
+						$scope.customers = data;
+						$scope.currCustomer = $scope.customerData;
+						$scope.customerData = {};
+					});
+				})
+			}
+
+		};
+
+		// 客户登录
+		$scope.signIn = function() {
+			
+			// 重置账户、交易记录、余额、收入、支出
+			$scope.accounts = {};
+			$scope.transactions={};
+			$scope.balance = 0;
+			$scope.income = 0;
+			$scope.outcome = 0;
+
+			// 更新上次登录时间
 			var dateTime = new Date();
 			$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
-			// 情况一：不存在该客户则alert提醒并清空form
-			// ......
 
-			// 情况二：输入密码错误则alert提醒并清空form
-			// ......
-
-			// 情况三：客户密码匹配则读取客户关联的账户
-			// 更新前端显示上次登录时间
-			// 更新数据库存储本次登录时间
-			// ......
+			// 错误处理布尔变量
 			var userexist=false;
 			var pwdcorrect=true;
+
 			Customers.get().success(function(data){
 				console.log("获取到data");
 				for(var usernamex in data){
 					if(data[usernamex]["username"]==$scope.customerData.username){
 						console.log("找到名字");
 						userexist=true;
+						// 错误处理：密码不正确
 						if(data[usernamex]["password"]!=$scope.customerData.password){
-							alert("密码错误！");
+							alert("please input correct password!");
 							pwdcorrect=false;
 							$scope.customerData={};
 						}
 					}
 				}
+				// 错误处理：客户不存在
 				if(userexist==false){
 					alert("customer does not exist!");
 					$scope.customerData={};
 				}
 				if(userexist==true&&pwdcorrect==true){
-					$scope.isLogin = true;
+					$scope.isLogin = true; // 页面跳转
 
 					$scope.currCustomer=$scope.customerData;
 					$scope.customerData={};
@@ -159,6 +141,7 @@ angular.module('todoController', [])
 				for(var accountx in data){
 					console.log("data中的数据"+data[accountx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
+					// 筛选存在账户
 					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
 					    $scope.balance = $scope.balance + data[accountx]["balance"];
@@ -170,11 +153,10 @@ angular.module('todoController', [])
 						console.log(msg);
 					}
 				}
-				// $scope.accounts = data;
 				$scope.loading = false;
 			});
 
-			//已有交易显示
+			// 已有交易显示
 			Transactions.get()
 			.success(function(data){
 				console.log("transactions get");
@@ -182,7 +164,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					//筛选交易记录
+					// 筛选交易记录
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
@@ -194,34 +176,21 @@ angular.module('todoController', [])
 				}
 			})
 
-			// 已有交易记录显示
-			// 仿照上面已有账户显示
-			// ......
 		};
 
+		// 客户登出
 		$scope.signOut = function() {
 			$scope.isLogin = false;
 		};
 
-
 		// 取消转账
 		$scope.cancelTransfer = function() {
-			// 清空form
-		    // ......
 		    $scope.transactionData.amount = "";
 		    $scope.transactionData.to = "";
 		};
 		
-		//确认转账
+		// 确认转账
 		$scope.confirmTransfer = function() {
-			// 更新自己的余额和支出
-			// ......
-
-			// 更新对方的余额和收入
-			// ......
-
-			// 更新自己的交易记录
-		    // ......
 
 		    Accounts.get().success(function (data) {
 		        console.log("成功获取信息");
@@ -297,7 +266,6 @@ angular.module('todoController', [])
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {
-			// ......
 			Accounts.get().success(function(data){
 				for(var idx in data){
 					if(data[idx]["_id"]==id){

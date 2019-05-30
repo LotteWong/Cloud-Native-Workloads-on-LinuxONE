@@ -91,7 +91,7 @@ angular.module('todoController', [])
 						var msg = JSON.stringify(data);
 						console.log(msg);
 
-						$scope.isLogin = true;
+						// $scope.isLogin = true;
 					
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
@@ -316,6 +316,7 @@ angular.module('todoController', [])
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();
+			console.log($scope.accountData.customerName);
 			console.log($scope.accountData.accountId);
 
 			//更新Customers的accounts数组

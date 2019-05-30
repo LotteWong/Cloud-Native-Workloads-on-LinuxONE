@@ -460,7 +460,7 @@ angular.module('todoController', [])
 		// 购买理财产品的预计收益
 		// 公式 = 持有月数 / 12 * 年利率
 		$scope.purchaseFinanceProduct = function(month) {
-			$scope.financeData.interest=month/12*$scope.financeData.rate*$scope.financeData.amount;
+			$scope.financeData.interest+=month/12*$scope.financeData.rate*$scope.financeData.amount;
 
 			Accounts.get().success(function(data){
 				console.log("成功获取信息");
@@ -479,6 +479,26 @@ angular.module('todoController', [])
 					}
 				}
 			})
+
+			var dateTime = new Date();
+			$scope.transactionData.account = $scope.currAccount.accountId;
+			$scope.transactionData.operation = 'Invest';
+			$scope.transactionData.from = $scope.currCustomer.username;
+			$scope.transactionData.to = $scope.currCustomer.username;
+			$scope.transactionData.time = dateTime.toLocaleString();
+			$scope.transactionData.amount=$scope.$financeData.amount;
+
+			var msg = JSON.stringify($scope.transactionData);
+			console.log(msg);
+
+			Transactions.create($scope.transactionData).success(function(data) {
+				var msg = JSON.stringify(data);
+				console.log(msg);
+
+				$scope.currTransaction = $scope.transactionData;
+				$scope.transactionData = {};
+				$scope.transactions = data;
+			});
 		};
 
 		/* 以下是原Todo的函数，暂时用不到了 */

@@ -16,8 +16,6 @@
 	<link href="./css/signin.css" rel="stylesheet"><!-- load bootstrap signin page css -->
 	<link href="./css/dashboard.css" rel="stylesheet"><!-- load bootstrap dashboard page css -->
 	<link href="./css/theme.css" rel="stylesheet"><!-- load bootstrap theme page css -->
-	<link href="./css/style.css" rel="stylesheet"><!-- load style css -->
-	<link href="./css/reset.css" rel="stylesheet"><!-- load reset css -->
 	
 	<!-- TODO: todo-list和todo-form需要修改或删除 -->
 	<style>
@@ -41,8 +39,7 @@
 
 <!-- SET THE CONTROLLER -->
 <body ng-controller="mainController">
-
-	<nav class="navbar navbar-inverse navbar-fixed-top" ng-show="!isLogin">
+	<nav class="navbar navbar-inverse navbar-fixed-top">
       <!-- 顶部导航栏 -->
 			<div class="container-fluid">
         <div class="navbar-header">
@@ -65,9 +62,50 @@
       </div>
     </nav>
 
+		<div class="container" ng-show="!isLogin">
+
+      <form class="form-signin">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="customerData.password">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
+      </form>
+
+    </div> <!-- /container -->
+
+			<div id="todo-form" class="row", ng-show="!isLogin">
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<form>
+						<div class="form-group">
+
+							<!-- 输入昵称 -->
+							<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
+
+							<!-- 输入密码 -->
+							<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
+
+						</div>
+					</form>
+
+					<!-- 注册 -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
+
+					<!-- 登录 -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
+
+				</div>
+			</div>
+
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->
-    <div class="container-fluid">
+    <div class="container-fluid" ng-show="isLogin">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 					<!-- 导航项 -->
@@ -150,34 +188,34 @@
 
 				<div class="row">
 					<div class="col-sm-8">
-							<!-- 支付&转账面板 -->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-										<h3 class="panel-title">Payment & Transfer</h3>
-								</div>
-								<div class="panel-body" style="height: 250px; overflow:auto">
-									<div id="todo-form" class="row">
-										<div class="col-sm-8 col-sm-offset-2 text-center">
-											<form>
-												<div class="form-group">
-													<!-- 输入转账账户 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-													<!-- 输入转账金额 -->
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+						<!-- 支付&转账面板 -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<h3 class="panel-title">Payment & Transfer</h3>
+							</div>
+							<div class="panel-body" style="height: 250px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
 
-												</div>
-											</form>
+											</div>
+										</form>
 
-											<!-- 取消转账 -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
 
-											<!-- 确认转账 -->
-											<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-										</div>
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
 									</div>
 								</div>
 							</div>
-						</div><!-- /.col-sm-4 -->
+						</div>
+					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
 						<div class="panel panel-primary">
@@ -320,7 +358,7 @@
 						<a href="https://github.com/chen201730681280">Chen Yongxin</a>, 
 						<a href="https://github.com/LotteWong">Huang Xiuping</a>, 
 						<a href="https://github.com/KONG98">Kong Yihan</a>, 
-						<a href="https://github.com/prprprprbiu">Xian Wenting</a>，
+						<a href="https://github.com/prprprprbiu">Xian Wenting</a> ，
 						<a href="https://github.com/sherele">Xie Yingyuan</a>, 
 						<a href="https://github.com/zhao201730685110">Zhao Zhuoran</a> 
 					</p>

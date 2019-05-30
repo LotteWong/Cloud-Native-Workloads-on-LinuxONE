@@ -385,7 +385,7 @@ angular.module('todoController', [])
 			$scope.transactionData.from = $scope.currCustomer.username;
 			$scope.transactionData.to = $scope.currCustomer.username;
 			$scope.transactionData.time = dateTime.toLocaleString();
-			$scope.transactionData.amount=$scope.operationAcount;
+			$scope.transactionData.amount=$scope.operationAmount;
 			$scope.operationAmount="";
 
 			var msg = JSON.stringify($scope.transactionData);

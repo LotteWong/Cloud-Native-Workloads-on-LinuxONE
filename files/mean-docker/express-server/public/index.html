@@ -67,7 +67,7 @@
       <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputUsername" class="sr-only">Username</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
+        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="customerData.password">
         <div class="checkbox">
@@ -80,28 +80,40 @@
 
     </div> <!-- /container -->
 
-			<div id="todo-form" class="row", ng-show="!isLogin">
-				<div class="col-sm-8 col-sm-offset-2 text-center">
-					<form>
-						<div class="form-group">
-
-							<!-- 输入昵称 -->
-							<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
-
-							<!-- 输入密码 -->
-							<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
-
-						</div>
-					</form>
-
-					<!-- 注册 -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
-
-					<!-- 登录 -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
-
+		<div class="login">
+			<div class="login-top">
+				Please sign up
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/name.png"/></div>
+				<div class="login-center-input">
+					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'"/>
+					<div class="login-center-input-text">Username</div>
 				</div>
 			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/password.png"/></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'"/>
+					<div class="login-center-input-text">Input Password</div>
+        </div>
+      </div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/password.png"/></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" placeholder="Please confirm your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please confirm your password.'"/>
+					<div class="login-center-input-text">Confirm password</div>
+        </div>
+			</div>
+      <div class="checkbox">
+				<label>
+					<input type="checkbox" value="remember-me"> Remember me
+				</label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+			<!--<a class="btn btn-sm btn-white btn-block" style="text-align: right;" ng-show=""><h6>已经注册？前往登录</h6></a>-->
+		</div>
+		<div class="sk-rotating-plane"></div>
 
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->
@@ -188,35 +200,6 @@
 
 				<div class="row">
 					<div class="col-sm-8">
-						<!-- 支付&转账面板 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-									<h3 class="panel-title">Payment & Transfer</h3>
-							</div>
-							<div class="panel-body" style="height: 250px; overflow:auto">
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
-
-											</div>
-										</form>
-
-										<!-- 取消转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
-
-										<!-- 确认转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -246,6 +229,35 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<!-- 支付&转账面板 -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<h3 class="panel-title">Payment & Transfer</h3>
+							</div>
+							<div class="panel-body" style="height: 250px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+
+											</div>
+										</form>
+
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -358,7 +370,7 @@
 						<a href="https://github.com/chen201730681280">Chen Yongxin</a>, 
 						<a href="https://github.com/LotteWong">Huang Xiuping</a>, 
 						<a href="https://github.com/KONG98">Kong Yihan</a>, 
-						<a href="https://github.com/prprprprbiu">Xian Wenting</a> ，
+						<a href="https://github.com/prprprprbiu">Xian Wenting</a>，
 						<a href="https://github.com/sherele">Xie Yingyuan</a>, 
 						<a href="https://github.com/zhao201730685110">Zhao Zhuoran</a> 
 					</p>

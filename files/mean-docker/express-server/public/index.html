@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="meanTodo">
@@ -16,6 +16,7 @@
 	<link href="./css/signin.css" rel="stylesheet"><!-- load bootstrap signin page css -->
 	<link href="./css/dashboard.css" rel="stylesheet"><!-- load bootstrap dashboard page css -->
 	<link href="./css/theme.css" rel="stylesheet"><!-- load bootstrap theme page css -->
+	<link href="./css/style.css" rel="stylesheet"><!-- load style css -->
 	
 	<!-- TODO: todo-list和todo-form需要修改或删除 -->
 	<style>
@@ -62,9 +63,35 @@
       </div>
     </nav>
 
+		<div class="login" ng-show="!isLogin">
+			<div class="login-top">
+				Welcome to SCUT Bank!
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/name.png"/></div>
+				<div class="login-center-input">
+					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
+					<div class="login-center-input-text">Username</div>
+				</div>
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/password.png"/></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
+					<div class="login-center-input-text">Password</div>
+				</div>
+			</div>
+			<div class="col-sm-4 col-sm-offset-1 text-center">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+			</div>
+			<div class="col-sm-4 col-sm-offset-2 text-center">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
+			</div>
+		</div>
+
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->
-    <div class="container-fluid">
+    <div class="container-fluid" ng-show="isLogin">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 					<!-- 导航项 -->
@@ -87,11 +114,15 @@
           <ul class="nav nav-sidebar">
             <li><a href="">Financal Products</a></li>
           </ul>
+
+					<!-- 导航项 -->
+          <ul class="nav nav-sidebar">
+            <li><a href="" ng-click="signOut()">Sign out</a></li>
+          </ul>
         </div>
       </div>
-
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-
+			
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ng-show="isLogin">
 				<!-- 欢迎语 -->
 				<div class="jumbotron text-center">
 					<!-- 显示客户昵称 -->
@@ -103,38 +134,38 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<!-- 余额面板 -->
-						<div class="panel panel-info">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Balance</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								{{ getBalance() }}
+								{{ balance }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 收入面板 -->
-						<div class="panel panel-success">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Income</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								{{ getIncome() }}
+								{{ income }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-danger">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Outcome</h3>
 								<!-- TODO: 有时间考虑提供隐藏余额图标+功能 -->
 							</div>
 							<div class="panel-body">
-								{{ getOutcome() }}
+								{{ outcome }}
 								<!-- TODO: 修改TextStyle+Icon -->
 							</div>
 						</div>
@@ -143,35 +174,6 @@
 
 				<div class="row">
 					<div class="col-sm-8">
-						<!-- 支付&转账面板 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-									<h3 class="panel-title">Payment & Transfer</h3>
-							</div>
-							<div class="panel-body" style="height: 250px; overflow:auto">
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
-
-											</div>
-										</form>
-
-										<!-- 取消转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
-
-										<!-- 确认转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
 						<!-- 交易记录面板 -->
 						<div class="panel panel-primary">
 							<div class="panel-heading">
@@ -205,10 +207,8 @@
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
-     	  </div>
-
-				<div class="row">
 					<div class="col-sm-4">
+<<<<<<< HEAD
 						<div class="panel panel-default">
 							<!-- 卡片账户面板 -->
 							<div class="panel-heading">
@@ -242,19 +242,42 @@
 												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
 											</label>
 										</div> -->
+=======
+							<div class="panel panel-default">
+								<!-- 卡片账户面板 -->
+								<div class="panel-heading">
+									<h3 class="panel-title">
+										Cards
+										<button type="button" class="btn btn-xs btn-primary" ng-click="createRandomAccount()">New Card</button>
+									</h3>
+								</div>
+								<div class="panel-body" style="height: 250px; overflow:auto">
+									<!-- 已有账户列表 -->
+									<div id="todo-list" class="row">
+										<div class="col-sm-4 col-sm-offset-4">
 
-										<p class="text-center" ng-show="loading">
-											<span class="fa fa-spinner fa-spin fa-3x"></span>
-										</p>
+											<div class="checkbox" ng-repeat="account in accounts">
+												<label>
+													<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
+												</label>
+											</div>
+>>>>>>> ef3a0569e5caebcc47027492714ff9d7a9b125cd
 
+											<p class="text-center" ng-show="loading">
+												<span class="fa fa-spinner fa-spin fa-3x"></span>
+											</p>
+
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
+						</div><!-- /.col-sm-4 -->
+     	  </div>
+
+				<div class="row">
 					<div class="col-sm-4">
 						<!-- 存钱&取钱面板 -->
-						<div class="panel panel-info">
+						<div class="panel panel-default">
 							<div class="panel-heading">
 								<h3 class="panel-title">Deposit & Withdraw</h3>
 							</div>
@@ -272,17 +295,46 @@
 										</form>
 
 										<!-- 存款 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="deposit()">Deposit</button>
+										<button type="submit" class="btn btn-primary btn-md" ng-click="deposit()">Deposit</button>
 										
 										<!-- 取款 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="withdraw()">Withdraw</button>
+										<button type="submit" class="btn btn-primary btn-md" ng-click="withdraw()">Withdraw</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
-						<div class="panel panel-warning">
+						<!-- 支付&转账面板 -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+									<h3 class="panel-title">Payment & Transfer</h3>
+							</div>
+							<div class="panel-body" style="height: 200px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-12 text-center">
+										<form>
+											<div class="form-group">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+
+											</div>
+										</form>
+
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-md" ng-click="cancelTransfer()">Cancel</button>
+
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-md" ng-click="confirmTransfer()">Confirm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="panel panel-default">
 							<!-- 理财产品面板 -->
 							<div class="panel-heading">
 								<h3 class="panel-title">Finance</h3>
@@ -324,32 +376,18 @@
 					</div><!-- /.col-sm-4 -->
      	  </div>
 
-				<div id="todo-form" class="row">
-					<div class="col-sm-8 col-sm-offset-2 text-center">
-						<form>
-							<div class="form-group">
-
-								<!-- 输入昵称 -->
-								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
-
-								<!-- 输入密码 -->
-								<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
-
-							</div>
-						</form>
-
-						<!-- 注册 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
-
-						<!-- 登录 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
-					</div>
-				</div>
-
 				<!-- 结束语 -->
 				<div class="text-center text-muted">
 					<!-- 显示技术支持 -->
-					<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
+					<p>Contributed ❤ from 
+						<a href="https://github.com/chen201730681280">Chen Yongxin</a>, 
+						<a href="https://github.com/LotteWong">Huang Xiuping</a>, 
+						<a href="https://github.com/KONG98">Kong Yihan</a>, 
+						<a href="https://github.com/prprprprbiu">Xian Wenting</a> ，
+						<a href="https://github.com/sherele">Xie Yingyuan</a>, 
+						<a href="https://github.com/zhao201730685110">Zhao Zhuoran</a> 
+					</p>
+					<p>Supported ❤ by <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 				</div>
 			</div>
     </div>

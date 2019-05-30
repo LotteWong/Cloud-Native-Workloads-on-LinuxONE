@@ -63,31 +63,33 @@
       </div>
     </nav>
 
-		<div class="login" ng-show="!isLogin">
-			<div class="login-top">
-				Welcome to SCUT Bank!
-			</div>
-			<div class="login-center clearfix">
-				<div class="login-center-img"><img src="img/name.png"/></div>
-				<div class="login-center-input">
-					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
-					<div class="login-center-input-text">Username</div>
+		<div id="particles-js" ng-show="!isLogin">
+			<div class="login">
+				<div class="login-top">
+					Welcome to SCUT Bank!
+				</div>
+				<div class="login-center clearfix">
+					<div class="login-center-img"><img src="img/name.png"/></div>
+					<div class="login-center-input">
+						<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
+						<div class="login-center-input-text">Username</div>
+					</div>
+				</div>
+				<div class="login-center clearfix">
+					<div class="login-center-img"><img src="img/password.png"/></div>
+					<div class="login-center-input">
+						<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
+						<div class="login-center-input-text">Password</div>
+					</div>
+				</div>
+				<div class="col-sm-4 col-sm-offset-1 text-center">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+				</div>
+				<div class="col-sm-4 col-sm-offset-2 text-center">
+					<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
 				</div>
 			</div>
-			<div class="login-center clearfix">
-				<div class="login-center-img"><img src="img/password.png"/></div>
-				<div class="login-center-input">
-					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
-					<div class="login-center-input-text">Password</div>
-				</div>
-			</div>
-			<div class="col-sm-4 col-sm-offset-1 text-center">
-				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
-			</div>
-			<div class="col-sm-4 col-sm-offset-2 text-center">
-				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
-			</div>
-		</div>
+		<div>
 
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->

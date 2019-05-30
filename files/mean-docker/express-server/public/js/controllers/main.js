@@ -460,7 +460,7 @@ angular.module('todoController', [])
 		// 购买理财产品的预计收益
 		// 公式 = 持有月数 / 12 * 年利率
 		$scope.purchaseFinanceProduct = function(month) {
-			$scope.financeData.amount=month/12*$scope.financeData.rate;
+			$scope.financeData.interest=month/12*$scope.financeData.rate*$scope.financeData.amount;
 		};
 
 		/* 以下是原Todo的函数，暂时用不到了 */

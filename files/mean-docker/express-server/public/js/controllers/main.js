@@ -13,7 +13,10 @@ angular.module('todoController', [])
 
 		$scope.operationAmount; // 操作的金额
 
-		$scope.amount;
+		$scope.amount;//用于更新balance
+		
+		var tempAccounts=new Array();
+		$scope.newaccount;//用于更新account[]
 
 		$scope.formData = {};
 		$scope.loading = true;
@@ -299,6 +302,23 @@ angular.module('todoController', [])
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();
 			console.log($scope.accountData.accountId);
+
+			Customers.get().success(function(data){
+				for(var customerx in data){
+					if(data[customerx]["username"]==$scope.currCustomer.username){
+						var length=data[customerx][accounts].length;
+						console.log("customer的账户有："+length+"个");
+						for(var i=0; i<length; ++i){
+							tempAccounts[i]=data[customerx][accounts[i]];
+						}
+						tempAccounts[length]=$scope.accountData.accountId;
+						Customers.put(data[customerx]["_id"],{newaccount:tempAccounts}).success(function(data){
+							var msg=JSON.stringify(data);
+							console.log(msg);
+						})
+					}
+				}
+			});
 
 			Accounts.create($scope.accountData).success(function(data) {				
 				var msg = JSON.stringify(data);

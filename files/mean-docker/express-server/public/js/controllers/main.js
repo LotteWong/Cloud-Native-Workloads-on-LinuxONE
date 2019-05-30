@@ -425,13 +425,33 @@ angular.module('todoController', [])
 							Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.operationAmount)}).success(function(data){
 								var msg=JSON.stringify(data);
 								console.log(msg);
-								$scope.operationAmount="";
 								$scope.accounts=data;
 							})
 						}
 					}
 				}
 			})
+
+			var dateTime = new Date();
+			$scope.transactionData.account = $scope.currAccount.accountId;
+			$scope.transactionData.operation = 'Withdraw';
+			$scope.transactionData.from = $scope.currCustomer.username;
+			$scope.transactionData.to = $scope.currCustomer.username;
+			$scope.transactionData.time = dateTime.toLocaleString();
+			$scope.transactionData.amount=$scope.operationAmount;
+			$scope.operationAmount="";
+
+			var msg = JSON.stringify($scope.transactionData);
+			console.log(msg);
+
+			Transactions.create($scope.transactionData).success(function(data) {
+				var msg = JSON.stringify(data);
+				console.log(msg);
+
+				$scope.currTransaction = $scope.transactionData;
+				$scope.transactionData = {};
+				$scope.transactions = data;
+			});
 
 			// 更新当前交易记录的数据库数据
 			// ......

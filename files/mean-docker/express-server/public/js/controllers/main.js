@@ -387,7 +387,20 @@ angular.module('todoController', [])
 
 				$scope.currTransaction = $scope.transactionData;
 				$scope.transactionData = {};
-				$scope.transactions = data;
+				var i=0;
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[transactionx]["customerName"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
+				}
+				// $scope.transactions = data;
 			});
 
 			// 更新当前客户的数据库账户数据

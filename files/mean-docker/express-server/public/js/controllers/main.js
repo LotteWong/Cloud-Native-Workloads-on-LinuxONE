@@ -214,7 +214,24 @@ angular.module('todoController', [])
                                 $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
 
                                 $scope.operationAmount = "";
-                                $scope.accounts = data;
+                                console.log("accounts get");
+																var i=0;
+																for(var accountx in data){
+																	console.log("data中的数据"+data[accountx]["customerName"]);
+																	console.log("currCustomer:"+$scope.currCustomer.username);
+																	// 筛选存在账户
+																	if(data[accountx]["customerName"]==$scope.currCustomer.username)
+																	{
+																		$scope.balance = $scope.balance + data[accountx]["balance"];
+																		$scope.income = $scope.income + data[accountx]["income"];
+																		$scope.outcome = $scope.outcome + data[accountx]["outcome"];
+																		console.log("找到账户");
+																		$scope.accounts[i++]=data[accountx];
+																		console.log("账户信息");
+																		var msg = JSON.stringify($scope.accounts);
+																		console.log(msg);
+																	}
+																}
                             })
 		                }
 		                break;
@@ -228,7 +245,9 @@ angular.module('todoController', [])
 		                //console.log($scope.transactionData.to);
 		                console.log("true" + data[accountx]["accountId"]);
 		                var msg = JSON.stringify(data);
-		                console.log(msg);
+										console.log(msg);
+										console.log("!!!!!!!" + data[accountx]["accountId"]);
+										console.log("!!!!!!!" + $scope.transactionData.to);
 		                if (data[accountx]["accountId"] == $scope.transactionData.to) {
 		                    console.log("找到对方的账户");
 		                    flag = 2;
@@ -275,7 +294,7 @@ angular.module('todoController', [])
 		                $scope.currTransaction = $scope.transactionData;
 		                $scope.transactionData = {};
 		                $scope.transactions = data;
-		                var i = 0;
+		                /*var i = 0;
 		                for (var transactionx in data) {
 		                    console.log("data中的数据" + data[transactionx]["customerName"]);
 		                    console.log("currCustomer:" + $scope.currCustomer.username);
@@ -287,7 +306,7 @@ angular.module('todoController', [])
 		                        var msg = JSON.stringify($scope.transactions);
 		                        console.log(msg);
 		                    }
-		                }
+		                }*/
 		            })
 
 		        }

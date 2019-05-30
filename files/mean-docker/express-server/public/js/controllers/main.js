@@ -175,7 +175,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					if(data[transactionx]["customerName"]==$scope.currCustomer.username)
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
 						console.log("找到账户");
@@ -391,7 +391,7 @@ angular.module('todoController', [])
 				for(var transactionx in data){
 					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					if(data[transactionx]["customerName"]==$scope.currCustomer.username)
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
 						console.log("找到账户");
@@ -445,7 +445,19 @@ angular.module('todoController', [])
 
 				$scope.currTransaction = $scope.transactionData;
 				$scope.transactionData = {};
-				$scope.transactions = data;
+				var i=0;
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
+				}
 			});
 
 			// 更新当前交易记录的数据库数据
@@ -498,7 +510,19 @@ angular.module('todoController', [])
 
 				$scope.currTransaction = $scope.transactionData;
 				$scope.transactionData = {};
-				$scope.transactions = data;
+				var i=0;
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
+				}
 			});
 
 			// 更新当前交易记录的数据库数据
@@ -547,7 +571,19 @@ angular.module('todoController', [])
 
 				$scope.currTransaction = $scope.transactionData;
 				$scope.transactionData = {};
-				$scope.transactions = data;
+				var i=0;
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
+					console.log("currCustomer:"+$scope.currCustomer.username);
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
+					{
+
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
+				}
 			});
 		};
 

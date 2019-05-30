@@ -159,21 +159,24 @@ angular.module('todoController', [])
 			// 已有交易显示
 			Transactions.get()
 			.success(function(data){
-				console.log("transactions get");
+				console.log("accounts get");
 				var i=0;
-				for(var transactionx in data){
-					console.log("data中的数据"+data[transactionx]["customerName"]);
+				for(var accountx in data){
+					console.log("data中的数据"+data[accountx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					// 筛选交易记录
-					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
+					// 筛选存在账户
+					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
-
+					    $scope.balance = $scope.balance + data[accountx]["balance"];
+					    $scope.income = $scope.income + data[accountx]["income"];
+					    $scope.outcome = $scope.outcome + data[accountx]["outcome"];
 						console.log("找到账户");
-						$scope.transactions[i++]=data[transactionx];
-						var msg = JSON.stringify($scope.transactions);
+						$scope.accounts[i++]=data[accountx];
+						var msg = JSON.stringify($scope.accounts);
 						console.log(msg);
 					}
 				}
+				$scope.loading = false;
 			})
 
 		};
@@ -181,6 +184,9 @@ angular.module('todoController', [])
 		// 客户登出
 		$scope.signOut = function() {
 			$scope.isLogin = false;
+			$scope.customerData = {};
+			$scope.accountData = {};
+			$scope.transactionData = {};
 		};
 
 		// 取消转账
@@ -546,6 +552,9 @@ angular.module('todoController', [])
 							var msg=JSON.stringify(data);
 							console.log(msg);
 
+							$scope.balance = $scope.balance - parseFloat($scope.financeData.amount);
+              $scope.outcome = $scope.outcome + parseFloat($scope.financeData.amount);
+
 							var i=0;
 								for(var accountx in data){
 									console.log("data中的数据"+data[accountx]["customerName"]);
@@ -593,6 +602,7 @@ angular.module('todoController', [])
 					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
 					{
 
+						
 						console.log("找到账户");
 						$scope.transactions[i++]=data[transactionx];
 						var msg = JSON.stringify($scope.transactions);

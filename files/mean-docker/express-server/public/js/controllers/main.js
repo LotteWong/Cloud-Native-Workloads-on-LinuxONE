@@ -546,7 +546,7 @@ angular.module('todoController', [])
 					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
 						console.log("找到对应的账户");
 						console.log($scope.currAccount.accountId);
-						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.financeData.amount)}).success(function(data){
+						Accounts.put(data[accountx]["_id"],{balance:data[accountx]["balance"]-parseFloat($scope.financeData.amount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);
 							$scope.financeData.amount="";

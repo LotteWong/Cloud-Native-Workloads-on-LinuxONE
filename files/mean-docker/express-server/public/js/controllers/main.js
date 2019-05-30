@@ -8,7 +8,7 @@ angular.module('todoController', [])
 			type: "Yu'E Bao",
 			rate: 0.233,
 			interest: 0,
-			amount:null
+			amount:""
 		}; // 绑定前端的理财产品数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
@@ -461,7 +461,6 @@ angular.module('todoController', [])
 		// 公式 = 持有月数 / 12 * 年利率
 		$scope.purchaseFinanceProduct = function(month) {
 			$scope.financeData.interest=month/12*$scope.financeData.rate*$scope.financeData.amount;
-			$scope.financeData.amount="";
 
 			Accounts.get().success(function(data){
 				console.log("成功获取信息");

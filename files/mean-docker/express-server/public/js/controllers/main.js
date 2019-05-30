@@ -425,6 +425,7 @@ angular.module('todoController', [])
 							Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.operationAmount)}).success(function(data){
 								var msg=JSON.stringify(data);
 								console.log(msg);
+								$scope.operationAmount="";
 								$scope.accounts=data;
 							})
 						}
@@ -439,7 +440,6 @@ angular.module('todoController', [])
 			$scope.transactionData.to = $scope.currCustomer.username;
 			$scope.transactionData.time = dateTime.toLocaleString();
 			$scope.transactionData.amount=$scope.operationAmount;
-			$scope.operationAmount="";
 
 			var msg = JSON.stringify($scope.transactionData);
 			console.log(msg);

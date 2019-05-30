@@ -461,6 +461,25 @@ angular.module('todoController', [])
 		// 公式 = 持有月数 / 12 * 年利率
 		$scope.purchaseFinanceProduct = function(month) {
 			$scope.financeData.interest=month/12*$scope.financeData.rate*$scope.financeData.amount;
+			$scope.financeData.amount="";
+
+			Accounts.get().success(function(data){
+				console.log("成功获取信息");
+				var msg=JSON.stringify(data);
+				console.log(msg);
+				for(var accountx in data){
+					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
+						console.log("找到对应的账户");
+						console.log($scope.currAccount.accountId);
+						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.financeData.amount)}).success(function(data){
+							var msg=JSON.stringify(data);
+							console.log(msg);
+							$scope.financeData.amount="";
+							$scope.accounts=data;
+						})
+					}
+				}
+			})
 		};
 
 		/* 以下是原Todo的函数，暂时用不到了 */

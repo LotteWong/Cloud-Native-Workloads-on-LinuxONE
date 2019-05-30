@@ -248,22 +248,23 @@ angular.module('todoController', [])
 										console.log(msg);
 										console.log("!!!!!!!" + data[accountx]["accountId"]);
 										console.log("!!!!!!!" + $scope.transactionData.to);
-		                if (data[accountx]["accountId"] == $scope.transactionData.to) {
-		                    console.log("找到对方的账户");
-		                    flag = 2;
-		                    //console.log($scope.currAccount.accountId);
-		                    Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] + parseFloat($scope.transactionData.amount), income: data[accountx]["income"] + parseFloat($scope.transactionData.amount), outcome: data[accountx]["outcome"] })
-		                    .success(function (data) {
-		                        var msg = JSON.stringify(data);
-		                        console.log(msg);
-		                    })
-		                    break;
+		                if (data[accountx]["accountId"] != $scope.transactionData.to) {
+											continue;
 		                }
 		                else {
-		                    console.log("找不到对方的账户");
+											console.log("找到对方的账户");
+											flag = 2;
+											//console.log($scope.currAccount.accountId);
+											Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] + parseFloat($scope.transactionData.amount), income: data[accountx]["income"] + parseFloat($scope.transactionData.amount), outcome: data[accountx]["outcome"] })
+											.success(function (data) {
+													var msg = JSON.stringify(data);
+													console.log(msg);
+											})
+											break;
+										}
+										console.log("找不到对方的账户");
 
-		                    alert("没有该账户！");
-		                }
+		                alert("没有该账户！");
 		            }
 		        }
                 //更新表单

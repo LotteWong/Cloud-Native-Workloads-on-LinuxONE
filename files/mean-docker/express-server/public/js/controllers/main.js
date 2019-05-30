@@ -36,7 +36,7 @@ angular.module('todoController', [])
 
 		Customers.get().success(function(data) {
 			console.log("i got the data i requested")
-			$scope.todos = data;
+			$scope.customers = data;
 			$scope.loading = false;
 		});
 

@@ -62,9 +62,32 @@
       </div>
     </nav>
 
+			<div id="todo-form" class="row", ng-show="!isLogin">
+				<div class="col-sm-8 col-sm-offset-2 text-center">
+					<form>
+						<div class="form-group">
+
+							<!-- 输入昵称 -->
+							<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
+
+							<!-- 输入密码 -->
+							<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
+
+						</div>
+					</form>
+
+					<!-- 注册 -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
+
+					<!-- 登录 -->
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
+
+				</div>
+			</div>
+
 		<!-- 侧边导航栏 -->
 		<!-- TODO: 有时间考虑在text前加icon -->
-    <div class="container-fluid">
+    <div class="container-fluid", ng-show="isLogin">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
 					<!-- 导航项 -->
@@ -89,31 +112,6 @@
           </ul>
         </div>
       </div>
-
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", ng-show="!isLogin">
-				<div id="todo-form" class="row">
-					<div class="col-sm-8 col-sm-offset-2 text-center">
-						<form>
-							<div class="form-group">
-
-								<!-- 输入昵称 -->
-								<input type="text" class="form-control input-lg text-center" placeholder="Please input your username." ng-model="customerData.username">
-
-								<!-- 输入密码 -->
-								<input type="password" class="form-control input-lg text-center" placeholder="Please input your password." ng-model="customerData.password">
-
-							</div>
-						</form>
-
-						<!-- 注册 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signUp()">Sign Up</button>
-
-						<!-- 登录 -->
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="signIn()">Sign In</button>
-
-					</div>
-				</div>
-			</div>
 			
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main", ng-show="isLogin">
 				<!-- 欢迎语 -->

@@ -30,9 +30,9 @@ angular.module('todoController', [])
 		$scope.selected;
 
 		/* 以下是暂时硬编码的数据，可以根据需要修改 */
-		$scope.balance = 1024;
-		$scope.income = 233;
-		$scope.outcome = 666;
+		$scope.balance;
+		$scope.income;
+		$scope.outcome;
 
 		Customers.get().success(function(data) {
 			console.log("i got the data i requested")
@@ -102,6 +102,9 @@ angular.module('todoController', [])
 		// 检查已存在的客户
 		$scope.signIn = function() {
 			$scope.accounts = {};
+			$scope.balance = 0;
+			$scope.income = 0;
+			$scope.outcome = 0;
 
 			var dateTime = new Date();
 			$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
@@ -152,7 +155,9 @@ angular.module('todoController', [])
 					console.log("currCustomer:"+$scope.currCustomer.username);
 					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
-
+					    $scope.balance = $scope.balance + data[accountx]["balance"];
+					    $scope.income = $scope.income + data[accountx]["income"];
+					    $scope.outcome = $scope.outcome + data[accountx]["outcome"];
 						console.log("找到账户");
 						$scope.accounts[++i]=data[accountx];
 						var msg = JSON.stringify($scope.accounts);
@@ -172,25 +177,13 @@ angular.module('todoController', [])
 			$scope.isLogin = false;
 		};
 
-		// 计算该个客户所有账户的余额
-		$scope.getBalance = function() {
-			// ......
-		}
-
-		// 计算该个客户所有账户的收入
-		$scope.getIncome = function() {
-			// ......
-		}
-
-		// 计算该个客户所有账户的支出
-		$scope.getOutcome = function() {
-			// ......
-		}
 
 		// 取消转账
 		$scope.cancelTransfer = function() {
 			// 清空form
-			// ......
+		    // ......
+		    $scope.transactionData.amount = "";
+		    $scope.transactionData.to = "";
 		}
 		
 		//确认转账
@@ -202,7 +195,78 @@ angular.module('todoController', [])
 			// ......
 
 			// 更新自己的交易记录
-			// ......
+		    // ......
+
+		    Accounts.get().success(function (data) {
+		        console.log("成功获取信息");
+		        var msg = JSON.stringify(data);
+		        console.log(msg);
+		        var flag = 1;
+
+		        // 更新自己的余额和支出
+		        // ......
+
+		        for (var accountx in data) {
+		            if (data[accountx]["accountId"] == $scope.currAccount.accountId) {
+		                console.log("找到对应的账户");
+		                console.log($scope.currAccount.accountId);
+		                if (data[accountx]["balance"] < parseFloat($scope.transactionData.amount)) {
+		                    alert("账户余额不足");
+		                    flag = 0;
+		                    $scope.transactionData.amount = "";
+		                }
+		                else {
+		                    Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] - parseFloat($scope.transactionData.amount), income: data[accountx]["income"], outcome: data[accountx]["outcome"] + parseFloat($scope.transactionData.amount) })
+                          .success(function (data) {
+                              var msg = JSON.stringify(data);
+                              console.log(msg);
+                              $scope.balance = $scope.balance - parseFloat($scope.transactionData.amount);
+                              $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
+
+                              $scope.operationAmount = "";
+                              $scope.accounts = data;
+                          })
+		                }
+		            }
+		        }
+		        // 更新对方的余额和收入
+		        // ......
+		        if (flag == 1) {
+		            for (var accountx in data) {
+		                if (data[accountx]["accountId"] == $scope.transactionData.to) {
+		                    console.log("找到对方的账户");
+		                    //console.log($scope.currAccount.accountId);
+		                    Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] + parseFloat($scope.transactionData.amount), income: data[accountx]["income"] + parseFloat($scope.transactionData.amount), outcome: data[accountx]["outcome"] })
+		                    success(function (data) {
+		                        var msg = JSON.stringify(data);
+		                        console.log(msg);
+		                    })
+		                }
+		                else {
+		                    console.log("找不到对方的账户");
+		                    alert("没有该账户！");
+		                }
+		            }
+		            var dateTime = new Date();
+		            $scope.transactionData.account = $scope.currAccount.accountId;
+		            $scope.transactionData.operation = 'Transfer';
+		            $scope.transactionData.from = $scope.currAccount.accountId;
+		            $scope.transactionData.time = dateTime.toLocaleString();
+		            // var msg = JSON.stringify($scope.transactionData);
+		            //console.log(msg);
+
+		            Transactions.create($scope.transactionData).success(function (data) {
+		                //  var msg = JSON.stringify(data);
+		                // console.log(msg);
+
+		                $scope.currTransaction = $scope.transactionData;
+		                $scope.transactionData = {};
+		                $scope.transactions = data;
+		            });
+		        }
+
+		    })
+
 		}
 
 		// 读取当前账户信息，更新$scope.currAccount
@@ -292,12 +356,16 @@ angular.module('todoController', [])
 					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
 						console.log("找到对应的账户");
 						console.log($scope.currAccount.accountId);
-						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]+parseFloat($scope.operationAmount)}).success(function(data){
-							var msg=JSON.stringify(data);
-							console.log(msg);
-							$scope.operationAmount="";
-							$scope.accounts=data;
-						})
+						Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] + parseFloat($scope.operationAmount), income: data[accountx]["income"] + parseFloat($scope.operationAmount), outcome: data[accountx]["outcome"] })
+                           .success(function (data) {
+                               var msg = JSON.stringify(data);
+                               console.log(msg);
+                               $scope.balance = $scope.balance + parseFloat($scope.operationAmount);
+                               $scope.income = $scope.income + parseFloat($scope.operationAmount);
+
+                               $scope.operationAmount = "";
+                               $scope.accounts = data;
+                           })
 					}
 				}
 			})
@@ -324,12 +392,14 @@ angular.module('todoController', [])
 							$scope.operationAmount="";
 						}
 						else{
-							Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.operationAmount)}).success(function(data){
-								var msg=JSON.stringify(data);
-								console.log(msg);
-								$scope.operationAmount="";
-								$scope.accounts=data;
-							})
+						    Accounts.put(data[accountx]["_id"], { balance: data[accountx]["balance"] - parseFloat($scope.operationAmount), income: data[accountx]["income"], outcome: data[accountx]["outcome"] + parseFloat($scope.operationAmount) }).success(function (data) {
+						        var msg = JSON.stringify(data);
+						        console.log(msg);
+						        $scope.balance = $scope.balance - parseFloat($scope.operationAmount);
+						        $scope.outcome = $scope.outcome + parseFloat($scope.operationAmount);
+						        $scope.operationAmount = "";
+						        $scope.accounts = data;
+						    })
 						}
 					}
 				}

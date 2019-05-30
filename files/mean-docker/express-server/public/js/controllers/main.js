@@ -49,7 +49,7 @@ angular.module('todoController', [])
 			$scope.loading = false;
 		});
 
-		$scope.cardId = 1; // 随机卡号
+		$scope.cardId = 100000; // 随机卡号
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......

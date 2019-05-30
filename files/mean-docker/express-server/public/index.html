@@ -232,8 +232,7 @@
 													<tbody ng-repeat="account in accounts">
 														<tr>
 															<!--<td>{{ transaction.account }}</td>-->
-															<td><input type="checkbox" ng-click="selectAccount(account._id)">{{account.accountId }}</td>
-															<td>{{ account.balance}}</td>
+															<td><input type="checkbox" ng-click="selectAccount(account._id)">{{account.accountId }}  : {{ account.balance }}</td>
 														</tr>
 													</tbody>
 												</table>

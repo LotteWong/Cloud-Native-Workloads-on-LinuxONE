@@ -206,7 +206,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
 							<div class="panel panel-default">
 								<!-- 卡片账户面板 -->
 								<div class="panel-heading">
@@ -235,49 +236,9 @@
 								</div>
 							</div>
 						</div><!-- /.col-sm-4 -->
-					</div><!-- /.col-sm-4 -->
-					
      	  </div>
 
 				<div class="row">
-					<div class="col-sm-4">
-						<div class="panel panel-default">
-							<!-- 理财产品面板 -->
-							<div class="panel-heading">
-								<h3 class="panel-title">Finance</h3>
-							</div>
-							<div class="panel-body" style="height: 200px; overflow:auto">
-								<div class="row">
-									<div class="col-sm-12">
-										<!-- 产品信息 -->
-										<h4>
-											<span class="label label-default">Product Name: {{ financeData.type }}</span>
-										</h4>
-										<h4>
-											<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
-											<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
-										</h4>
-
-										<!-- 持有金额 -->
-										<form>
-											<div class="form-group">
-
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
-
-											</div>
-										</form>
-
-										<!-- 购买选项 -->
-										<p>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
-										</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
 						<!-- 存钱&取钱面板 -->
 						<div class="panel panel-default">
@@ -331,6 +292,44 @@
 
 										<!-- 确认转账 -->
 										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div><!-- /.col-sm-4 -->
+					<div class="col-sm-4">
+						<div class="panel panel-default">
+							<!-- 理财产品面板 -->
+							<div class="panel-heading">
+								<h3 class="panel-title">Finance</h3>
+							</div>
+							<div class="panel-body" style="height: 200px; overflow:auto">
+								<div class="row">
+									<div class="col-sm-12">
+										<!-- 产品信息 -->
+										<h4>
+											<span class="label label-default">Product Name: {{ financeData.type }}</span>
+										</h4>
+										<h4>
+											<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
+											<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
+										</h4>
+
+										<!-- 持有金额 -->
+										<form>
+											<div class="form-group">
+
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
+
+											</div>
+										</form>
+
+										<!-- 购买选项 -->
+										<p>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
+										</p>
 									</div>
 								</div>
 							</div>

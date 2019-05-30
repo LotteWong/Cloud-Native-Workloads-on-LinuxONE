@@ -157,7 +157,7 @@ angular.module('todoController', [])
 					{
 
 						console.log("找到账户");
-						$scope.accounts[++i]=data[accountx];
+						$scope.accounts[i++]=data[accountx];
 						var msg = JSON.stringify($scope.accounts);
 						console.log(msg);
 					}
@@ -300,6 +300,7 @@ angular.module('todoController', [])
 
 		// 随机开户
 		$scope.createRandomAccount = function() {
+
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();

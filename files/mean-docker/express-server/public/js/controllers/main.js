@@ -49,7 +49,7 @@ angular.module('todoController', [])
 			$scope.loading = false;
 		});
 
-		$scope.cardId = 100000; // 随机卡号
+		$scope.cardId = 1; // 随机卡号
 
 		// 读取当前客户信息，更新$scope.currCustomer
 		// ......
@@ -419,9 +419,9 @@ angular.module('todoController', [])
 
 		// 购买理财产品的预计收益
 		// 公式 = 持有月数 / 12 * 年利率
-		$scope.purchaseFinanceProduct = function(var month) {
+		// $scope.purchaseFinanceProduct = function(var month) {
 
-		};
+		// };
 
 		/* 以下是原Todo的函数，暂时用不到了 */
 		/*

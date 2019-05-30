@@ -64,56 +64,69 @@
       </div>
     </nav>
 
-		<div class="container" ng-show="!isLogin">
-
-      <form class="form-signin">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model="customerData.username">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="customerData.password">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign in</button>
-      </form>
-
-    </div> <!-- /container -->
-
-		<div class="login">
+		<div class="login" ng-show="!isRegester">
 			<div class="login-top">
 				Please sign up
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/name.png"/></div>
 				<div class="login-center-input">
-					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'"/>
+					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
 					<div class="login-center-input-text">Username</div>
 				</div>
 			</div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/password.png"/></div>
 				<div class="login-center-input">
-					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'"/>
+					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
 					<div class="login-center-input-text">Input Password</div>
         </div>
       </div>
 			<div class="login-center clearfix">
 				<div class="login-center-img"><img src="img/password.png"/></div>
 				<div class="login-center-input">
-					<input type="password" name="" value="" placeholder="Please confirm your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please confirm your password.'"/>
+					<input type="password" name="" value="" placeholder="Please confirm your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please confirm your password.'" ng-model="customerData.password"/>
 					<div class="login-center-input-text">Confirm password</div>
         </div>
 			</div>
-      <div class="checkbox">
-				<label>
-					<input type="checkbox" value="remember-me"> Remember me
-				</label>
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<a class="btn btn-sm btn-white btn-block" style="text-align: right;" ng-show="goSignIn()"><h6>Already signed up? Go sign in!</h6></a>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
+			</div>
+		</div>
+		<div class="sk-rotating-plane"></div>
+
+		<div class="login" ng-show="!isLogin && isRegester">
+			<div class="login-top">
+				Please sign in
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/name.png"/></div>
+				<div class="login-center-input">
+					<input type="text" name="" value="" placeholder="Please enter your username." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your username.'" ng-model="customerData.username"/>
+					<div class="login-center-input-text">Username</div>
+				</div>
+			</div>
+			<div class="login-center clearfix">
+				<div class="login-center-img"><img src="img/password.png"/></div>
+				<div class="login-center-input">
+					<input type="password" name="" value="" placeholder="Please enter your password." onfocus="this.placeholder=''" onblur="this.placeholder='Please input your password.'" ng-model="customerData.password"/>
+					<div class="login-center-input-text">Password</div>
+        </div>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signUp()">Sign up</button>
-			<!--<a class="btn btn-sm btn-white btn-block" style="text-align: right;" ng-show=""><h6>已经注册？前往登录</h6></a>-->
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" value="remember-me"> Remember me
+					</label>
+      	</div>
+				<a class="btn btn-sm btn-white btn-block" style="text-align: right;" ng-show="goSignUp()"><h6>Haven't signed up? Go sign up!</h6></a>
+			</div>
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<button class="btn btn-lg btn-primary btn-block" type="submit" ng-click="signIn()">Sign In</button>
+			</div>
 		</div>
 		<div class="sk-rotating-plane"></div>
 

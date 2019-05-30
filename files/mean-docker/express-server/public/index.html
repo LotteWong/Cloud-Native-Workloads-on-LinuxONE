@@ -208,37 +208,28 @@
 						</div>
 						<div class="col-sm-4">
 							<div class="panel panel-default">
-								<!-- 理财产品面板 -->
+								<!-- 卡片账户面板 -->
 								<div class="panel-heading">
-									<h3 class="panel-title">Finance</h3>
+									<h3 class="panel-title">
+										Cards
+										<button type="button" class="btn btn-xs btn-primary" ng-click="createRandomAccount()">New Card</button>
+									</h3>
 								</div>
-								<div class="panel-body" style="height: 250px; overflow:auto">
-									<div class="row">
-										<div class="col-sm-12">
-											<!-- 产品信息 -->
-											<h4>
-												<span class="label label-default">Product Name: {{ financeData.type }}</span>
-											</h4>
-											<h4>
-												<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
-												<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
-											</h4>
+								<div class="panel-body" style="height: 200px; overflow:auto">
+									<!-- 已有账户列表 -->
+									<div id="todo-list" class="row">
+										<div class="col-sm-4 col-sm-offset-4">
 
-											<!-- 持有金额 -->
-											<form>
-												<div class="form-group">
+											<div class="checkbox" ng-repeat="account in accounts">
+												<label>
+													<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
+												</label>
+											</div>
 
-													<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
-
-												</div>
-											</form>
-
-											<!-- 购买选项 -->
-											<p>
-												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
-												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
-												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
+											<p class="text-center" ng-show="loading">
+												<span class="fa fa-spinner fa-spin fa-3x"></span>
 											</p>
+
 										</div>
 									</div>
 								</div>
@@ -251,28 +242,37 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="panel panel-default">
-							<!-- 卡片账户面板 -->
+							<!-- 理财产品面板 -->
 							<div class="panel-heading">
-								<h3 class="panel-title">
-									Cards
-									<button type="button" class="btn btn-xs btn-primary" ng-click="createRandomAccount()">New Card</button>
-								</h3>
+								<h3 class="panel-title">Finance</h3>
 							</div>
 							<div class="panel-body" style="height: 200px; overflow:auto">
-								<!-- 已有账户列表 -->
-								<div id="todo-list" class="row">
-									<div class="col-sm-4 col-sm-offset-4">
+								<div class="row">
+									<div class="col-sm-12">
+										<!-- 产品信息 -->
+										<h4>
+											<span class="label label-default">Product Name: {{ financeData.type }}</span>
+										</h4>
+										<h4>
+											<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
+											<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
+										</h4>
 
-										<div class="checkbox" ng-repeat="account in accounts">
-											<label>
-												<input type="checkbox" ng-click="selectAccount(account._id)"> {{ account.accountId }}: {{ account.balance }}
-											</label>
-										</div>
+										<!-- 持有金额 -->
+										<form>
+											<div class="form-group">
 
-										<p class="text-center" ng-show="loading">
-											<span class="fa fa-spinner fa-spin fa-3x"></span>
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
+
+											</div>
+										</form>
+
+										<!-- 购买选项 -->
+										<p>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
+											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
 										</p>
-
 									</div>
 								</div>
 							</div>

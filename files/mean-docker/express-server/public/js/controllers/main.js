@@ -312,6 +312,7 @@ angular.module('todoController', [])
 						console.log("customer的账户有："+length+"个");
 						for(var i=0; i<length; ++i){
 							tempAccounts[i]=data[customerx][accounts[i]];
+							console.log("customer可以有账户："+tempAccounts[i]);
 						}
 						tempAccounts[length]=$scope.accountData.accountId;
 						Customers.put(data[customerx]["_id"],{newaccount:tempAccounts}).success(function(data){

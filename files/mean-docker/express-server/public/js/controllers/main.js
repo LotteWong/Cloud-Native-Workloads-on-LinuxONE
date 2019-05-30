@@ -8,7 +8,7 @@ angular.module('todoController', [])
 			type: "Yu'E Bao",
 			rate: 0.233,
 			interest: 0,
-			amount: 0,
+			amount:null
 		}; // 绑定前端的理财产品数据
 
 		$scope.currCustomer = {}; // 绑定数据库的客户数据
@@ -459,9 +459,9 @@ angular.module('todoController', [])
 
 		// 购买理财产品的预计收益
 		// 公式 = 持有月数 / 12 * 年利率
-		// $scope.purchaseFinanceProduct = function(var month) {
-
-		// };
+		$scope.purchaseFinanceProduct = function(month) {
+			$scope.financeData.amount=month/12*$scope.financeData.rate;
+		};
 
 		/* 以下是原Todo的函数，暂时用不到了 */
 		/*

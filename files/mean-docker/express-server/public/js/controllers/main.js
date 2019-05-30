@@ -158,21 +158,25 @@ angular.module('todoController', [])
 
 			// 已有交易显示
 			Transactions.get()
-			.success(function(data){
+			.success(function(data1){
 				console.log("transactions get");
 				var i=0;
-				for(var transactionx in data){
-					console.log("data中的数据"+data[transactionx]["customerName"]);
+				for(var transactionx in data1){
+					console.log("data1中的数据"+data1[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
 					//筛选交易记录
-					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
-					{
-
-						console.log("找到账户");
-						$scope.transactions[i++]=data[transactionx];
-						var msg = JSON.stringify($scope.transactions);
-						console.log(msg);
-					}
+					Customers.get()
+					.success(function(data2){
+						for(var customerx in data2){
+							if(data1[transactionx]["account"] in data2[customerx]['accounts'])
+							{
+								console.log("找到账户");
+								$scope.transactions[i++]=data1[transactionx];
+								var msg = JSON.stringify($scope.transactions);
+								console.log(msg);
+							}
+						}
+					})
 				}
 			})
 

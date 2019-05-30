@@ -485,7 +485,7 @@ angular.module('todoController', [])
 			$scope.transactionData.from = $scope.currCustomer.username;
 			$scope.transactionData.to = $scope.currCustomer.username;
 			$scope.transactionData.time = dateTime.toLocaleString();
-			$scope.transactionData.amount=$scope.$financeData.amount;
+			$scope.transactionData.amount=parseFloat($scope.financeData.amount);
 			console.log("投资金额："+$scope.$financeData.amount);
 			$scope.financeData.amount="";
 

@@ -1,6 +1,6 @@
 angular.module('todoController', [])
 
-	.controller('mainController', ['$scope','$http','Todos', 'Customers', 'Accounts', 'Transactions', function($scope, $http, Todos, Customers, Accounts, Transactions) {
+	.controller('mainController', ['$scope', 'Customers', 'Accounts', 'Transactions', function($scope, Customers, Accounts, Transactions) {
 		$scope.customerData = {}; // 绑定前端的客户数据
 		$scope.accountData = {}; // 绑定前端的账户数据
 		$scope.transactionData = {}; // 绑定前端的交易记录数据
@@ -33,12 +33,6 @@ angular.module('todoController', [])
 		$scope.loading = true; // 控制账户加载显示
 		$scope.isLogin = false; // 控制页面跳转显示
 
-		Customers.get().success(function(data) {
-			console.log("i got the data i requested")
-			$scope.customers = data;
-			$scope.loading = false;
-		});
-
 		// 客户注册
 		$scope.signUp = function() {
 			
@@ -46,7 +40,6 @@ angular.module('todoController', [])
 			$scope.balance = 0;
 			$scope.income = 0;
 			$scope.outcome = 0;
-
 
 			if ($scope.customerData.username != undefined && $scope.customerData.password != undefined) {
 				console.log('客户昵称：' + $scope.customerData.username);
@@ -144,11 +137,12 @@ angular.module('todoController', [])
 					// 筛选存在账户
 					if(data[accountx]["customerName"]==$scope.currCustomer.username)
 					{
-					    $scope.balance = $scope.balance + data[accountx]["balance"];
-					    $scope.income = $scope.income + data[accountx]["income"];
-					    $scope.outcome = $scope.outcome + data[accountx]["outcome"];
+						$scope.balance = $scope.balance + data[accountx]["balance"];
+						$scope.income = $scope.income + data[accountx]["income"];
+						$scope.outcome = $scope.outcome + data[accountx]["outcome"];
 						console.log("找到账户");
 						$scope.accounts[i++]=data[accountx];
+						console.log("账户信息");
 						var msg = JSON.stringify($scope.accounts);
 						console.log(msg);
 					}
@@ -158,25 +152,21 @@ angular.module('todoController', [])
 
 			// 已有交易显示
 			Transactions.get()
-			.success(function(data1){
+			.success(function(data){
 				console.log("transactions get");
 				var i=0;
-				for(var transactionx in data1){
-					console.log("data1中的数据"+data1[transactionx]["customerName"]);
+				for(var transactionx in data){
+					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
-					//筛选交易记录
-					Customers.get()
-					.success(function(data2){
-						for(var customerx in data2){
-							if(data1[transactionx]["account"] in data2[customerx]['accounts'])
-							{
-								console.log("找到账户");
-								$scope.transactions[i++]=data1[transactionx];
-								var msg = JSON.stringify($scope.transactions);
-								console.log(msg);
-							}
-						}
-					})
+					// 筛选交易记录
+					if(data[transactionx]["from"]==$scope.currCustomer.username||data[transactionx]["to"]==$scope.currCustomer.username)
+					{
+						console.log("找到账户");
+						$scope.transactions[i++]=data[transactionx];
+						console.log("交易记录");
+						var msg = JSON.stringify($scope.transactions);
+						console.log(msg);
+					}
 				}
 			})
 
@@ -184,6 +174,7 @@ angular.module('todoController', [])
 
 		// 客户登出
 		$scope.signOut = function() {
+			// 重置登录、客户、账户、交易记录
 			$scope.isLogin = false;
 			$scope.customerData = {};
 			$scope.accountData = {};
@@ -204,9 +195,6 @@ angular.module('todoController', [])
 		        var msg = JSON.stringify(data);
 		        console.log(msg);
 		        var flag = 0;
-
-		        // 更新自己的余额和支出
-		        // ......
 
 		        for (var accountx in data) {
 		            if (data[accountx]["accountId"] == $scope.currAccount.accountId) {
@@ -300,7 +288,7 @@ angular.module('todoController', [])
 		};
 
 
-		// 读取当前账户信息，更新$scope.currAccount
+		// 选中账户
 		$scope.selectAccount = function(id) {
 			Accounts.get().success(function(data){
 				for(var idx in data){
@@ -308,7 +296,8 @@ angular.module('todoController', [])
 						console.log("获取到当前账户信息！");
 						console.log("matching id:"+data[idx]["_id"]);
 						$scope.currAccount=data[idx];
-						console.log($scope.currAccount);
+						var msg = JSON.stringify($scope.currAccount);
+						console.log(msg);
 					}
 				}
 			})
@@ -320,10 +309,10 @@ angular.module('todoController', [])
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();
-			console.log($scope.accountData.customerName);
-			console.log($scope.accountData.accountId);
+			console.log("客户名：" + $scope.accountData.customerName);
+			console.log("账户名：" + $scope.accountData.accountId);
 
-			//更新Customers的accounts数组
+			// 更新Customers的accounts数组
 			Customers.get().success(function(data){
 				for(var customerx in data){
 					console.log("新建account的账户名为："+data[customerx]["username"]);

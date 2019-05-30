@@ -102,6 +102,9 @@ angular.module('todoController', [])
 		// 检查已存在的客户
 		$scope.signIn = function() {
 			$scope.accounts = {};
+
+			var dateTime = new Date();
+			$scope.customerData.lastSuccessfulLogin = dateTime.toLocaleString();
 			// 情况一：不存在该客户则alert提醒并清空form
 			// ......
 
@@ -294,7 +297,7 @@ angular.module('todoController', [])
 		$scope.createRandomAccount = function() {
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
-			$scope.accountData.accountId = (cardId++).toString();
+			$scope.accountData.accountId = ($scope.cardId++).toString();
 
 			Accounts.create($scope.accountData).success(function(data) {				
 				var msg = JSON.stringify(data);

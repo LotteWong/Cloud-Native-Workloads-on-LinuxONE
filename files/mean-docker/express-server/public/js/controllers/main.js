@@ -173,7 +173,7 @@ angular.module('todoController', [])
 				console.log("transactions get");
 				var i=0;
 				for(var transactionx in data){
-					console.log("data中的数据"+data[accountx]["customerName"]);
+					console.log("data中的数据"+data[transactionx]["customerName"]);
 					console.log("currCustomer:"+$scope.currCustomer.username);
 					if(data[transactionx]["customerName"]==$scope.currCustomer.username)
 					{

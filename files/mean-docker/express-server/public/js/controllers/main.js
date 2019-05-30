@@ -36,7 +36,7 @@ angular.module('todoController', [])
 
 		Customers.get().success(function(data) {
 			console.log("i got the data i requested")
-			$scope.todos = data;
+			$scope.customers = data;
 			$scope.loading = false;
 		});
 
@@ -91,7 +91,7 @@ angular.module('todoController', [])
 						var msg = JSON.stringify(data);
 						console.log(msg);
 
-						$scope.isLogin = true;
+						// $scope.isLogin = true;
 					
 						$scope.currCustomer = $scope.customerData;
 						$scope.customerData = {};
@@ -316,6 +316,7 @@ angular.module('todoController', [])
 			console.log("it is a new account");
 			$scope.accountData.customerName = $scope.currCustomer.username;
 			$scope.accountData.accountId = ($scope.cardId++).toString();
+			console.log($scope.accountData.customerName);
 			console.log($scope.accountData.accountId);
 
 			//更新Customers的accounts数组
@@ -418,10 +419,24 @@ angular.module('todoController', [])
                                var msg = JSON.stringify(data);
                                console.log(msg);
                                $scope.balance = $scope.balance + parseFloat($scope.operationAmount);
-                               $scope.income = $scope.income + parseFloat($scope.operationAmount);
+							   $scope.income = $scope.income + parseFloat($scope.operationAmount);
+							   
+							   var i=0;
+								for(var accountx in data){
+									console.log("data中的数据"+data[accountx]["customerName"]);
+									console.log("currCustomer:"+$scope.currCustomer.username);
+									if(data[accountx]["customerName"]==$scope.currCustomer.username)
+									{
+
+										console.log("找到账户");
+										$scope.accounts[i++]=data[accountx];
+										var msg = JSON.stringify($scope.accounts);
+										console.log(msg);
+									}
+								}
 
                                $scope.operationAmount = "";
-                               $scope.accounts = data;
+                            //    $scope.accounts = data;
                            })
 					}
 				}
@@ -486,9 +501,23 @@ angular.module('todoController', [])
 						        var msg = JSON.stringify(data);
 						        console.log(msg);
 						        $scope.balance = $scope.balance - parseFloat($scope.operationAmount);
-						        $scope.outcome = $scope.outcome + parseFloat($scope.operationAmount);
+								$scope.outcome = $scope.outcome + parseFloat($scope.operationAmount);
+								
+								var i=0;
+								for(var accountx in data){
+									console.log("data中的数据"+data[accountx]["customerName"]);
+									console.log("currCustomer:"+$scope.currCustomer.username);
+									if(data[accountx]["customerName"]==$scope.currCustomer.username)
+									{
+
+										console.log("找到账户");
+										$scope.accounts[i++]=data[accountx];
+										var msg = JSON.stringify($scope.accounts);
+										console.log(msg);
+									}
+								}
 						        $scope.operationAmount = "";
-						        $scope.accounts = data;
+						        // $scope.accounts = data;
 						    })
 						}
 					}
@@ -545,11 +574,25 @@ angular.module('todoController', [])
 					if(data[accountx]["accountId"]==$scope.currAccount.accountId){
 						console.log("找到对应的账户");
 						console.log($scope.currAccount.accountId);
-						Accounts.put(data[accountx]["_id"],{amount:data[accountx]["balance"]-parseFloat($scope.financeData.amount)}).success(function(data){
+						Accounts.put(data[accountx]["_id"],{balance:data[accountx]["balance"]-parseFloat($scope.financeData.amount)}).success(function(data){
 							var msg=JSON.stringify(data);
 							console.log(msg);
+
+							var i=0;
+								for(var accountx in data){
+									console.log("data中的数据"+data[accountx]["customerName"]);
+									console.log("currCustomer:"+$scope.currCustomer.username);
+									if(data[accountx]["customerName"]==$scope.currCustomer.username)
+									{
+
+										console.log("找到账户");
+										$scope.accounts[i++]=data[accountx];
+										var msg = JSON.stringify($scope.accounts);
+										console.log(msg);
+									}
+								}
 							$scope.financeData.amount="";
-							$scope.accounts=data;
+							// $scope.accounts=data;
 						})
 					}
 				}

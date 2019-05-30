@@ -187,7 +187,7 @@ angular.module('todoController', [])
 		    // ......
 		    $scope.transactionData.amount = "";
 		    $scope.transactionData.to = "";
-		}
+		};
 		
 		//确认转账
 		$scope.confirmTransfer = function() {
@@ -270,7 +270,7 @@ angular.module('todoController', [])
 
 		    })
 
-		}
+		};
 
 		// 读取当前账户信息，更新$scope.currAccount
 		$scope.selectAccount = function(id) {

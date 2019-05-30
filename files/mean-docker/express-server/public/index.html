@@ -206,36 +206,46 @@
 								</div>
 							</div>
 						</div>
-					</div><!-- /.col-sm-4 -->
-					<div class="col-sm-4">
-						<!-- 支付&转账面板 -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-									<h3 class="panel-title">Payment & Transfer</h3>
-							</div>
-							<div class="panel-body" style="height: 250px; overflow:auto">
-								<div id="todo-form" class="row">
-									<div class="col-sm-8 col-sm-offset-2 text-center">
-										<form>
-											<div class="form-group">
-												<!-- 输入转账账户 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
-												<!-- 输入转账金额 -->
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
+						<div class="col-sm-4">
+							<div class="panel panel-default">
+								<!-- 理财产品面板 -->
+								<div class="panel-heading">
+									<h3 class="panel-title">Finance</h3>
+								</div>
+								<div class="panel-body" style="height: 200px; overflow:auto">
+									<div class="row">
+										<div class="col-sm-12">
+											<!-- 产品信息 -->
+											<h4>
+												<span class="label label-default">Product Name: {{ financeData.type }}</span>
+											</h4>
+											<h4>
+												<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
+												<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
+											</h4>
 
-											</div>
-										</form>
+											<!-- 持有金额 -->
+											<form>
+												<div class="form-group">
 
-										<!-- 取消转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+													<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
 
-										<!-- 确认转账 -->
-										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
+												</div>
+											</form>
+
+											<!-- 购买选项 -->
+											<p>
+												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
+												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
+												<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
+											</p>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div><!-- /.col-sm-4 -->
 					</div><!-- /.col-sm-4 -->
+					
      	  </div>
 
 				<div class="row">
@@ -298,38 +308,29 @@
 						</div>
 					</div><!-- /.col-sm-4 -->
 					<div class="col-sm-4">
+						<!-- 支付&转账面板 -->
 						<div class="panel panel-default">
-							<!-- 理财产品面板 -->
 							<div class="panel-heading">
-								<h3 class="panel-title">Finance</h3>
+									<h3 class="panel-title">Payment & Transfer</h3>
 							</div>
-							<div class="panel-body" style="height: 200px; overflow:auto">
-								<div class="row">
-									<div class="col-sm-12">
-										<!-- 产品信息 -->
-										<h4>
-											<span class="label label-default">Product Name: {{ financeData.type }}</span>
-										</h4>
-										<h4>
-											<span class="label label-danger">Annual Rate: {{ financeData.rate }}</span>
-											<span class="label label-success">Estimated Interest: {{ financeData.interest }}</span>
-										</h4>
-
-										<!-- 持有金额 -->
+							<div class="panel-body" style="height: 250px; overflow:auto">
+								<div id="todo-form" class="row">
+									<div class="col-sm-8 col-sm-offset-2 text-center">
 										<form>
 											<div class="form-group">
-
-												<input type="text" class="form-control input-lg text-center" placeholder="Please input holding amount." ng-model="financeData.amount">
+												<!-- 输入转账账户 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the account for transfer." ng-model="transactionData.to">
+												<!-- 输入转账金额 -->
+												<input type="text" class="form-control input-lg text-center" placeholder="Please input the amount for transfer." ng-model="transactionData.amount">
 
 											</div>
 										</form>
 
-										<!-- 购买选项 -->
-										<p>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(12)">For One Year</button>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(6)">For Six Months</button>
-											<button type="button" class="btn btn-xs btn-warning" ng-click="purchaseFinanceProduct(3)">For Three Months</button>
-										</p>
+										<!-- 取消转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="cancelTransfer()">Cancel</button>
+
+										<!-- 确认转账 -->
+										<button type="submit" class="btn btn-primary btn-lg" ng-click="confirmTransfer()">Confirm</button>
 									</div>
 								</div>
 							</div>

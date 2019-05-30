@@ -196,15 +196,15 @@ module.exports = function (app) {
                 res.send(err);
 
             // get and return all the todos after you create another
-            getAccounts(res);
+           // getAccounts(res);
         });
-        /*var updatestr2 = { 'income': req.body.income };
-        //Account.update(wherestr, updatestr2, function (err, account) {
+        var updatestr2 = { 'income': req.body.income };
+        Account.update(wherestr, updatestr2, function (err, account) {
             if (err)
                 res.send(err);
 
             // get and return all the todos after you create another
-            getAccounts(res);
+        //    getAccounts(res);
         });
         var updatestr3 = { 'outcome': req.body.outcome };
         Account.update(wherestr, updatestr3, function (err, account) {
@@ -213,7 +213,7 @@ module.exports = function (app) {
 
             // get and return all the todos after you create another
             getAccounts(res);
-        });*/
+        });
     });
 
     // delete a todo

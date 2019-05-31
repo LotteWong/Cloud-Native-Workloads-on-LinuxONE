@@ -295,7 +295,7 @@ angular.module('todoController', [])
 		                $scope.currTransaction = $scope.transactionData;
 		                $scope.transactionData = {};
 		                $scope.transactions = data;
-		                /*var i = 0;
+		                var i = 0;
 		                for (var transactionx in data) {
 		                    console.log("data中的数据" + data[transactionx]["customerName"]);
 		                    console.log("currCustomer:" + $scope.currCustomer.username);
@@ -307,7 +307,7 @@ angular.module('todoController', [])
 		                        var msg = JSON.stringify($scope.transactions);
 		                        console.log(msg);
 		                    }
-		                }*/
+		                }
 		            })
 
 		        }

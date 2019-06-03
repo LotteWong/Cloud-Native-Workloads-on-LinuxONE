@@ -210,8 +210,8 @@ angular.module('todoController', [])
                             .success(function (data) {
                                 var msg = JSON.stringify(data);
                                 console.log(msg);
-                                $scope.balance = $scope.balance - parseFloat($scope.transactionData.amount);
-                                $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
+                                // $scope.balance = $scope.balance - parseFloat($scope.transactionData.amount);
+                                // $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
 
                                 $scope.operationAmount = "";
                                 console.log("accounts get");

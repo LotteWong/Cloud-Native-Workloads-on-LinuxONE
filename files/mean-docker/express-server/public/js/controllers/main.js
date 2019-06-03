@@ -210,28 +210,28 @@ angular.module('todoController', [])
                             .success(function (data) {
                                 var msg = JSON.stringify(data);
                                 console.log(msg);
-                                // $scope.balance = $scope.balance - parseFloat($scope.transactionData.amount);
-                                // $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
+                                $scope.balance = $scope.balance - parseFloat($scope.transactionData.amount);
+                                $scope.outcome = $scope.outcome + parseFloat($scope.transactionData.amount);
 
                                 $scope.operationAmount = "";
                                 console.log("accounts get");
-									var i=0;
-									for(var accountx in data){
-										console.log("data中的数据"+data[accountx]["customerName"]);
-										console.log("currCustomer:"+$scope.currCustomer.username);
-										// 筛选存在账户
-										if(data[accountx]["customerName"]==$scope.currCustomer.username)
-										{
-											$scope.balance = $scope.balance + data[accountx]["balance"];
-											$scope.income = $scope.income + data[accountx]["income"];
-											$scope.outcome = $scope.outcome + data[accountx]["outcome"];
-											console.log("找到账户");
-											$scope.accounts[i++]=data[accountx];
-											console.log("账户信息");
-											var msg = JSON.stringify($scope.accounts);
-											console.log(msg);
-										}
-									}
+																/*var i=0;
+																for(var accountx in data){
+																	console.log("data中的数据"+data[accountx]["customerName"]);
+																	console.log("currCustomer:"+$scope.currCustomer.username);
+																	// 筛选存在账户
+																	if(data[accountx]["customerName"]==$scope.currCustomer.username)
+																	{
+																		$scope.balance = $scope.balance + data[accountx]["balance"];
+																		$scope.income = $scope.income + data[accountx]["income"];
+																		$scope.outcome = $scope.outcome + data[accountx]["outcome"];
+																		console.log("找到账户");
+																		$scope.accounts[i++]=data[accountx];
+																		console.log("账户信息");
+																		var msg = JSON.stringify($scope.accounts);
+																		console.log(msg);
+																	}
+																}*/
                             })
 		                }
 		                break;
